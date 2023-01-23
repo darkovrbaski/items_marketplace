@@ -23,7 +23,7 @@
     <org.springdoc.version>1.6.14</org.springdoc.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
     <checkstyle.version>10.6.0</checkstyle.version>
-    <jacoco-maven-plugin>0.8.7</jacoco-maven-plugin>
+    <jacoco-maven-plugin>0.8.8</jacoco-maven-plugin>
   </properties>
   <dependencies>
     <!--		<dependency>-->
