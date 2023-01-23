@@ -1,15 +1,20 @@
-name: Deploy Backend
+name: Deploy Frontend and Backend
 
 on: workflow_dispatch
 
 jobs:
-  ci:
+  ci-backend:
     name: CI
-    uses: darkovrbaski/items_marketplace/.github/workflows/ci.yml@main
+    uses: darkovrbaski/items_marketplace/.github/workflows/ci-backend.yml@main
+    secrets: inherit
+  
+  ci-frontend:
+    name: CI
+    uses: darkovrbaski/items_marketplace/.github/workflows/ci-frontend.yml@main
     secrets: inherit
 
   release:
-    needs: ci
+    needs: [ci-backend, ci-frontend]
     name: Release
     runs-on: ubuntu-latest
 

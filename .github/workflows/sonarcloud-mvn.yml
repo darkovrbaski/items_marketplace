@@ -1,14 +1,10 @@
-name: SonarCloud Scan
+name: SonarCloud Scan Backend
 
 on:
   workflow_call:
-    inputs:
-      PROJECT_KEY:
-        type: string
-        required: true
-      SECRET_NAME:
-        type: string
-        required: true
+    secrets:
+        SONAR_TOKEN_BACKEND:
+          required: true
 
 jobs:
   sonar:
@@ -48,7 +44,7 @@ jobs:
             restore-keys: ${{ runner.os }}-m2
         
         - name: Build and analyze
-          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=${{ inputs.PROJECT_KEY }} -Dsonar.qualitygate.wait=true -f items-marketplace/pom.xml
+          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=darkovrbaski_items_marketplace_backend -Dsonar.qualitygate.wait=true -f items-marketplace/pom.xml
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-            SONAR_TOKEN: ${{ secrets[inputs.SECRET_NAME] }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}

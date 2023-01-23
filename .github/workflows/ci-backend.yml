@@ -37,10 +37,6 @@ jobs:
   sonar:
     needs: build
     name: SAST
-    uses: darkovrbaski/items_marketplace/.github/workflows/sonarcloud.yml@main
+    uses: darkovrbaski/items_marketplace/.github/workflows/sonarcloud-mvn.yml@main
     secrets: inherit
-    with:
-      PROJECT_KEY: darkovrbaski_items_marketplace_backend
-      SECRET_NAME: SONAR_TOKEN_BACKEND
-
       
