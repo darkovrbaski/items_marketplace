@@ -1,10 +1,10 @@
 name: SonarCloud Scan Backend
 
 on:
-  workflow_call:
-    secrets:
-        SONAR_TOKEN_BACKEND:
-          required: true
+  workflow_run:
+      workflows: [Backend CI]
+      types:
+        - completed
 
 jobs:
   sonar:
@@ -15,8 +15,15 @@ jobs:
         - name: Harden Runner
           uses: step-security/harden-runner@18bf8ad2ca49c14cbb28b91346d626ccfb00c518 # v2.1.0
           with:
-            egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
-        
+            disable-sudo: true
+            egress-policy: block
+            allowed-endpoints: >
+              ea6ne4j2sb.execute-api.eu-central-1.amazonaws.com:443
+              github.com:443
+              sc-cleancode-sensorcache-eu-central-1-prod.s3.amazonaws.com:443
+              scanner.sonarcloud.io:443
+              sonarcloud.io:443
+                
         - name: Checkout repository
           uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
           with:
