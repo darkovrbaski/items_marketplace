@@ -10,12 +10,12 @@
         <option value="fieldCanBeFinal" />
         <option value="localCanBeFinal" />
         <option value="missingOverrideAnnotation" />
+        <option value="useBlocks" />
         <option value="generateSerialVersionUID" />
         <option value="unnecessaryThis" />
         <option value="explicitTypeCanBeDiamond" />
         <option value="suppressAnnotation" />
         <option value="unnecessarySemicolon" />
-        <option value="singleStatementInBlock" />
       </set>
     </option>
     <option name="configurationPath" value="" />

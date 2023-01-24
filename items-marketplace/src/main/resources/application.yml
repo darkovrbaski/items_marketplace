@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: items_marketplace
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${POSTGRES_DB_URL:jdbc:postgresql://localhost:5432/ItemsMarketplaceDB}
+    username: ${POSTGRES_DB_USERNAME:postgres}
+    password: ${POSTGRES_DB_PASSWORD:postgres}
+  jpa:
+    show-sql: false
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        format_sql: true
+    open-in-view: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.hibernate.sql: DEBUG
+    org.hibernate.type.org.hibernate.type.descriptor.sql.BasicBinder: DEBUG
+
+springdoc:
+  swagger-ui:
+    path: /docs
