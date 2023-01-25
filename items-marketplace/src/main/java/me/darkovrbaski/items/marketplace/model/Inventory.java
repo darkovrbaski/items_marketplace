@@ -26,7 +26,7 @@ import org.hibernate.Hibernate;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "Inventory")
+@Table(name = "inventory")
 public class Inventory {
 
   @Id

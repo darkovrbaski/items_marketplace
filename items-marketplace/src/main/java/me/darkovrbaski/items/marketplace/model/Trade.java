@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import lombok.AccessLevel;
@@ -24,30 +26,32 @@ import org.hibernate.Hibernate;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "Trade")
+@Table(name = "trade")
 public class Trade {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   long id;
 
-  @Column
+  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   OrderType type;
 
   @Column
   LocalDateTime createdDateTime;
 
-  @Column
+  @PositiveOrZero
+  @Column(nullable = false)
   double price;
 
-  @Column
+  @Positive
+  @Column(nullable = false)
   double quantity;
 
-  @Column
+  @Column(nullable = false)
   long sellOrderId;
 
-  @Column
+  @Column(nullable = false)
   long buyOrderId;
 
   @Override

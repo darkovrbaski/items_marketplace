@@ -7,6 +7,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,17 +25,19 @@ import org.hibernate.Hibernate;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "`User`")
+@Table(name = "`user`")
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   long id;
 
-  @Column
+  @Size(min = 3)
+  @Column(nullable = false, unique = true)
   String username;
 
-  @Column
+  @Size(min = 3)
+  @Column(nullable = false)
   String password;
 
   @Column
@@ -41,6 +46,7 @@ public class User {
   @Column
   String lastName;
 
+  @Email
   @Column
   String email;
 
@@ -50,10 +56,11 @@ public class User {
   @Column
   String image;
 
-  @Column
+  @PositiveOrZero
+  @Column(nullable = false)
   double walletBalance;
 
-  @Column
+  @Column(nullable = false)
   boolean administrator;
 
   @Embedded

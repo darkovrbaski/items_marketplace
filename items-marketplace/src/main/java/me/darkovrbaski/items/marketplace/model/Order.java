@@ -14,6 +14,8 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ import org.hibernate.Hibernate;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "`Order`")
+@Table(name = "`order`")
 public class Order {
 
   @Id
@@ -42,20 +44,23 @@ public class Order {
   @Column
   LocalDateTime createdDateTime;
 
-  @Column
+  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   OrderType type;
 
-  @Column
+  @PositiveOrZero
+  @Column(nullable = false)
   double price;
 
-  @Column
+  @Positive
+  @Column(nullable = false)
   double quantity;
 
-  @Column
+  @PositiveOrZero
+  @Column(nullable = false)
   double filledQuantity;
 
-  @Column
+  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   OrderStatus status;
 

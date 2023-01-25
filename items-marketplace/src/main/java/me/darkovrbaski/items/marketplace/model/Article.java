@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -23,14 +24,15 @@ import org.hibernate.Hibernate;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "Article")
+@Table(name = "article")
 public class Article {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   long id;
 
-  @Column
+  @NotBlank
+  @Column(nullable = false, unique = true)
   String name;
 
   @Column
@@ -39,7 +41,7 @@ public class Article {
   @Column
   String image;
 
-  @Column
+  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   QuantityType quantityType;
 
