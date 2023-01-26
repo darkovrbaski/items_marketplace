@@ -3,13 +3,11 @@ package me.darkovrbaski.items.marketplace.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,11 +24,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "`user`")
-public class User {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
+public class User extends EntityDB {
 
   @Size(min = 3)
   @Column(nullable = false, unique = true)
@@ -58,7 +52,7 @@ public class User {
 
   @PositiveOrZero
   @Column(nullable = false)
-  double walletBalance;
+  BigDecimal walletBalance;
 
   @Column(nullable = false)
   boolean administrator;
@@ -75,7 +69,7 @@ public class User {
       return false;
     }
     final User user = (User) o;
-    return Objects.equals(id, user.id);
+    return Objects.equals(getId(), user.getId());
   }
 
   @Override

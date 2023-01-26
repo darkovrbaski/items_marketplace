@@ -1,12 +1,13 @@
 package me.darkovrbaski.items.marketplace.model;
 
+import java.math.BigDecimal;
 import lombok.Value;
 
 @Value
 public class AccumulatedOrders {
 
-  double price;
+  BigDecimal price;
 
-  double quantity;
+  BigDecimal quantity;
 
 }

@@ -6,9 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -16,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +33,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "`order`")
-public class Order {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
+public class Order extends EntityDB {
 
   @Column
   LocalDateTime createdDateTime;
@@ -50,15 +44,15 @@ public class Order {
 
   @PositiveOrZero
   @Column(nullable = false)
-  double price;
+  BigDecimal price;
 
   @Positive
   @Column(nullable = false)
-  double quantity;
+  BigDecimal quantity;
 
   @PositiveOrZero
   @Column(nullable = false)
-  double filledQuantity;
+  BigDecimal filledQuantity;
 
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
@@ -128,7 +122,7 @@ public class Order {
       return false;
     }
     final Order order = (Order) o;
-    return Objects.equals(id, order.id);
+    return Objects.equals(getId(), order.getId());
   }
 
   @Override

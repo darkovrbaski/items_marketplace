@@ -3,9 +3,6 @@ package me.darkovrbaski.items.marketplace.model;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -27,11 +24,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "inventory")
-public class Inventory {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
+public class Inventory extends EntityDB {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
@@ -88,7 +81,7 @@ public class Inventory {
       return false;
     }
     final Inventory inventory = (Inventory) o;
-    return Objects.equals(id, inventory.id);
+    return Objects.equals(getId(), inventory.getId());
   }
 
   @Override

@@ -4,12 +4,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import lombok.AccessLevel;
@@ -27,11 +25,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "trade")
-public class Trade {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
+public class Trade extends EntityDB {
 
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
@@ -42,11 +36,11 @@ public class Trade {
 
   @PositiveOrZero
   @Column(nullable = false)
-  double price;
+  BigDecimal price;
 
   @Positive
   @Column(nullable = false)
-  double quantity;
+  BigDecimal quantity;
 
   @Column(nullable = false)
   long sellOrderId;
@@ -63,7 +57,7 @@ public class Trade {
       return false;
     }
     final Trade trade = (Trade) o;
-    return Objects.equals(id, trade.id);
+    return Objects.equals(getId(), trade.getId());
   }
 
   @Override

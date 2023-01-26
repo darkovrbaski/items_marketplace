@@ -4,9 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import java.util.Objects;
@@ -25,11 +22,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "article")
-public class Article {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  long id;
+public class Article extends EntityDB {
 
   @NotBlank
   @Column(nullable = false, unique = true)
@@ -54,7 +47,7 @@ public class Article {
       return false;
     }
     final Article article = (Article) o;
-    return Objects.equals(id, article.id);
+    return Objects.equals(getId(), article.getId());
   }
 
   @Override
