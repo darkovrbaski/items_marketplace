@@ -22,7 +22,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "article")
-public class Article extends EntityDB {
+public class Article extends EntityDb {
 
   @NotBlank
   @Column(nullable = false, unique = true)

@@ -33,7 +33,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "`order`")
-public class Order extends EntityDB {
+public class Order extends EntityDb {
 
   @Column
   LocalDateTime createdDateTime;

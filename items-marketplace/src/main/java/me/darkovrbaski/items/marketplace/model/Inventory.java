@@ -24,7 +24,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "inventory")
-public class Inventory extends EntityDB {
+public class Inventory extends EntityDb {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")

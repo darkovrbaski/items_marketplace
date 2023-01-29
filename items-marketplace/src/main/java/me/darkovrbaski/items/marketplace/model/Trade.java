@@ -25,7 +25,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "trade")
-public class Trade extends EntityDB {
+public class Trade extends EntityDb {
 
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)

@@ -24,7 +24,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "`user`")
-public class User extends EntityDB {
+public class User extends EntityDb {
 
   @Size(min = 3)
   @Column(nullable = false, unique = true)
