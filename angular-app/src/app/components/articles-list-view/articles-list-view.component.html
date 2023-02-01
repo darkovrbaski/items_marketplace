@@ -1,0 +1,213 @@
+<div class="row d-flex flex-wrap justify-content-center">
+  <div class="col-md-4 order-md-1">
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Search for items</h5>
+            </div>
+            <div class="card-body d-flex align-items-center">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search by name"
+                [(ngModel)]="searchInput" />
+              <button class="btn btn-primary ms-2" (click)="serachArticles()">
+                Search
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row" *ngIf="showAdd">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Add article</h5>
+            </div>
+            <div class="card-body d-flex align-items-center">
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    [(ngModel)]="newArticle.name" />
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label"
+                    >Description</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    placeholder="Description"
+                    [(ngModel)]="newArticle.description" />
+                </div>
+                <div class="mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="image"
+                    name="image"
+                    placeholder="Image URL"
+                    [(ngModel)]="newArticle.image" />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  (click)="createArticle()">
+                  Add
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger ms-2"
+                  (click)="addToogle()">
+                  Cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row" *ngIf="showEdit">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Update article</h5>
+            </div>
+            <div class="card-body d-flex align-items-center">
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    [(ngModel)]="editArticle.name" />
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label"
+                    >Description</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    placeholder="Description"
+                    [(ngModel)]="editArticle.description" />
+                </div>
+                <div class="mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="image"
+                    name="image"
+                    placeholder="Image URL"
+                    [(ngModel)]="editArticle.image" />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  (click)="updateArticle(editArticle)">
+                  Update
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger ms-2"
+                  (click)="editToogle(editArticle)">
+                  Cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-8 order-md-0">
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header d-flex align-items-center">
+              <h5>Name</h5>
+              <div class="ms-auto">
+                <button
+                  class="btn btn-primary"
+                  (click)="addToogle()"
+                  *ngIf="!showAdd">
+                  New article
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row" *ngFor="let article of articles">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-body d-flex align-items-center">
+              <img
+                [src]="article.image"
+                [alt]="article.name"
+                class="article-image mw-100 me-3" />
+              <div>
+                <h5 class="card-text">{{ article.name }}</h5>
+                <p class="card-text">{{ article.description }}</p>
+              </div>
+              <div class="ms-auto">
+                <button class="btn btn-primary" (click)="editToogle(article)">
+                  Edit
+                </button>
+                <button
+                  class="btn btn-danger ms-2"
+                  (click)="deleteArticle(article.id)">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-body d-flex align-items-center">
+              <mat-paginator
+                (page)="handlePageEvent($event)"
+                [length]="paginator.length"
+                [pageSize]="paginator.pageSize"
+                [disabled]="false"
+                [showFirstLastButtons]="true"
+                [pageSizeOptions]="paginator.pageSizeOptions"
+                [hidePageSize]="false"
+                [pageIndex]="paginator.pageIndex"
+                aria-label="Select page">
+              </mat-paginator>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

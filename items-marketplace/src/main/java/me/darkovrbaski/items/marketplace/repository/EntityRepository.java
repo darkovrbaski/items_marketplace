@@ -1,6 +1,6 @@
 package me.darkovrbaski.items.marketplace.repository;
 
-import jakarta.persistence.EntityNotFoundException;
+import me.darkovrbaski.items.marketplace.exception.EntityNotFoundException;
 import me.darkovrbaski.items.marketplace.model.EntityDb;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;

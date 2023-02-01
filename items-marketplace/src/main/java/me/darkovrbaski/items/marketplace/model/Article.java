@@ -24,7 +24,7 @@ import org.hibernate.Hibernate;
 @Table(name = "article")
 public class Article extends EntityDb {
 
-  @NotBlank
+  @NotBlank(message = "Name is mandatory")
   @Column(nullable = false, unique = true)
   String name;
 
