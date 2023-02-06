@@ -26,11 +26,11 @@ import org.hibernate.Hibernate;
 @Table(name = "`user`")
 public class User extends EntityDb {
 
-  @Size(min = 3)
+  @Size(min = 3, message = "Username must be at least 3 characters long")
   @Column(nullable = false, unique = true)
   String username;
 
-  @Size(min = 3)
+  @Size(min = 3, message = "Password must be at least 3 characters long")
   @Column(nullable = false)
   String password;
 
@@ -40,7 +40,7 @@ public class User extends EntityDb {
   @Column
   String lastName;
 
-  @Email
+  @Email(message = "Email should be valid")
   @Column
   String email;
 
@@ -50,7 +50,7 @@ public class User extends EntityDb {
   @Column
   String image;
 
-  @PositiveOrZero
+  @PositiveOrZero(message = "Wallet balance must be positive or zero")
   @Column(nullable = false)
   BigDecimal walletBalance;
 

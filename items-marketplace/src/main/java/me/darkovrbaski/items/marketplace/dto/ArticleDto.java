@@ -1,21 +1,21 @@
 package me.darkovrbaski.items.marketplace.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Value;
 import me.darkovrbaski.items.marketplace.model.QuantityType;
 
-@Value
-public class ArticleDto {
+public record ArticleDto(
 
-  Long id;
+    Long id,
 
-  @NotBlank(message = "Name is mandatory")
-  String name;
+    @NotBlank(message = "Name is mandatory")
+    String name,
 
-  String description;
+    String description,
 
-  String image;
+    String image,
 
-  QuantityType quantityType;
+    QuantityType quantityType
+    
+) {
 
 }

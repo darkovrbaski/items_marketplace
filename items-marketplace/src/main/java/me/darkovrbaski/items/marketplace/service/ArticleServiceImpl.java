@@ -11,7 +11,6 @@ import me.darkovrbaski.items.marketplace.repository.ArticleRepository;
 import me.darkovrbaski.items.marketplace.service.intefaces.ArticleService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,10 +23,10 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public ArticleDto createArticle(final ArticleDto article) {
-    if (articleRepository.existsById(article.getId())) {
+    if (articleRepository.existsById(article.id())) {
       throw new EntityAlreadyExistsException("Article already exists.");
     }
-    if (articleRepository.existsByName(article.getName())) {
+    if (articleRepository.existsByName(article.name())) {
       throw new EntityAlreadyExistsException("Article with this name already exists.");
     }
     return articleMapper.toDto(articleRepository.save(articleMapper.toEntity(article)));
@@ -40,10 +39,10 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public ArticleDto updateArticle(final ArticleDto article) {
-    if (!articleRepository.existsById(article.getId())) {
+    if (!articleRepository.existsById(article.id())) {
       throw new EntityNotFoundException("Article not found.");
     }
-    if (articleRepository.existsByName(article.getName())) {
+    if (articleRepository.existsByName(article.name())) {
       throw new EntityAlreadyExistsException("Article with this name already exists.");
     }
     return articleMapper.toDto(articleRepository.save(articleMapper.toEntity(article)));
@@ -64,8 +63,8 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public Page<ArticleDto> searchArticles(final String name, final int page, final int size) {
-    return articleRepository.findByNameContainsIgnoreCase(name,
-        Pageable.ofSize(size).withPage(page)).map(articleMapper::toDto);
+    return articleRepository.findByNameContainsIgnoreCase(name, PageRequest.of(page, size))
+        .map(articleMapper::toDto);
   }
 
 }

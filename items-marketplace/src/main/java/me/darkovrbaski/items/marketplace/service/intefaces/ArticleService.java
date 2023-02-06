@@ -16,4 +16,5 @@ public interface ArticleService {
   Page<ArticleDto> getArticles(int page, int size);
 
   Page<ArticleDto> searchArticles(String name, int page, int size);
+  
 }

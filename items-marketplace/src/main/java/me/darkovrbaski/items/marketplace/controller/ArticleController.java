@@ -30,7 +30,10 @@ public class ArticleController {
 
   ArticleService articleService;
 
-  @Operation(summary = "Get all articles.", description = "Returns a list of all articles with the given page number and size.")
+  @Operation(
+      summary = "Get all articles.",
+      description = "Returns a list of all articles with the given page number and size."
+  )
   @ApiResponse(responseCode = "200", description = "Articles found")
   @GetMapping
   public ResponseEntity<Page<ArticleDto>> getArticles(
@@ -39,7 +42,10 @@ public class ArticleController {
     return ResponseEntity.ok(articleService.getArticles(page, size));
   }
 
-  @Operation(summary = "Get an article by id.", description = "Returns details of an article with the given id.")
+  @Operation(
+      summary = "Get an article by id.",
+      description = "Returns details of an article with the given id."
+  )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Article found"),
       @ApiResponse(responseCode = "404", description = "Article not found")
@@ -49,7 +55,10 @@ public class ArticleController {
     return ResponseEntity.ok(articleService.getArticle(id));
   }
 
-  @Operation(summary = "Search articles.", description = "Returns a list of articles that match the given name.")
+  @Operation(
+      summary = "Search articles.",
+      description = "Returns a list of articles that match the given name."
+  )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Articles found")
   })
@@ -61,7 +70,10 @@ public class ArticleController {
     return ResponseEntity.ok(articleService.searchArticles(name, page, size));
   }
 
-  @Operation(summary = "Create a new article.", description = "Creates a new article with the given details.")
+  @Operation(
+      summary = "Create a new article.",
+      description = "Creates a new article with the given details."
+  )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "201", description = "Article created"),
       @ApiResponse(responseCode = "400", description = "Invalid input"),
@@ -72,7 +84,10 @@ public class ArticleController {
     return ResponseEntity.status(HttpStatus.CREATED).body(articleService.createArticle(article));
   }
 
-  @Operation(summary = "Update an article.", description = "Updates an article with the given details.")
+  @Operation(
+      summary = "Update an article.",
+      description = "Updates an article with the given details."
+  )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Article updated"),
       @ApiResponse(responseCode = "409", description = "Invalid input"),
@@ -83,7 +98,10 @@ public class ArticleController {
     return ResponseEntity.ok(articleService.updateArticle(article));
   }
 
-  @Operation(summary = "Delete an article.", description = "Deletes an article with the given id.")
+  @Operation(
+      summary = "Delete an article.",
+      description = "Deletes an article with the given id."
+  )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "204", description = "Article deleted"),
       @ApiResponse(responseCode = "404", description = "Article not found")

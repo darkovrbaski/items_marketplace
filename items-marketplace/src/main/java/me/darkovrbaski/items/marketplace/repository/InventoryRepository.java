@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InventoryRepository extends EntityRepository<Inventory> {
 
+  Inventory findByUserId(Long userId);
+
 }

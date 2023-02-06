@@ -12,6 +12,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { InventoryCardViewComponent } from './components/inventory-card-view/inventory-card-view.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ArticlesListViewComponent,
     HeaderComponent,
     FooterComponent,
+    InventoryCardViewComponent,
   ],
   imports: [
     BrowserModule,

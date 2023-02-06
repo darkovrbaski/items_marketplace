@@ -1,0 +1,96 @@
+<div class="row d-flex flex-wrap justify-content-center">
+  <div class="col-md-4 order-md-1">
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Item details</h5>
+            </div>
+            <div class="card-body">
+              <img
+                [src]="selectedItem.article.image"
+                [alt]="selectedItem.article.name"
+                class="article-image-details mw-100 me-3" />
+              <div>
+                <h5 class="card-text display-5 mt-3">
+                  {{ selectedItem.article.name }}
+                </h5>
+                <p class="card-text mt-3">
+                  {{ selectedItem.article.description }}
+                </p>
+                <p class="card-text mt-3">
+                  Owned quantity: {{ selectedItem.quantity }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-8 order-md-0">
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header d-flex align-items-center">
+              <div>
+                <h5>Inventory</h5>
+              </div>
+              <div class="ms-auto d-flex">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search by name"
+                  [(ngModel)]="searchInput" />
+                <button
+                  class="btn btn-primary ms-2"
+                  (click)="serachArticleItems()">
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row row-cols-4 g-3">
+      <div *ngFor="let articleItem of articleItems">
+        <div class="col">
+          <div class="card" role="button" (click)="selectItem(articleItem)">
+            <div
+              class="card-body"
+              [ngClass]="{ 'selected-item': articleItem === selectedItem }">
+              <img
+                [src]="articleItem.article.image"
+                [alt]="articleItem.article.name"
+                class="article-image mw-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-body d-flex align-items-center">
+              <mat-paginator
+                (page)="handlePageEvent($event)"
+                [length]="paginator.length"
+                [pageSize]="paginator.pageSize"
+                [disabled]="false"
+                [showFirstLastButtons]="true"
+                [pageSizeOptions]="paginator.pageSizeOptions"
+                [hidePageSize]="false"
+                [pageIndex]="paginator.pageIndex"
+                aria-label="Select page">
+              </mat-paginator>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

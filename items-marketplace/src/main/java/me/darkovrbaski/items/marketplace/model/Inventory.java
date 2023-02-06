@@ -5,11 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -21,31 +23,19 @@ import org.hibernate.Hibernate;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "inventory")
 public class Inventory extends EntityDb {
 
+  @MapsId
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
   User user;
 
   @ElementCollection(fetch = FetchType.EAGER)
   Set<ArticleItem> articleItems;
-
-  public Set<ArticleItem> getArticleItems() {
-    if (articleItems == null) {
-      articleItems = new HashSet<>();
-    }
-    return articleItems;
-  }
-
-  public void setArticleItems(final Set<ArticleItem> newArticleItem) {
-    removeAllArticleItem();
-    for (final ArticleItem item : newArticleItem) {
-      addArticleItem(item);
-    }
-  }
 
   public void addArticleItem(final ArticleItem newArticleItem) {
     if (newArticleItem == null) {
@@ -66,9 +56,13 @@ public class Inventory extends EntityDb {
     }
   }
 
-  public void removeAllArticleItem() {
+  public void updateArticleItem(final ArticleItem articleItem) {
+    if (articleItem == null) {
+      return;
+    }
     if (articleItems != null) {
-      articleItems.clear();
+      articleItems.remove(articleItem);
+      articleItems.add(articleItem);
     }
   }
 

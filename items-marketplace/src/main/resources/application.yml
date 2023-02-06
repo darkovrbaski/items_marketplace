@@ -19,6 +19,10 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     open-in-view: false
+  sql:
+    init:
+      mode: always
+      platform: postgresql
 
 logging:
   level:
