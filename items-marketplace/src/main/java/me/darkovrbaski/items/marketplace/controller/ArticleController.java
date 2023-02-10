@@ -59,9 +59,7 @@ public class ArticleController {
       summary = "Search articles.",
       description = "Returns a list of articles that match the given name."
   )
-  @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "Articles found")
-  })
+  @ApiResponse(responseCode = "200", description = "Articles found")
   @GetMapping("/search")
   public ResponseEntity<Page<ArticleDto>> searchArticles(
       @RequestParam(name = "name", defaultValue = "") final String name,
@@ -104,7 +102,7 @@ public class ArticleController {
   )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "204", description = "Article deleted"),
-      @ApiResponse(responseCode = "404", description = "Article not found")
+      @ApiResponse(responseCode = "409", description = "Article is in use"),
   })
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteArticle(@PathVariable final Long id) {

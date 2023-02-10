@@ -26,7 +26,7 @@ public abstract class BaseExceptionHandler {
   Map<Class<?>, HttpStatus> exceptionMappings = new HashMap<>();
   Logger log;
 
-  public BaseExceptionHandler(final Logger log) {
+  protected BaseExceptionHandler(final Logger log) {
     this.log = log;
 
     registerMapping(MissingServletRequestParameterException.class, BAD_REQUEST);
@@ -36,18 +36,24 @@ public abstract class BaseExceptionHandler {
     registerMapping(InvalidParameterException.class, HttpStatus.BAD_REQUEST);
   }
 
+  protected void registerMapping(final Class<?> clazz, final HttpStatus status) {
+    exceptionMappings.put(clazz, status);
+  }
+
   @ExceptionHandler(Throwable.class)
   @ResponseBody
   private ResponseEntity<ErrorResponse> handleThrowable(final Throwable ex) {
-    final HttpStatus status = exceptionMappings.getOrDefault(ex.getClass(), DEFAULT_ERROR);
+    final HttpStatus status = getStatusFromException(ex);
 
-    log.error("{} ({}) \n\n {}", status.name(), status.value(), ex.getMessage(), ex);
+    if (log.isErrorEnabled()) {
+      log.error("{} ({}) \n\n {}", status.name(), status.value(), ex.getMessage(), ex);
+    }
 
     return ResponseEntity.status(status).body(new ErrorResponse(status, ex.getMessage()));
   }
 
-  protected void registerMapping(final Class<?> clazz, final HttpStatus status) {
-    exceptionMappings.put(clazz, status);
+  protected HttpStatus getStatusFromException(final Throwable ex) {
+    return exceptionMappings.getOrDefault(ex.getClass(), DEFAULT_ERROR);
   }
 
 }

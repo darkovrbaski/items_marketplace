@@ -1,1 +1,48 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <svg class="bi" width="32" height="32">
+        <use xlink:href="#brand"></use>
+      </svg>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a routerLink="" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/articles" class="nav-link">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/inventory" class="nav-link">Inventory</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/wallet" class="nav-link">Wallet</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <div class="card pe-3">
+          <div class="card-body-sm-py d-flex align-items-center">
+            <img
+              [src]="user.image"
+              alt="user avatar image"
+              class="avatar-img mw-100 me-3" />
+            <span>
+              <a routerLink="/profile" class="link">{{ user.username }}</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

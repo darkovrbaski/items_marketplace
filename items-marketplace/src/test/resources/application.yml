@@ -16,7 +16,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
     open-in-view: false
+  sql:
+    init:
+      mode: never
+      platform: h2
   h2:
     console:
       enabled: true
       path: /h2-console
+
+frontend:
+  url: ${FRONTEND_URL:http://localhost:4200}

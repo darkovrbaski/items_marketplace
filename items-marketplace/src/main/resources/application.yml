@@ -33,3 +33,6 @@ logging:
 springdoc:
   swagger-ui:
     path: /docs
+
+frontend:
+  url: ${FRONTEND_URL:http://localhost:4200}

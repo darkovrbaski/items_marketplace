@@ -5,10 +5,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import me.darkovrbaski.items.marketplace.dto.ArticleDto;
 import me.darkovrbaski.items.marketplace.exception.EntityAlreadyExistsException;
+import me.darkovrbaski.items.marketplace.exception.EntityIntegrityViolationException;
 import me.darkovrbaski.items.marketplace.exception.EntityNotFoundException;
 import me.darkovrbaski.items.marketplace.mapper.ArticleMapper;
 import me.darkovrbaski.items.marketplace.repository.ArticleRepository;
 import me.darkovrbaski.items.marketplace.service.intefaces.ArticleService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -53,7 +55,11 @@ public class ArticleServiceImpl implements ArticleService {
     if (!articleRepository.existsById(id)) {
       throw new EntityNotFoundException("Article not found.");
     }
-    articleRepository.deleteById(id);
+    try {
+      articleRepository.deleteById(id);
+    } catch (final DataIntegrityViolationException e) {
+      throw new EntityIntegrityViolationException("Article is in use by users, can't be deleted.");
+    }
   }
 
   @Override

@@ -6,7 +6,7 @@ import lombok.Value;
 @Value
 public class AccumulatedOrders {
 
-  BigDecimal price;
+  Money price;
 
   BigDecimal quantity;
 

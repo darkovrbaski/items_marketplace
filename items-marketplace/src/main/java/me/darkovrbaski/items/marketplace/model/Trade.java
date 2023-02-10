@@ -1,12 +1,12 @@
 package me.darkovrbaski.items.marketplace.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -34,9 +34,9 @@ public class Trade extends EntityDb {
   @Column
   LocalDateTime createdDateTime;
 
-  @PositiveOrZero
+  @Embedded
   @Column(nullable = false)
-  BigDecimal price;
+  Money price;
 
   @Positive
   @Column(nullable = false)

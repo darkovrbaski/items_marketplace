@@ -2,6 +2,7 @@ package me.darkovrbaski.items.marketplace.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -42,9 +43,9 @@ public class Order extends EntityDb {
   @Enumerated(EnumType.STRING)
   OrderType type;
 
-  @PositiveOrZero
+  @Embedded
   @Column(nullable = false)
-  BigDecimal price;
+  Money price;
 
   @Positive
   @Column(nullable = false)

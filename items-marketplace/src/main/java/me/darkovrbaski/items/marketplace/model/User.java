@@ -5,9 +5,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
-import java.math.BigDecimal;
 import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -49,13 +47,6 @@ public class User extends EntityDb {
 
   @Column
   String image;
-
-  @PositiveOrZero(message = "Wallet balance must be positive or zero")
-  @Column(nullable = false)
-  BigDecimal walletBalance;
-
-  @Column(nullable = false)
-  boolean administrator;
 
   @Embedded
   Address address;

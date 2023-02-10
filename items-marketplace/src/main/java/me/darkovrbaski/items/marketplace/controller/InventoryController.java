@@ -25,8 +25,8 @@ public class InventoryController {
   InventoryService inventoryService;
 
   @Operation(
-      summary = "Get an inventory by user id.",
-      description = "Returns an inventory with articles by the given user id."
+      summary = "Get an inventory.",
+      description = "Returns a current user's inventory with articles."
   )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Inventory found"),
@@ -40,8 +40,8 @@ public class InventoryController {
   }
 
   @Operation(
-      summary = "Search an inventory by user id.",
-      description = "Returns an inventory with articles by the given user id and name."
+      summary = "Search an inventory.",
+      description = "Returns a current user's inventory with articles by the given article name."
   )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Inventory found"),

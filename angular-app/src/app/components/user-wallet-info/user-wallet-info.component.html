@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-body-sm-py d-flex align-items-center">
+    <img
+      [src]="wallet.user.image"
+      alt="user avatar image"
+      class="avatar-img mw-100 me-3" />
+    <span>
+      <a [routerLink]="['/wallet']" class="link"
+        >Wallet balance <span>{{ wallet.balance.amount | currency }}</span>
+      </a>
+      <br />
+      <a [routerLink]="['/inventory']" class="link">View Inventory</a>
+    </span>
+  </div>
+</div>

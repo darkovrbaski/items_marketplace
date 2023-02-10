@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArticlesListViewComponent } from './components/articles-list-view/articles-list-view.component';
-import { InventoryCardViewComponent } from './components/inventory-card-view/inventory-card-view.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { InventoryComponent } from './pages/inventory/inventory.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { WalletComponent } from './pages/wallet/wallet.component';
 
 const routes: Routes = [
   {
@@ -15,7 +17,15 @@ const routes: Routes = [
   },
   {
     path: 'inventory',
-    component: InventoryCardViewComponent,
+    component: InventoryComponent,
+  },
+  {
+    path: 'wallet',
+    component: WalletComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
   { path: '**', redirectTo: '' },
 ];

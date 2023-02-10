@@ -6,7 +6,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
-import java.util.stream.Collectors;
+import java.util.HashSet;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -14,6 +14,7 @@ import me.darkovrbaski.items.marketplace.dto.ArticleItemDto;
 import me.darkovrbaski.items.marketplace.mapper.ArticleItemMapper;
 import me.darkovrbaski.items.marketplace.model.ArticleItem;
 import me.darkovrbaski.items.marketplace.model.Inventory;
+import me.darkovrbaski.items.marketplace.model.User;
 import me.darkovrbaski.items.marketplace.repository.InventoryRepository;
 import me.darkovrbaski.items.marketplace.service.intefaces.InventoryService;
 import org.springframework.data.domain.Page;
@@ -34,6 +35,11 @@ public class InventoryServiceImpl implements InventoryService {
   static String NAME = "name";
   static String ARTICLE_ITEMS = "articleItems";
   static String ARTICLE = "article";
+
+  @Override
+  public void createInventory(final User user) {
+    inventoryRepository.save(new Inventory(user, new HashSet<>()));
+  }
 
   @Transactional
   @Override
@@ -73,7 +79,7 @@ public class InventoryServiceImpl implements InventoryService {
     query.setMaxResults(size);
 
     return new PageImpl<>(
-        query.getResultList().stream().map(articleItemMapper::toDto).collect(Collectors.toList()),
+        query.getResultList().stream().map(articleItemMapper::toDto).toList(),
         Pageable.ofSize(size).withPage(page), query.getResultList().size());
   }
 

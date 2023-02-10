@@ -1,11 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MaterialModule } from 'src/app/material/material.module';
 
 import { ArticlesListViewComponent } from './articles-list-view.component';
 
@@ -24,7 +24,7 @@ describe('ArticlesListViewComponent', () => {
         ReactiveFormsModule,
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
-        MatPaginatorModule,
+        MaterialModule,
       ],
     }).compileComponents();
 
