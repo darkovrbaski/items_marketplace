@@ -9,8 +9,10 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface WalletMapper {
 
-  WalletDto toDto(Wallet wallet);
-
   Money toEntity(MoneyDto money);
+
+  MoneyDto toDto(Money money);
+  
+  WalletDto toDto(Wallet wallet);
 
 }

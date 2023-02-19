@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -30,7 +32,9 @@ import org.hibernate.Hibernate;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "`order`")
@@ -65,7 +69,7 @@ public class Order extends EntityDb {
       joinColumns = {@JoinColumn(name = "order_id")},
       inverseJoinColumns = {@JoinColumn(name = "trade_id")}
   )
-  List<Trade> trade;
+  List<Trade> trades;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
@@ -75,14 +79,37 @@ public class Order extends EntityDb {
   @JoinColumn(name = "article_id")
   Article article;
 
-  public List<Trade> getTrade() {
-    if (trade == null) {
-      trade = new ArrayList<>();
-    }
-    return trade;
+  public BigDecimal getRemainingQuantity() {
+    return quantity.subtract(filledQuantity);
   }
 
-  public void setTrade(final List<Trade> newTrade) {
+  public void setClosedAndFulfilled() {
+    status = OrderStatus.CLOSED;
+    filledQuantity = quantity;
+  }
+
+  public boolean isBuyOrder() {
+    return type == OrderType.BUY;
+  }
+
+  public boolean isClosed() {
+    return status == OrderStatus.CLOSED;
+  }
+
+  public void addFilledQuantity(final BigDecimal newFilledQuantity) {
+    if (newFilledQuantity.compareTo(BigDecimal.ZERO) < 0) {
+      throw new IllegalArgumentException("Filled quantity cannot be negative");
+    }
+    if (filledQuantity.add(newFilledQuantity).compareTo(quantity) > 0) {
+      throw new IllegalArgumentException("Filled quantity cannot be greater than quantity");
+    }
+    filledQuantity = filledQuantity.add(newFilledQuantity);
+    if (filledQuantity.compareTo(quantity) == 0) {
+      status = OrderStatus.CLOSED;
+    }
+  }
+
+  public void setTrades(final List<Trade> newTrade) {
     removeAllTrade();
     for (final Trade value : newTrade) {
       addTrade(value);
@@ -93,24 +120,15 @@ public class Order extends EntityDb {
     if (newTrade == null) {
       return;
     }
-    if (trade == null) {
-      trade = new ArrayList<>();
+    if (trades == null) {
+      trades = new ArrayList<>();
     }
-    trade.add(newTrade);
-  }
-
-  public void removeTrade(final Trade oldTrade) {
-    if (oldTrade == null) {
-      return;
-    }
-    if (trade != null) {
-      trade.remove(oldTrade);
-    }
+    trades.add(newTrade);
   }
 
   public void removeAllTrade() {
-    if (trade != null) {
-      trade.clear();
+    if (trades != null) {
+      trades.clear();
     }
   }
 
@@ -130,4 +148,5 @@ public class Order extends EntityDb {
   public int hashCode() {
     return getClass().hashCode();
   }
+
 }

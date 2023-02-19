@@ -7,7 +7,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
-import java.util.HashSet;
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 import lombok.AccessLevel;
@@ -37,32 +37,50 @@ public class Inventory extends EntityDb {
   @ElementCollection(fetch = FetchType.EAGER)
   Set<ArticleItem> articleItems;
 
-  public void addArticleItem(final ArticleItem newArticleItem) {
-    if (newArticleItem == null) {
+  public void updateArticleItem(final ArticleTrade articleTrade) {
+    if (articleTrade == null) {
       return;
     }
     if (articleItems == null) {
-      articleItems = new HashSet<>();
-    }
-    articleItems.add(newArticleItem);
-  }
-
-  public void removeArticleItem(final ArticleItem oldArticleItem) {
-    if (oldArticleItem == null) {
       return;
     }
-    if (articleItems != null) {
-      articleItems.remove(oldArticleItem);
+    if (articleTrade.quantity().compareTo(BigDecimal.ZERO) == 0) {
+      throw new IllegalArgumentException("Quantity cannot be zero");
+    }
+    if (articleTrade.quantity().compareTo(BigDecimal.ZERO) > 0) {
+      addOrSumArticleItem(articleTrade);
+    } else {
+      subtractOrRemoveArticleItem(articleTrade);
     }
   }
 
-  public void updateArticleItem(final ArticleItem articleItem) {
-    if (articleItem == null) {
-      return;
+  private void subtractOrRemoveArticleItem(final ArticleTrade articleTrade) {
+    final var articleItem = articleItems.stream()
+        .filter(item -> item.article.getName().equals(articleTrade.article().getName()))
+        .findFirst()
+        .orElse(null);
+    if (articleItem != null) {
+      if (articleItem.quantity.add(articleTrade.quantity()).compareTo(BigDecimal.ZERO) < 0) {
+        throw new IllegalArgumentException("Not enough items in inventory");
+      }
+      articleItem.quantity = articleItem.quantity.add(articleTrade.quantity());
+      if (articleItem.quantity.compareTo(BigDecimal.ZERO) == 0) {
+        articleItems.remove(articleItem);
+      }
+    } else {
+      throw new IllegalArgumentException("Not item in inventory");
     }
-    if (articleItems != null) {
-      articleItems.remove(articleItem);
-      articleItems.add(articleItem);
+  }
+
+  private void addOrSumArticleItem(final ArticleTrade articleTrade) {
+    final var articleItem = articleItems.stream()
+        .filter(item -> item.article.getName().equals(articleTrade.article().getName()))
+        .findFirst()
+        .orElse(null);
+    if (articleItem != null) {
+      articleItem.quantity = articleItem.quantity.add(articleTrade.quantity());
+    } else {
+      articleItems.add(new ArticleItem(articleTrade.quantity(), articleTrade.article()));
     }
   }
 

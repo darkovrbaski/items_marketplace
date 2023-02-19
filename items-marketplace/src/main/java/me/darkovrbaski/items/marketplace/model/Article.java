@@ -8,8 +8,10 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import java.util.Objects;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -18,7 +20,9 @@ import org.hibernate.Hibernate;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "article")

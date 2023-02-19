@@ -63,6 +63,10 @@ public class Money {
     return new Money(getAmount().subtract(money.getAmount()), getCurrency());
   }
 
+  public String getCurrencySymbol() {
+    return getCurrency().getSymbol();
+  }
+
   @Override
   public String toString() {
     return getCurrency().getSymbol() + " " + getAmount();

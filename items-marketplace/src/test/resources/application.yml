@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: ${H2_DB_URL:jdbc:h2:mem:db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    url: ${H2_DB_URL:jdbc:h2:mem:db;DB_CLOSE_DELAY=-1}
     username: ${H2_DB_USERNAME:sa}
     password: ${H2_DB_PASSWORD:sa}
     tomcat:
@@ -11,7 +11,7 @@ spring:
     show-sql: false
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect

@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 import me.darkovrbaski.items.marketplace.dto.ArticleItemDto;
 import me.darkovrbaski.items.marketplace.mapper.ArticleItemMapper;
 import me.darkovrbaski.items.marketplace.model.ArticleItem;
+import me.darkovrbaski.items.marketplace.model.ArticleTrade;
 import me.darkovrbaski.items.marketplace.model.Inventory;
 import me.darkovrbaski.items.marketplace.model.User;
 import me.darkovrbaski.items.marketplace.repository.InventoryRepository;
@@ -84,23 +85,9 @@ public class InventoryServiceImpl implements InventoryService {
   }
 
   @Override
-  public void addItemToInventory(final Long userId, final ArticleItem articleItem) {
+  public void updateItemInInventory(final Long userId, final ArticleTrade articleTrade) {
     final Inventory inventory = inventoryRepository.findByIdOrThrow(userId);
-    inventory.addArticleItem(articleItem);
-    inventoryRepository.save(inventory);
-  }
-
-  @Override
-  public void removeItemFromInventory(final Long userId, final ArticleItem articleItem) {
-    final Inventory inventory = inventoryRepository.findByIdOrThrow(userId);
-    inventory.removeArticleItem(articleItem);
-    inventoryRepository.save(inventory);
-  }
-
-  @Override
-  public void updateItemInInventory(final Long userId, final ArticleItem articleItem) {
-    final Inventory inventory = inventoryRepository.findByIdOrThrow(userId);
-    inventory.updateArticleItem(articleItem);
+    inventory.updateArticleItem(articleTrade);
     inventoryRepository.save(inventory);
   }
 
