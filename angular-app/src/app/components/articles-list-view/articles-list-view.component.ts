@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Article, emptyArticle } from 'src/app/model/article';
 import { Page } from 'src/app/model/page';
@@ -32,7 +33,8 @@ export class ArticlesListViewComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -133,5 +135,9 @@ export class ArticlesListViewComponent implements OnInit {
         this.toastr.error(error.error.message);
       },
     });
+  }
+
+  routeToArticlePage(article: Article) {
+    this.router.navigate(['article', article.name]);
   }
 }

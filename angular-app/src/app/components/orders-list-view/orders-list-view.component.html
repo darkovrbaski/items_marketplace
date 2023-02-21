@@ -1,0 +1,75 @@
+<div class="row d-flex flex-wrap justify-content-center">
+  <div class="row">
+    <ul class="list-group">
+      <li class="d-flex align-items-center my-md-2">
+        <div class="card w-100">
+          <div class="card-header d-flex align-items-center">
+            <h5>Name</h5>
+            <div class="ms-auto d-flex align-items-center">
+              <div class="px-4 border-start border-2">
+                <h5>Status</h5>
+              </div>
+              <div class="px-4 border-start border-2">
+                <h5>Created on</h5>
+              </div>
+              <div class="px-4 border-start border-2">
+                <h5>Quantity</h5>
+              </div>
+              <div class="px-4 border-start border-2">
+                <h5>Price</h5>
+              </div>
+              <div class="px-4 border-start border-2">
+                <button class="btn invisible">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <ul class="list-group">
+      <li
+        class="d-flex align-items-center my-md-2"
+        *ngFor="let order of orders">
+        <div class="card w-100">
+          <div class="card-body d-flex align-items-center">
+            <img
+              [src]="order.article.image"
+              [alt]="order.article.name"
+              class="article-image mw-100 me-3" />
+            <div>
+              <h5 class="card-text">{{ order.article.name }}</h5>
+              <p class="card-text">{{ order.article.description }}</p>
+            </div>
+            <div class="ms-auto d-flex align-items-center">
+              <div class="px-4">
+                <h5>{{ order.status }}</h5>
+              </div>
+              <div class="px-4">
+                <h5>{{ order.createdDateTime | date }}</h5>
+              </div>
+              <div class="px-4">
+                <h5>{{ order.filledQuantity }}</h5>
+              </div>
+              <div class="px-4">
+                <h5>{{ order.price.amount | currency }}</h5>
+              </div>
+              <div class="px-4">
+                <button
+                  class="btn btn-danger"
+                  (click)="deleteOrder(order.id)"
+                  *ngIf="order.status === 'OPEN'">
+                  Delete
+                </button>
+                <button class="btn invisible" *ngIf="order.status === 'CLOSED'">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -12,4 +12,6 @@ public interface ArticleRepository extends EntityRepository<Article> {
 
   Page<Article> findByNameContainsIgnoreCase(String name, Pageable pageable);
 
+  Article findByName(String name);
+  
 }

@@ -1,0 +1,114 @@
+<div class="row header pb-4">
+  <div class="text-center">
+    <h1 class="display-6">Market</h1>
+    <p class="lead">
+      Buy and sell items with community members for Wallet funds.
+    </p>
+  </div>
+</div>
+<div class="pb-4">
+  <app-user-wallet-info></app-user-wallet-info>
+</div>
+<div class="row pb-4">
+  <div class="card w-100">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <img
+            [src]="article.image"
+            [alt]="article.name"
+            class="article-image-details mw-100 me-3" />
+        </div>
+        <div class="col-5">
+          <h5 class="card-text display-5 mt-3">
+            {{ article.name }}
+          </h5>
+          <p class="card-text mt-3">
+            {{ article.description }}
+          </p>
+        </div>
+        <div class="card col-3 px-0">
+          <div class="card-header text-center">
+            <h5>Order</h5>
+          </div>
+          <div class="card-body">
+            <div class="input-group mb-3">
+              <select class="form-select" [(ngModel)]="newOrder.type">
+                <option value="BUY">BUY</option>
+                <option value="SELL">SELL</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Price</span>
+              <input
+                type="number"
+                class="form-control"
+                min="0"
+                [(ngModel)]="newOrder.price.amount" />
+            </div>
+            <div class="input-group mb-1">
+              <span class="input-group-text">Quantity</span>
+              <input
+                type="number"
+                class="form-control"
+                min="1"
+                [(ngModel)]="newOrder.quantity" />
+            </div>
+          </div>
+          <div class="mb-3 d-flex justify-content-center">
+            <button
+              type="button"
+              class="btn btn-primary w-50"
+              (click)="placeOrder()">
+              Place order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="card w-100">
+    <div class="card-body">
+      <div class="row justify-content-center">
+        <div class="card col-sm-4 px-0 m-2">
+          <div class="card-header text-end">
+            <h5>SELL</h5>
+          </div>
+          <div class="card-body">
+            <div class="row fs-5 pb-3">
+              <div class="col">AMOUNT</div>
+              <div class="col text-end">PRICE</div>
+            </div>
+            <div
+              class="row fs-5 pb-3"
+              *ngFor="let sellOrder of orderBook.sellOrders">
+              <div class="col">{{ sellOrder.quantity }}</div>
+              <div class="col text-end">
+                {{ sellOrder.price.amount | currency }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card col-sm-4 px-0 m-2">
+          <div class="card-header">
+            <h5>BUY</h5>
+          </div>
+          <div class="card-body">
+            <div class="row fs-5 pb-3">
+              <div class="col">PRICE</div>
+              <div class="col text-end">AMOUNT</div>
+            </div>
+            <div
+              class="row fs-5 pb-3"
+              *ngFor="let buyOrder of orderBook.buyOrders">
+              <div class="col">{{ buyOrder.price.amount | currency }}</div>
+              <div class="col text-end">{{ buyOrder.quantity }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

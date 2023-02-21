@@ -17,6 +17,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ArticlesListViewComponent } from './components/articles-list-view/articles-list-view.component';
 import { UserWalletInfoComponent } from './components/user-wallet-info/user-wallet-info.component';
 import { InventoryCardViewComponent } from './components/inventory-card-view/inventory-card-view.component';
+import { OrdersListViewComponent } from './components/orders-list-view/orders-list-view.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { ArticleComponent } from './pages/article/article.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { InventoryCardViewComponent } from './components/inventory-card-view/inv
     UserWalletInfoComponent,
     InventoryCardViewComponent,
     ArticlesListViewComponent,
+    OrdersListViewComponent,
+    OrdersComponent,
+    ArticleComponent,
+    ArticlesComponent,
   ],
   imports: [
     BrowserModule,

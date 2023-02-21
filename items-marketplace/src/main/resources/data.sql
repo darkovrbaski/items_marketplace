@@ -16,12 +16,12 @@ insert into inventory (user_id)
 values (1),
        (2);
 
-insert into article (id, name, description, image, quantity_type)
-values (1, 'article1', 'description1', 'https://picsum.photos/250', 'DECIMAL'),
-       (2, 'article2', 'description2', 'https://picsum.photos/250', 'NUMERIC'),
-       (3, 'article3', 'description3', 'https://picsum.photos/250', 'NUMERIC'),
-       (4, 'article4', 'description4', 'https://picsum.photos/250', 'DECIMAL'),
-       (5, 'article5', 'description5', 'https://picsum.photos/250', 'DECIMAL');
+insert into article (id, name, description, image)
+values (1, 'article1', 'description1', 'https://picsum.photos/250'),
+       (2, 'article2', 'description2', 'https://picsum.photos/250'),
+       (3, 'article3', 'description3', 'https://picsum.photos/250'),
+       (4, 'article4', 'description4', 'https://picsum.photos/250'),
+       (5, 'article5', 'description5', 'https://picsum.photos/250');
 
 alter sequence article_id_seq restart with 6;
 

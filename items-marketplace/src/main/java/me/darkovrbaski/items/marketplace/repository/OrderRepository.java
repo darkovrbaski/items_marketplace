@@ -2,8 +2,8 @@ package me.darkovrbaski.items.marketplace.repository;
 
 import java.math.BigDecimal;
 import java.util.List;
-import me.darkovrbaski.items.marketplace.model.AccumulatedOrder;
 import me.darkovrbaski.items.marketplace.model.Order;
+import me.darkovrbaski.items.marketplace.model.OrderType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +13,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderRepository extends EntityRepository<Order> {
 
-  List<Order> getOpenOrdersByUserId(@Param("userId") Long userId);
+  @Query(
+      "SELECT o FROM Order o "
+          + "WHERE o.status LIKE 'OPEN' AND o.user.id = :userId "
+  )
+  List<Order> findAllOpenOrdersByUserId(@Param("userId") Long userId);
 
   Page<Order> findAllByUserId(Long userId, Pageable pageable);
 
@@ -33,23 +37,10 @@ public interface OrderRepository extends EntityRepository<Order> {
 
 
   @Query(
-      "SELECT new me.darkovrbaski.items.marketplace.model."
-          + "AccumulatedOrder(o.price, BigDecimal(SUM(o.quantity - o.filledQuantity))) "
-          + "FROM Order o "
-          + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'BUY' AND o.article.id = :articleId "
-          + "GROUP BY o.price.amount "
-          + "ORDER BY o.price.amount DESC"
+      "SELECT o FROM Order o "
+          + "WHERE o.status LIKE 'OPEN' AND o.type LIKE :type AND o.article.id = :articleId "
   )
-  List<AccumulatedOrder> getOpenBuyOrdersByArticleId(@Param("articleId") Long articleId);
-
-  @Query(
-      "SELECT new me.darkovrbaski.items.marketplace.model."
-          + "AccumulatedOrder(o.price, BigDecimal(SUM(o.quantity - o.filledQuantity))) "
-          + "FROM Order o "
-          + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'SELL' AND o.article.id = :articleId "
-          + "GROUP BY o.price.amount "
-          + "ORDER BY o.price.amount ASC"
-  )
-  List<AccumulatedOrder> getOpenSellOrdersByArticleId(@Param("articleId") Long articleId);
+  List<Order> getOpenBuyOrdersByArticleIdAndType(@Param("articleId") Long articleId,
+      @Param("type") OrderType type);
 
 }

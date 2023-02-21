@@ -1,7 +1,6 @@
 package me.darkovrbaski.items.marketplace.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import me.darkovrbaski.items.marketplace.model.QuantityType;
 
 public record ArticleDto(
 
@@ -12,10 +11,8 @@ public record ArticleDto(
 
     String description,
 
-    String image,
+    String image
 
-    QuantityType quantityType
-    
 ) {
 
 }

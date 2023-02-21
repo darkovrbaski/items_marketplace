@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { ArticleItem, emptyArticleItem } from 'src/app/model/articleItem';
 import { Page } from 'src/app/model/page';
 import { Paginator } from 'src/app/model/paginator';
@@ -25,7 +26,10 @@ export class InventoryCardViewComponent implements OnInit {
   searchInput = '';
   selectedItem: ArticleItem = emptyArticleItem;
 
-  constructor(private inventoryService: InventoryService) {}
+  constructor(
+    private inventoryService: InventoryService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getArticleItems();
@@ -72,5 +76,9 @@ export class InventoryCardViewComponent implements OnInit {
 
   selectItem(articleItem: ArticleItem) {
     this.selectedItem = articleItem;
+  }
+
+  routeToArticlePage() {
+    this.router.navigate(['article', this.selectedItem.article.name]);
   }
 }

@@ -1,0 +1,77 @@
+<div class="row header pb-4">
+  <div class="text-center">
+    <h1 class="display-6">Orders</h1>
+    <p class="lead">Here you can see all your orders</p>
+  </div>
+</div>
+<ul class="nav nav-tabs" id="nav-tab" role="tablist">
+  <li class="nav-item">
+    <a
+      class="nav-link active"
+      id="nav-active-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#nav-active"
+      type="button"
+      role="tab"
+      aria-controls="nav-active"
+      aria-selected="true">
+      <h4>Active orders</h4>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      id="nav-history-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#nav-history"
+      type="button"
+      role="tab"
+      aria-controls="nav-history"
+      aria-selected="true"
+      (click)="handleHistoryTabEvent()">
+      <h4>History orders</h4>
+    </a>
+  </li>
+</ul>
+
+<div class="tab-content" id="nav-tabContent">
+  <div
+    class="tab-pane fade show active"
+    id="nav-active"
+    role="tabpanel"
+    aria-labelledby="nav-active-tab"
+    tabindex="0">
+    <div>
+      <app-orders-list-view [orders]="activeOrders"></app-orders-list-view>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="nav-history"
+    role="tabpanel"
+    aria-labelledby="nav-history-tab"
+    tabindex="1">
+    <div>
+      <app-orders-list-view [orders]="historyOrders"></app-orders-list-view>
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-body-sm-p d-flex align-items-center">
+              <mat-paginator
+                (page)="handlePageEvent($event)"
+                [length]="paginator.length"
+                [pageSize]="paginator.pageSize"
+                [disabled]="false"
+                [showFirstLastButtons]="true"
+                [pageSizeOptions]="paginator.pageSizeOptions"
+                [hidePageSize]="false"
+                [pageIndex]="paginator.pageIndex"
+                aria-label="Select page">
+              </mat-paginator>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

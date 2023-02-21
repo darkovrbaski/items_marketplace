@@ -9,6 +9,8 @@ public interface ArticleService {
 
   ArticleDto getArticle(Long id);
 
+  ArticleDto getArticle(String name);
+  
   ArticleDto updateArticle(ArticleDto article);
 
   void deleteArticle(Long id);
@@ -16,5 +18,5 @@ public interface ArticleService {
   Page<ArticleDto> getArticles(int page, int size);
 
   Page<ArticleDto> searchArticles(String name, int page, int size);
-  
+
 }

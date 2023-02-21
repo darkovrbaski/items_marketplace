@@ -40,6 +40,11 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
+  public ArticleDto getArticle(final String name) {
+    return articleMapper.toDto(articleRepository.findByName(name));
+  }
+
+  @Override
   public ArticleDto updateArticle(final ArticleDto article) {
     if (!articleRepository.existsById(article.id())) {
       throw new EntityNotFoundException("Article not found.");

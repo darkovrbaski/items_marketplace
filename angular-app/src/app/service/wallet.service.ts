@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { Money, Wallet } from '../model/wallet';
+import { Wallet } from '../model/wallet';
+import { Money } from '../model/money';
 
 @Injectable({
   providedIn: 'root',

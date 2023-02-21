@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArticlesListViewComponent } from './components/articles-list-view/articles-list-view.component';
+import { ArticleComponent } from './pages/article/article.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
 
@@ -13,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'articles',
-    component: ArticlesListViewComponent,
+    component: ArticlesComponent,
   },
   {
     path: 'inventory',
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
+  },
+  {
+    path: 'article/:name',
+    component: ArticleComponent,
   },
   { path: '**', redirectTo: '' },
 ];

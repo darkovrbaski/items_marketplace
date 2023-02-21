@@ -4,17 +4,22 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import me.darkovrbaski.items.marketplace.dto.ArticleItemDto;
 import me.darkovrbaski.items.marketplace.dto.MoneyDto;
 import me.darkovrbaski.items.marketplace.dto.OrderDto;
 import me.darkovrbaski.items.marketplace.mapper.OrderMapper;
 import me.darkovrbaski.items.marketplace.model.ArticleTrade;
 import me.darkovrbaski.items.marketplace.model.Order;
 import me.darkovrbaski.items.marketplace.model.OrderStatus;
+import me.darkovrbaski.items.marketplace.model.OrderType;
 import me.darkovrbaski.items.marketplace.model.Trade;
+import me.darkovrbaski.items.marketplace.repository.ArticleRepository;
 import me.darkovrbaski.items.marketplace.repository.OrderRepository;
+import me.darkovrbaski.items.marketplace.repository.UserRepository;
 import me.darkovrbaski.items.marketplace.service.intefaces.InventoryService;
 import me.darkovrbaski.items.marketplace.service.intefaces.OrderService;
 import me.darkovrbaski.items.marketplace.service.intefaces.TradeService;
@@ -33,6 +38,8 @@ public class OrderServiceImpl implements OrderService {
   TradeService tradeService;
   InventoryService inventoryService;
   WalletService walletService;
+  ArticleRepository articleRepository;
+  UserRepository userRepository;
 
   @Override
   public OrderDto getOrder(final Long id) {
@@ -41,7 +48,8 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public List<OrderDto> getActiveOrders(final Long userId) {
-    return orderRepository.getOpenOrdersByUserId(userId).stream().map(orderMapper::toDto).toList();
+    return orderRepository.findAllOpenOrdersByUserId(userId).stream().map(orderMapper::toDto)
+        .toList();
   }
 
   @Override
@@ -51,10 +59,48 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
+  public void deleteOrder(final Long id) {
+    final var order = orderRepository.findByIdOrThrow(id);
+    order.setStatus(OrderStatus.CLOSED);
+    orderRepository.save(order);
+  }
+
+  @Override
   public OrderDto createOrder(final OrderDto orderDto) {
+    checkInventory(orderDto);
+    checkWallet(orderDto);
     final var order = saveOrder(orderDto);
     matchOrders(order);
     return orderMapper.toDto(order);
+  }
+
+  private void checkInventory(final OrderDto orderDto) {
+    if (orderDto.type() == OrderType.BUY) {
+      return;
+    }
+    final var item = inventoryService.searchInventory(
+        orderDto.user().id(),
+        orderDto.article().name(),
+        0, 1);
+    final Optional<ArticleItemDto> firstItem = item.stream().findFirst();
+    if (firstItem.isPresent()) {
+      if (firstItem.get().quantity().compareTo(orderDto.quantity()) < 0) {
+        throw new IllegalArgumentException("No enough item in inventory");
+      }
+    } else {
+      throw new IllegalArgumentException("No enough item in inventory");
+    }
+  }
+
+  private void checkWallet(final OrderDto orderDto) {
+    if (orderDto.type() == OrderType.SELL) {
+      return;
+    }
+    final var wallet = walletService.getWallet(orderDto.user().id());
+    final var total = orderDto.price().amount().multiply(orderDto.quantity());
+    if (wallet.balance().amount().compareTo(total) < 0) {
+      throw new IllegalArgumentException("Not enough money in wallet");
+    }
   }
 
   private Order saveOrder(final OrderDto orderDto) {
@@ -64,6 +110,8 @@ public class OrderServiceImpl implements OrderService {
     order.setFilledQuantity(BigDecimal.ZERO);
     order.setStatus(OrderStatus.OPEN);
     order.setTrades(new ArrayList<>());
+    order.setArticle(articleRepository.findByIdOrThrow(orderDto.article().id()));
+    order.setUser(userRepository.findByIdOrThrow(orderDto.user().id()));
     return orderRepository.save(order);
   }
 
@@ -98,8 +146,8 @@ public class OrderServiceImpl implements OrderService {
     newOrder.addFilledQuantity(matchedOrder.getRemainingQuantity());
     matchedOrder.setClosedAndFulfilled();
 
-    updateWalletBalance(trade);
-    updateInventory(newOrder, trade);
+    updateWalletBalance(trade, newOrder, matchedOrder);
+    updateInventory(newOrder, trade, matchedOrder);
 
     saveOrdersWithTrade(newOrder, matchedOrder, trade);
   }
@@ -111,37 +159,38 @@ public class OrderServiceImpl implements OrderService {
     matchedOrder.addFilledQuantity(newOrder.getRemainingQuantity());
     newOrder.setClosedAndFulfilled();
 
-    updateWalletBalance(trade);
-    updateInventory(newOrder, trade);
+    updateWalletBalance(trade, newOrder, matchedOrder);
+    updateInventory(newOrder, trade, matchedOrder);
 
     saveOrdersWithTrade(newOrder, matchedOrder, trade);
   }
 
-  private void updateInventory(final Order newOrder, final Trade trade) {
+  private void updateInventory(final Order newOrder, final Trade trade, final Order matchedOrder) {
     inventoryService.updateItemInInventory(
-        trade.getBuyOrderId(),
-        new ArticleTrade(
-            trade.getQuantity(),
-            newOrder.getArticle()
-        )
-    );
-    inventoryService.updateItemInInventory(
-        trade.getSellOrderId(),
+        newOrder.isBuyOrder() ? matchedOrder.getUser().getId() : newOrder.getUser().getId(),
         new ArticleTrade(
             trade.getQuantity().negate(),
             newOrder.getArticle()
         )
     );
+    inventoryService.updateItemInInventory(
+        newOrder.isBuyOrder() ? newOrder.getUser().getId() : matchedOrder.getUser().getId(),
+        new ArticleTrade(
+            trade.getQuantity(),
+            newOrder.getArticle()
+        )
+    );
   }
 
-  private void updateWalletBalance(final Trade trade) {
+  private void updateWalletBalance(final Trade trade, final Order newOrder,
+      final Order matchedOrder) {
     walletService.spendFunds(
-        trade.getBuyOrderId(),
-        new MoneyDto(trade.getTotal(), trade.getPrice().getCurrencySymbol())
+        newOrder.isBuyOrder() ? newOrder.getUser().getId() : matchedOrder.getUser().getId(),
+        new MoneyDto(trade.getTotal(), trade.getPrice().getCurrencyCode())
     );
     walletService.addFunds(
-        trade.getSellOrderId(),
-        new MoneyDto(trade.getTotal(), trade.getPrice().getCurrencySymbol())
+        newOrder.isBuyOrder() ? matchedOrder.getUser().getId() : newOrder.getUser().getId(),
+        new MoneyDto(trade.getTotal(), trade.getPrice().getCurrencyCode())
     );
   }
 

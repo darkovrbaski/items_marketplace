@@ -44,7 +44,8 @@ public class WalletServiceImpl implements WalletService {
   @Override
   public WalletDto spendFunds(final Long userId, final MoneyDto amount) {
     final var wallet = walletRepository.findByIdOrThrow(userId);
-    wallet.spendFunds(walletMapper.toEntity(amount));
+    final var a = walletMapper.toEntity(amount);
+    wallet.spendFunds(a);
     return walletMapper.toDto(walletRepository.save(wallet));
   }
 

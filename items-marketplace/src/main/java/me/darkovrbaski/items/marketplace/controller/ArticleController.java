@@ -56,6 +56,19 @@ public class ArticleController {
   }
 
   @Operation(
+      summary = "Get an article by name.",
+      description = "Returns details of an article with the given name."
+  )
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Article found"),
+      @ApiResponse(responseCode = "404", description = "Article not found")
+  })
+  @GetMapping("/find/{name}")
+  public ResponseEntity<ArticleDto> getArticle(@PathVariable final String name) {
+    return ResponseEntity.ok(articleService.getArticle(name));
+  }
+
+  @Operation(
       summary = "Search articles.",
       description = "Returns a list of articles that match the given name."
   )

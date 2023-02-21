@@ -11,6 +11,7 @@ import me.darkovrbaski.items.marketplace.dto.OrderDto;
 import me.darkovrbaski.items.marketplace.service.intefaces.OrderService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -89,6 +90,20 @@ public class OrderController {
   @PostMapping
   public ResponseEntity<OrderDto> createOrder(@RequestBody final OrderDto orderDto) {
     return ResponseEntity.ok(orderService.createOrder(orderDto));
+  }
+
+  @Operation(
+      summary = "Delete an order.",
+      description = "Deletes an order with the given id."
+  )
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "204", description = "Order deleted"),
+      @ApiResponse(responseCode = "404", description = "Order not found")
+  })
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteOrder(@PathVariable final Long id) {
+    orderService.deleteOrder(id);
+    return ResponseEntity.noContent().build();
   }
 
 }

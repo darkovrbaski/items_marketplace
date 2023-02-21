@@ -24,6 +24,10 @@ export class ArticleService {
     return this.http.get<Article>(`${this.articleUrl}/${articleId}`);
   }
 
+  getArticleByName(name: string): Observable<Article> {
+    return this.http.get<Article>(`${this.articleUrl}/find/${name}`);
+  }
+
   getSearchArticles(name: string, page: Page): Observable<Pagable<Article>> {
     return this.http.get<Pagable<Article>>(
       `${this.articleUrl}/search?name=${name}&page=${page.number}&size=${page.size}`

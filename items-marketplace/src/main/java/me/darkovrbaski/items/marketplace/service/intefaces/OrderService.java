@@ -12,6 +12,8 @@ public interface OrderService {
 
   Page<OrderDto> getHistoryOrders(Long userId, int page, int size);
 
-  OrderDto createOrder(OrderDto orderDto);
+  void deleteOrder(Long id);
   
+  OrderDto createOrder(OrderDto orderDto);
+
 }

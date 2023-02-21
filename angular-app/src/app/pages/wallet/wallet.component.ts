@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Wallet, emptyWallet, Money, emptyMoney } from 'src/app/model/wallet';
+import { Wallet, emptyWallet } from 'src/app/model/wallet';
+import { Money, emptyMoney } from 'src/app/model/money';
 import { WalletService } from 'src/app/service/wallet.service';
 
 @Component({

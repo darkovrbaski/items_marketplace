@@ -2,8 +2,6 @@ package me.darkovrbaski.items.marketplace.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import java.util.Objects;
@@ -37,10 +35,6 @@ public class Article extends EntityDb {
 
   @Column
   String image;
-
-  @Column(nullable = false)
-  @Enumerated(EnumType.STRING)
-  QuantityType quantityType;
 
   @Override
   public boolean equals(final Object o) {
