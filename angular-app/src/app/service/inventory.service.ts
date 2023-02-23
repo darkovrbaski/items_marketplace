@@ -14,22 +14,18 @@ export class InventoryService {
 
   constructor(private http: HttpClient) {}
 
-  getArticleItems(
-    userId: number,
-    page: Page
-  ): Observable<Pagable<ArticleItem>> {
+  getArticleItems(page: Page): Observable<Pagable<ArticleItem>> {
     return this.http.get<Pagable<ArticleItem>>(
-      `${this.inventoryUrl}/${userId}?page=${page.number}&size=${page.size}`
+      `${this.inventoryUrl}?page=${page.number}&size=${page.size}`
     );
   }
 
   getSearchArticleItems(
-    userId: number,
     name: string,
     page: Page
   ): Observable<Pagable<ArticleItem>> {
     return this.http.get<Pagable<ArticleItem>>(
-      `${this.inventoryUrl}/search/${userId}?name=${name}&page=${page.number}&size=${page.size}`
+      `${this.inventoryUrl}/search?name=${name}&page=${page.number}&size=${page.size}`
     );
   }
 }

@@ -19,12 +19,12 @@ export class OrderService {
   }
 
   getActiveOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.orderUrl}/1/active`);
+    return this.http.get<Order[]>(`${this.orderUrl}/active`);
   }
 
   getHistoryOrders(page: Page): Observable<Pagable<Order>> {
     return this.http.get<Pagable<Order>>(
-      `${this.orderUrl}/1/history?page=${page.number}&size=${page.size}`
+      `${this.orderUrl}/history?page=${page.number}&size=${page.size}`
     );
   }
 

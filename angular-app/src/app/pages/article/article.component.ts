@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Article, emptyArticle } from 'src/app/model/article';
 import { Order, emptyOrder } from 'src/app/model/order';
 import { OrderBook, emptyOrderBook } from 'src/app/model/orderBook';
-import { emptyUser } from 'src/app/model/user';
 import { ArticleService } from 'src/app/service/article.service';
+import { AuthService } from 'src/app/service/auth.service';
 import { OrderBookService } from 'src/app/service/order-book.service';
 import { OrderService } from 'src/app/service/order.service';
 
@@ -23,6 +23,7 @@ export class ArticleComponent implements OnInit {
     private articleService: ArticleService,
     private orderBookService: OrderBookService,
     private orderService: OrderService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService
@@ -48,7 +49,7 @@ export class ArticleComponent implements OnInit {
 
   placeOrder() {
     this.newOrder.article = this.article;
-    this.newOrder.user = emptyUser;
+    this.newOrder.user = this.authService.userValue;
     this.orderService.createOrder(this.newOrder).subscribe({
       complete: () => {
         this.getOrderBook();

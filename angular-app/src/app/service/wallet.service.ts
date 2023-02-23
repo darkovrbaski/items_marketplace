@@ -14,10 +14,10 @@ export class WalletService {
   constructor(private http: HttpClient) {}
 
   getWallet(): Observable<Wallet> {
-    return this.http.get<Wallet>(`${this.walletUrl}/1`);
+    return this.http.get<Wallet>(`${this.walletUrl}`);
   }
 
   addFunds(amount: Money): Observable<Wallet> {
-    return this.http.put<Wallet>(`${this.walletUrl}/1/add`, amount);
+    return this.http.put<Wallet>(`${this.walletUrl}/add`, amount);
   }
 }

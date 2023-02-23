@@ -105,7 +105,7 @@ public class OrderController {
   ) {
     final var user = userService.findByUsername(principal.getName());
 
-    if (!orderDto.id().equals(user.getId())) {
+    if (!orderDto.user().id().equals(user.getId())) {
       throw new IllegalArgumentException("User id does not match");
     }
 

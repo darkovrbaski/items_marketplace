@@ -37,7 +37,7 @@ export class InventoryCardViewComponent implements OnInit {
 
   getArticleItems() {
     this.inventoryService
-      .getArticleItems(this.userId, this.page)
+      .getArticleItems(this.page)
       .subscribe(articleItemsPage => {
         this.articleItems = articleItemsPage.content;
         this.paginator.length = articleItemsPage.totalElements;
@@ -66,7 +66,7 @@ export class InventoryCardViewComponent implements OnInit {
 
   getSearchedArticleItems() {
     this.inventoryService
-      .getSearchArticleItems(this.userId, this.searchInput, this.page)
+      .getSearchArticleItems(this.searchInput, this.page)
       .subscribe(articleItemsPage => {
         this.articleItems = articleItemsPage.content;
         this.paginator.length = articleItemsPage.totalElements;

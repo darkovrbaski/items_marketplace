@@ -1,3 +1,5 @@
+import { Role } from './role';
+
 export interface User {
   id: number;
   username: string;
@@ -13,6 +15,7 @@ export interface User {
     street: string;
     number: string;
   };
+  role: Role;
 }
 
 export const emptyUser: User = {
@@ -30,4 +33,5 @@ export const emptyUser: User = {
     street: '',
     number: '',
   },
+  role: Role.ROLE_USER,
 };

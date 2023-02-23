@@ -21,8 +21,8 @@
         </li>
       </ul>
     </div>
-    <div class="row" *ngIf="showAdd">
-      <ul class="list-group">
+    <div class="row" *appHasRole="['ROLE_ADMIN']">
+      <ul class="list-group" *ngIf="showAdd">
         <li class="d-flex align-items-center my-md-2">
           <div class="card w-100">
             <div class="card-header">
@@ -147,7 +147,7 @@
           <div class="card w-100">
             <div class="card-header d-flex align-items-center">
               <h5>Name</h5>
-              <div class="ms-auto">
+              <div class="ms-auto" *appHasRole="['ROLE_ADMIN']">
                 <button
                   class="btn btn-primary"
                   (click)="addToogle()"
@@ -183,12 +183,14 @@
                 </button>
                 <button
                   class="btn btn-primary ms-2"
-                  (click)="editToogle(article)">
+                  (click)="editToogle(article)"
+                  *appHasRole="['ROLE_ADMIN']">
                   Edit
                 </button>
                 <button
                   class="btn btn-danger ms-2"
-                  (click)="deleteArticle(article.id)">
+                  (click)="deleteArticle(article.id)"
+                  *appHasRole="['ROLE_ADMIN']">
                   Delete
                 </button>
               </div>

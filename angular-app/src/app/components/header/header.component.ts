@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { emptyUser, User } from 'src/app/model/user';
+import { Router } from '@angular/router';
+import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -8,13 +9,32 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user: User = emptyUser;
+  user!: User | null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.authService.user.subscribe(user => {
-      this.user = user;
-    });
+    if (this.isLoggedIn()) {
+      this.authService.getCurrentUser().subscribe(user => {
+        this.user = user;
+      });
+    }
+    this.authService.user.subscribe(user => (this.user = user));
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  login() {
+    this.router.navigate(['/login']);
+  }
+
+  showLogin() {
+    return !this.isLoggedIn() && this.router.url !== '/login';
   }
 }

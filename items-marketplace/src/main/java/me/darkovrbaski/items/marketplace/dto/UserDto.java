@@ -3,6 +3,7 @@ package me.darkovrbaski.items.marketplace.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import me.darkovrbaski.items.marketplace.model.Address;
+import me.darkovrbaski.items.marketplace.model.Role;
 
 public record UserDto(
 
@@ -25,7 +26,9 @@ public record UserDto(
 
     String image,
 
-    Address address
+    Address address,
+
+    Role role
 
 ) {
 

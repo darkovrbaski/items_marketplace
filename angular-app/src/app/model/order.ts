@@ -12,7 +12,7 @@ export interface Order {
   filledQuantity: number;
   status: OrderStatus;
   trades: Trade[];
-  user: User;
+  user: User | null;
   article: Article;
 }
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,10 @@ import { OrdersListViewComponent } from './components/orders-list-view/orders-li
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ArticleComponent } from './pages/article/article.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
+import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
+import { LoginComponent } from './pages/login/login.component';
+import { HasRoleDirective } from './directive/has-role.directive';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,8 @@ import { ArticlesComponent } from './pages/articles/articles.component';
     OrdersComponent,
     ArticleComponent,
     ArticlesComponent,
+    LoginComponent,
+    HasRoleDirective,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,10 @@ import { ArticlesComponent } from './pages/articles/articles.component';
     ToastrModule.forRoot(),
     MaterialModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
