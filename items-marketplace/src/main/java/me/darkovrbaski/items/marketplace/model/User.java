@@ -3,10 +3,14 @@ package me.darkovrbaski.items.marketplace.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +20,9 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.Hibernate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
 @Setter
@@ -26,7 +33,7 @@ import org.hibernate.Hibernate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "`user`")
-public class User extends EntityDb {
+public class User extends EntityDb implements UserDetails {
 
   @Size(min = 3, message = "Username must be at least 3 characters long")
   @Column(nullable = false, unique = true)
@@ -54,6 +61,35 @@ public class User extends EntityDb {
 
   @Embedded
   Address address;
+
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  Role role;
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return Set.of(new SimpleGrantedAuthority(role.name()));
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
 
   @Override
   public boolean equals(final Object o) {

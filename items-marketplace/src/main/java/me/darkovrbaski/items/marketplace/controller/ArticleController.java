@@ -12,6 +12,7 @@ import me.darkovrbaski.items.marketplace.service.intefaces.ArticleService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -90,6 +91,7 @@ public class ArticleController {
       @ApiResponse(responseCode = "400", description = "Invalid input"),
       @ApiResponse(responseCode = "409", description = "Article already exists")
   })
+  @PreAuthorize("hasRole('ADMIN')")
   @PostMapping
   public ResponseEntity<ArticleDto> createArticle(@Valid @RequestBody final ArticleDto article) {
     return ResponseEntity.status(HttpStatus.CREATED).body(articleService.createArticle(article));
@@ -104,6 +106,7 @@ public class ArticleController {
       @ApiResponse(responseCode = "409", description = "Invalid input"),
       @ApiResponse(responseCode = "404", description = "Article not found")
   })
+  @PreAuthorize("hasRole('ADMIN')")
   @PutMapping
   public ResponseEntity<ArticleDto> updateArticle(@Valid @RequestBody final ArticleDto article) {
     return ResponseEntity.ok(articleService.updateArticle(article));
@@ -117,6 +120,7 @@ public class ArticleController {
       @ApiResponse(responseCode = "204", description = "Article deleted"),
       @ApiResponse(responseCode = "409", description = "Article is in use"),
   })
+  @PreAuthorize("hasRole('ADMIN')")
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteArticle(@PathVariable final Long id) {
     articleService.deleteArticle(id);

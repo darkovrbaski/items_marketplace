@@ -4,6 +4,11 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,6 +25,11 @@ public class GlobalExceptionHandler extends BaseExceptionHandler {
     registerMapping(EntityAlreadyExistsException.class, HttpStatus.CONFLICT);
     registerMapping(MethodArgumentNotValidException.class, HttpStatus.BAD_REQUEST);
     registerMapping(EntityIntegrityViolationException.class, HttpStatus.CONFLICT);
+    registerMapping(AuthenticationException.class, HttpStatus.UNAUTHORIZED);
+    registerMapping(InsufficientAuthenticationException.class, HttpStatus.UNAUTHORIZED);
+    registerMapping(BadCredentialsException.class, HttpStatus.UNAUTHORIZED);
+    registerMapping(AccessDeniedException.class, HttpStatus.FORBIDDEN);
+    registerMapping(UsernameNotFoundException.class, HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)

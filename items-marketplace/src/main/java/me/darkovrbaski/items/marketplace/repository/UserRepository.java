@@ -1,5 +1,6 @@
 package me.darkovrbaski.items.marketplace.repository;
 
+import java.util.Optional;
 import me.darkovrbaski.items.marketplace.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,5 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends EntityRepository<User> {
 
   Page<User> findByUsernameContainingIgnoreCase(String name, Pageable pageable);
-  
+
+  Optional<User> findByUsername(String username);
+
 }

@@ -1,6 +1,7 @@
 package me.darkovrbaski.items.marketplace.service.intefaces;
 
 import me.darkovrbaski.items.marketplace.dto.UserDto;
+import me.darkovrbaski.items.marketplace.model.User;
 import org.springframework.data.domain.Page;
 
 public interface UserService {
@@ -12,5 +13,7 @@ public interface UserService {
   Page<UserDto> searchUsers(String username, int page, int size);
 
   void deleteUser(Long userId);
+
+  User findByUsername(String name);
 
 }
