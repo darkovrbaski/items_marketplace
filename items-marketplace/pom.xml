@@ -20,7 +20,7 @@
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-    <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     <springdoc-openapi-starter.version>2.0.2</springdoc-openapi-starter.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
     <checkstyle.version>10.7.0</checkstyle.version>
