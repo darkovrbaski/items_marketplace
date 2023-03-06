@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/article")
@@ -125,6 +126,23 @@ public class ArticleController {
   public ResponseEntity<Void> deleteArticle(@PathVariable final Long id) {
     articleService.deleteArticle(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @Operation(
+      summary = "Update a article image.",
+      description = "Updates a article image by the given image."
+  )
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Article image updated"),
+      @ApiResponse(responseCode = "400", description = "Invalid input"),
+      @ApiResponse(responseCode = "404", description = "Article not found")
+  })
+  @PreAuthorize("hasRole('ADMIN')")
+  @PostMapping("/image/{name}")
+  public ResponseEntity<Void> updateImage(@RequestParam("image") final MultipartFile file,
+      @PathVariable("name") final String articleName) {
+    articleService.updateImage(file, articleName);
+    return ResponseEntity.ok().build();
   }
 
 }

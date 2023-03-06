@@ -3,11 +3,13 @@ package me.darkovrbaski.items.marketplace.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import java.security.Principal;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import me.darkovrbaski.items.marketplace.dto.UserDto;
+import me.darkovrbaski.items.marketplace.security.model.RegisterRequest;
 import me.darkovrbaski.items.marketplace.service.intefaces.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/user")
@@ -37,22 +43,21 @@ public class UserController {
   })
   @GetMapping
   public ResponseEntity<UserDto> getCurrentUser(final Principal principal) {
-    final var user = userService.findByUsername(principal.getName());
-    return ResponseEntity.ok(userService.getUser(user.getId()));
+    return ResponseEntity.ok(userService.getUser(principal.getName()));
   }
 
   @Operation(
-      summary = "Get a user by id.",
-      description = "Returns a user by the given id."
+      summary = "Get a user by username.",
+      description = "Returns a user by the given username."
   )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "User found"),
       @ApiResponse(responseCode = "404", description = "User not found")
   })
   @PreAuthorize("hasRole('ADMIN')")
-  @GetMapping("/{userId}")
-  public ResponseEntity<UserDto> getUser(@PathVariable final Long userId) {
-    return ResponseEntity.ok(userService.getUser(userId));
+  @GetMapping("/{username}")
+  public ResponseEntity<UserDto> getUser(@PathVariable final String username) {
+    return ResponseEntity.ok(userService.getUser(username));
   }
 
   @Operation(
@@ -93,6 +98,41 @@ public class UserController {
   public ResponseEntity<Void> deleteUser(@PathVariable final Long userId) {
     userService.deleteUser(userId);
     return ResponseEntity.noContent().build();
+  }
+
+  @Operation(
+      summary = "Update a user.",
+      description = "Updates a user by the given user details."
+  )
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "User updated"),
+      @ApiResponse(responseCode = "400", description = "Invalid request"),
+      @ApiResponse(responseCode = "404", description = "User not found")
+  })
+  @PutMapping
+  public ResponseEntity<UserDto> updateUser(@Valid @RequestBody final RegisterRequest updateRequest,
+      final Principal principal) {
+    final var user = userService.findByUsername(principal.getName());
+    if (!user.getUsername().equals(updateRequest.username())) {
+      throw new IllegalArgumentException("You can't update other user");
+    }
+    return ResponseEntity.ok(userService.updateUser(updateRequest));
+  }
+
+  @Operation(
+      summary = "Update a user image.",
+      description = "Updates a user image by the given image."
+  )
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "User image updated"),
+      @ApiResponse(responseCode = "400", description = "Invalid request"),
+      @ApiResponse(responseCode = "404", description = "User not found")
+  })
+  @PostMapping("/image")
+  public ResponseEntity<Void> updateImage(@RequestParam("image") final MultipartFile file,
+      final Principal principal) {
+    userService.updateImage(file, principal.getName());
+    return ResponseEntity.ok().build();
   }
 
 }

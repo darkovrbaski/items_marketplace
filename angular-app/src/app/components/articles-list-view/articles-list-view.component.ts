@@ -6,6 +6,7 @@ import { Article, emptyArticle } from 'src/app/model/article';
 import { Page } from 'src/app/model/page';
 import { Paginator } from 'src/app/model/paginator';
 import { ArticleService } from 'src/app/service/article.service';
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-articles-list-view',
@@ -25,16 +26,18 @@ export class ArticlesListViewComponent implements OnInit {
 
   searchInput = '';
 
-  newArticle: Article = emptyArticle;
+  articleData: Article = emptyArticle;
   showAdd = false;
-
-  editArticle: Article = emptyArticle;
   showEdit = false;
+
+  uploadedImage: File | null = null;
+  loading = false;
 
   constructor(
     private articleService: ArticleService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -93,15 +96,23 @@ export class ArticlesListViewComponent implements OnInit {
   }
 
   createArticle() {
-    this.articleService.createArticle(this.newArticle).subscribe({
-      complete: () => {
+    this.articleData.image = '';
+    this.articleService.createArticle(this.articleData).subscribe({
+      next: newArticle => {
         this.getArticles();
-        this.newArticle = emptyArticle;
+        this.articleData = newArticle;
         this.toastr.success('Article created');
         this.showAdd = false;
+        this.imageUploadAction();
       },
       error: error => {
-        this.toastr.error(error.error.message);
+        let errors = '';
+        error.error.errors.forEach((message: string) => {
+          errors += `${message}</br>`;
+        });
+        this.toastr.error(errors, error.error.message, {
+          enableHtml: true,
+        });
       },
     });
   }
@@ -113,13 +124,19 @@ export class ArticlesListViewComponent implements OnInit {
         this.toastr.success('Article deleted');
       },
       error: error => {
-        this.toastr.error(error.error.message);
+        let errors = '';
+        error.error.errors.forEach((message: string) => {
+          errors += `${message}</br>`;
+        });
+        this.toastr.error(errors, error.error.message, {
+          enableHtml: true,
+        });
       },
     });
   }
 
   editToogle(article: Article) {
-    this.editArticle = article;
+    this.articleData = article;
     this.showEdit = !this.showEdit;
   }
 
@@ -127,17 +144,66 @@ export class ArticlesListViewComponent implements OnInit {
     this.articleService.updateArticle(article).subscribe({
       complete: () => {
         this.getArticles();
-        this.editArticle = emptyArticle;
+        this.articleData = emptyArticle;
         this.toastr.success('Article updated');
         this.showEdit = false;
       },
       error: error => {
-        this.toastr.error(error.error.message);
+        let errors = '';
+        error.error.errors.forEach((message: string) => {
+          errors += `${message}</br>`;
+        });
+        this.toastr.error(errors, error.error.message, {
+          enableHtml: true,
+        });
       },
     });
   }
 
   routeToArticlePage(article: Article) {
     this.router.navigate(['article', article.name]);
+  }
+
+  onImageUpload(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+      this.articleData.image = event.target.result;
+      this.uploadedImage = file;
+    });
+
+    reader.readAsDataURL(file);
+  }
+
+  imageUploadAction() {
+    if (this.uploadedImage === null) {
+      return;
+    }
+    const imageFormData = new FormData();
+    imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
+    this.loading = true;
+
+    this.imageService
+      .uploadArticleImage(imageFormData, this.articleData)
+      .subscribe({
+        complete: () => {
+          this.getArticles();
+          this.toastr.success('Image updated');
+          this.uploadedImage = null;
+          this.loading = false;
+        },
+        error: error => {
+          let errors = '';
+          error.error.errors.forEach((message: string) => {
+            errors += `${message}</br>`;
+          });
+          this.toastr.error(errors, error.error.message, {
+            enableHtml: true,
+          });
+          this.uploadedImage = null;
+          this.loading = false;
+        },
+      });
   }
 }

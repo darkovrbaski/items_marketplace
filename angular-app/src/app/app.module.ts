@@ -25,6 +25,10 @@ import { ErrorInterceptor } from './interceptor/error.interceptor';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
 import { LoginComponent } from './pages/login/login.component';
 import { HasRoleDirective } from './directive/has-role.directive';
+import { UserListViewComponent } from './components/user-list-view/user-list-view.component';
+import { UsersComponent } from './pages/users/users.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,10 @@ import { HasRoleDirective } from './directive/has-role.directive';
     ArticlesComponent,
     LoginComponent,
     HasRoleDirective,
+    UserListViewComponent,
+    UsersComponent,
+    RegisterComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

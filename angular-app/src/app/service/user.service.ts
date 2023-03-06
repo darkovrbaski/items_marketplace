@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Pagable } from '../model/pagable';
 import { Page } from '../model/page';
+import { RegistrationRequest } from '../model/registrationRequest';
 import { User } from '../model/user';
 
 @Injectable({
@@ -14,8 +15,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUser(userId: number): Observable<User> {
-    return this.http.get<User>(`${this.userUrl}/${userId}`);
+  getUser(username: string): Observable<User> {
+    return this.http.get<User>(`${this.userUrl}/${username}`);
   }
 
   getUsers(page: Page): Observable<Pagable<User>> {
@@ -32,5 +33,9 @@ export class UserService {
 
   deleteUser(userId: number): Observable<User> {
     return this.http.delete<User>(`${this.userUrl}/${userId}`);
+  }
+
+  updateUser(user: RegistrationRequest): Observable<User> {
+    return this.http.put<User>(`${this.userUrl}`, user);
   }
 }

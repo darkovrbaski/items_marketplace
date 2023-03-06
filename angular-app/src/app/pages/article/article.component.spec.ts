@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { UserWalletInfoComponent } from 'src/app/components/user-wallet-info/user-wallet-info.component';
+import { HasRoleDirective } from 'src/app/directive/has-role.directive';
 import { MaterialModule } from 'src/app/material/material.module';
 
 import { ArticleComponent } from './article.component';
@@ -26,7 +27,11 @@ describe('ArticleComponent', () => {
         ToastrModule.forRoot(),
         MaterialModule,
       ],
-      declarations: [ArticleComponent, UserWalletInfoComponent],
+      declarations: [
+        ArticleComponent,
+        UserWalletInfoComponent,
+        HasRoleDirective,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ArticleComponent);

@@ -1,12 +1,11 @@
 insert into "user" (id, username, password, first_name, last_name, email, phone, image, city,
                     country, number, street, role)
 values (1, 'admin', '$2a$10$sQmerVLYB7V0OsgmnY6OLuPRNujaCLWvihgy2NHjUMIlRGjKkLlFC', 'admin',
-        'admin', 'admin@localhost', '123456789',
-        'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50', 'admin', 'admin',
-        'admin', 'admin', 'ROLE_ADMIN'),
+        'admin', 'admin@localhost', '123456789', 'user_205e460b479e2e5b48aec07710c08d50.png',
+        'admin', 'admin', 'admin', 'admin', 'ROLE_ADMIN'),
        (2, 'user', '$2a$10$S5YmghHbNLRVbit6hfbmzOpqkNkX2rrKmyuoIxwJ5EyBlrDFVlqiW', 'user', 'user',
-        'user@localhost', '123456789', 'https://picsum.photos/id/65/250', 'user', 'user', 'user',
-        'user', 'ROLE_USER');
+        'user@localhost', '123456789', 'user_65-250x250.jpg', 'user', 'user', 'user', 'user',
+        'ROLE_USER');
 
 alter sequence user_id_seq restart with 3;
 
@@ -19,11 +18,11 @@ values (1),
        (2);
 
 insert into article (id, name, description, image)
-values (1, 'article1', 'description1', 'https://picsum.photos/250'),
-       (2, 'article2', 'description2', 'https://picsum.photos/250'),
-       (3, 'article3', 'description3', 'https://picsum.photos/250'),
-       (4, 'article4', 'description4', 'https://picsum.photos/250'),
-       (5, 'article5', 'description5', 'https://picsum.photos/250');
+values (1, 'article1', 'description1', '34x34icons.png'),
+       (2, 'article2', 'description2', '34x34icons.png'),
+       (3, 'article3', 'description3', '34x34icons.png'),
+       (4, 'article4', 'description4', '34x34icons.png'),
+       (5, 'article5', 'description5', '34x34icons.png');
 
 alter sequence article_id_seq restart with 6;
 

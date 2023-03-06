@@ -25,7 +25,7 @@ public class ErrorResponse {
     code = httpStatus.value();
     status = httpStatus.name();
     this.message = message;
-    errors = null;
+    errors = List.of();
   }
 
   public ErrorResponse(final HttpStatus httpStatus, final String message,

@@ -1,0 +1,171 @@
+<div class="row d-flex flex-wrap justify-content-center">
+  <div class="col-md-4 order-md-1">
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Search for items</h5>
+            </div>
+            <div class="card-body d-flex align-items-center">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search by username"
+                [(ngModel)]="searchInput" />
+              <button class="btn btn-primary ms-2" (click)="serachUsers()">
+                Search
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row" *appHasRole="['ROLE_ADMIN']">
+      <ul class="list-group" *ngIf="showAdd">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Add user</h5>
+            </div>
+            <div class="card-body d-flex align-items-center">
+              <form>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    [(ngModel)]="newUser.username" />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    [(ngModel)]="newUser.password" />
+                </div>
+                <div class="mb-3">
+                  <label for="firstName" class="form-label">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="First name"
+                    [(ngModel)]="newUser.firstName" />
+                </div>
+                <div class="mb-3">
+                  <label for="lastName" class="form-label">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Last name"
+                    [(ngModel)]="newUser.lastName" />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    [(ngModel)]="newUser.email" />
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  (click)="createAdmin()">
+                  Add
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger ms-2"
+                  (click)="addToogle()">
+                  Cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-8 order-md-0">
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-header d-flex align-items-center">
+              <h5>Username</h5>
+              <div class="ms-auto" *appHasRole="['ROLE_ADMIN']">
+                <button
+                  class="btn btn-primary"
+                  (click)="addToogle()"
+                  *ngIf="!showAdd">
+                  New admin
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <ul class="list-group">
+        <li
+          class="d-flex align-items-center my-md-2"
+          *ngFor="let user of users">
+          <div class="card w-100 hover-item">
+            <div class="card-body d-flex align-items-center">
+              <img
+                [src]="user.image"
+                [alt]="user.username"
+                class="user-image mw-100 me-3" />
+              <div>
+                <h5 class="card-text">{{ user.username }}</h5>
+                <p class="card-text">
+                  {{ user.firstName }} {{ user.lastName }}
+                </p>
+              </div>
+              <div class="ms-auto">
+                <button class="btn btn-primary" (click)="routeToUserPage(user)">
+                  View
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <ul class="list-group">
+        <li class="d-flex align-items-center my-md-2">
+          <div class="card w-100">
+            <div class="card-body-sm-p d-flex align-items-center">
+              <mat-paginator
+                (page)="handlePageEvent($event)"
+                [length]="paginator.length"
+                [pageSize]="paginator.pageSize"
+                [disabled]="false"
+                [showFirstLastButtons]="true"
+                [pageSizeOptions]="paginator.pageSizeOptions"
+                [hidePageSize]="false"
+                [pageIndex]="paginator.pageIndex"
+                aria-label="Select page">
+              </mat-paginator>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

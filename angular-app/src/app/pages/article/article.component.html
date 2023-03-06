@@ -6,7 +6,7 @@
     </p>
   </div>
 </div>
-<div class="pb-4">
+<div class="pb-4" *appHasRole="['ROLE_USER']">
   <app-user-wallet-info></app-user-wallet-info>
 </div>
 <div class="row pb-4">
@@ -27,7 +27,7 @@
             {{ article.description }}
           </p>
         </div>
-        <div class="card col-3 px-0">
+        <div class="card col-3 px-0" *ngIf="isLoggedIn()">
           <div class="card-header text-center">
             <h5>Order</h5>
           </div>

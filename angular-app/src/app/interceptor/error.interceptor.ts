@@ -17,12 +17,11 @@ export class ErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError(err => {
-        if ([401, 403].includes(err.status)) {
+      catchError(error => {
+        if ([401, 403].includes(error.status)) {
           this.authService.logout();
         }
 
-        const error = err.error.message || err.statusText;
         return throwError(() => error);
       })
     );

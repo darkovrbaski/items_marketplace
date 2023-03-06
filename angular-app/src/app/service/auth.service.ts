@@ -51,6 +51,7 @@ export class AuthService {
       .pipe(
         map(authResponse => {
           localStorage.setItem('token', authResponse.token);
+          this.token.next(authResponse.token);
           this.getCurrentUser().subscribe(user => {
             this.user.next(user);
           });

@@ -26,6 +26,7 @@
     <checkstyle.version>10.8.0</checkstyle.version>
     <jacoco-maven-plugin>0.8.8</jacoco-maven-plugin>
     <jjwt.version>0.11.5</jjwt.version>
+    <aws-sdk.version>2.20.17</aws-sdk.version>
   </properties>
   <dependencies>
     <dependency>
@@ -106,7 +107,31 @@
       <artifactId>jjwt-jackson</artifactId>
       <version>${jjwt.version}</version>
     </dependency>
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>cloudfront</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>s3</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>secretsmanager</artifactId>
+    </dependency>
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>software.amazon.awssdk</groupId>
+        <artifactId>bom</artifactId>
+        <version>${aws-sdk.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <plugins>
@@ -144,9 +169,6 @@
               <version>${org.mapstruct.version}</version>
             </path>
           </annotationProcessorPaths>
-          <compilerArgs>
-            <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
-          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>

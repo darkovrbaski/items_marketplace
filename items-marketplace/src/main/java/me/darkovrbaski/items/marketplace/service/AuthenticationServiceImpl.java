@@ -1,5 +1,6 @@
 package me.darkovrbaski.items.marketplace.service;
 
+import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -13,6 +14,8 @@ import me.darkovrbaski.items.marketplace.security.model.AuthRequest;
 import me.darkovrbaski.items.marketplace.security.model.AuthResponse;
 import me.darkovrbaski.items.marketplace.security.model.RegisterRequest;
 import me.darkovrbaski.items.marketplace.service.intefaces.AuthenticationService;
+import me.darkovrbaski.items.marketplace.service.intefaces.InventoryService;
+import me.darkovrbaski.items.marketplace.service.intefaces.WalletService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,6 +32,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
   PasswordEncoder passwordEncoder;
   JwtUtil jwtUtil;
   AuthenticationManager authManager;
+  WalletService walletService;
+  InventoryService inventoryService;
 
   @Override
   public AuthResponse login(final AuthRequest authRequest) {
@@ -44,11 +49,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     return new AuthResponse(user.getUsername(), jwtToken, jwtUtil.extractExpiration(jwtToken));
   }
 
+  @Transactional
   @Override
   public AuthResponse register(final RegisterRequest registerRequest) {
     final User user = createUser(registerRequest);
-    final var jwtToken = jwtUtil.generateToken(user);
-    return new AuthResponse(user.getUsername(), jwtToken, jwtUtil.extractExpiration(jwtToken));
+    walletService.createWallet(user);
+    inventoryService.createInventory(user);
+    return login(new AuthRequest(registerRequest.username(), registerRequest.password()));
   }
 
   private User createUser(final RegisterRequest registerRequest) {
