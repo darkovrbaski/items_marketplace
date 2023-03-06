@@ -57,8 +57,18 @@ export class ArticleComponent implements OnInit {
         this.toastr.success('Order created');
       },
       error: error => {
-        this.toastr.error(error.error.message);
+        let errors = '';
+        error.error.errors.forEach((message: string) => {
+          errors += `${message}</br>`;
+        });
+        this.toastr.error(errors, error.error.message, {
+          enableHtml: true,
+        });
       },
     });
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }

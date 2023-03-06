@@ -60,7 +60,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate([returnUrl]);
         },
         error: error => {
-          this.toastr.error(error);
+          let errors = '';
+          error.error.errors.forEach((message: string) => {
+            errors += `${message}</br>`;
+          });
+          this.toastr.error(errors, error.error.message, {
+            enableHtml: true,
+          });
           this.loading = false;
         },
       });

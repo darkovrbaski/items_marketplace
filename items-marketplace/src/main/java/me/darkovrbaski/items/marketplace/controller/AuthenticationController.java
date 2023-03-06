@@ -4,6 +4,7 @@ package me.darkovrbaski.items.marketplace.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -49,7 +50,8 @@ public class AuthenticationController {
       @ApiResponse(responseCode = "400", description = "Invalid username or password or email")
   })
   @PostMapping("/register")
-  public ResponseEntity<AuthResponse> register(@RequestBody final RegisterRequest registerRequest) {
+  public ResponseEntity<AuthResponse> register(
+      @Valid @RequestBody final RegisterRequest registerRequest) {
     return ResponseEntity.ok(authService.register(registerRequest));
   }
 
@@ -64,7 +66,7 @@ public class AuthenticationController {
   @PreAuthorize("hasRole('ADMIN')")
   @PostMapping("/register/admin")
   public ResponseEntity<UserDto> registerAdmin(
-      @RequestBody final RegisterRequest registerRequest) {
+      @Valid @RequestBody final RegisterRequest registerRequest) {
     return ResponseEntity.ok(authService.registerAdmin(registerRequest));
   }
 

@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 @Slf4j
 @RestControllerAdvice
@@ -30,6 +31,7 @@ public class GlobalExceptionHandler extends BaseExceptionHandler {
     registerMapping(BadCredentialsException.class, HttpStatus.UNAUTHORIZED);
     registerMapping(AccessDeniedException.class, HttpStatus.FORBIDDEN);
     registerMapping(UsernameNotFoundException.class, HttpStatus.NOT_FOUND);
+    registerMapping(MaxUploadSizeExceededException.class, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)

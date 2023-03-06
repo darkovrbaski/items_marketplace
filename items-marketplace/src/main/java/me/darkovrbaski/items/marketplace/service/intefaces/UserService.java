@@ -2,11 +2,13 @@ package me.darkovrbaski.items.marketplace.service.intefaces;
 
 import me.darkovrbaski.items.marketplace.dto.UserDto;
 import me.darkovrbaski.items.marketplace.model.User;
+import me.darkovrbaski.items.marketplace.security.model.RegisterRequest;
 import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
-  UserDto getUser(Long userId);
+  UserDto getUser(String username);
 
   Page<UserDto> getUsers(int page, int size);
 
@@ -16,4 +18,8 @@ public interface UserService {
 
   User findByUsername(String name);
 
+  UserDto updateUser(RegisterRequest updateRequest);
+
+  void updateImage(MultipartFile file, String username);
+  
 }

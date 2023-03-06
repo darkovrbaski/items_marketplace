@@ -28,7 +28,13 @@ export class WalletComponent {
         this.toastr.success('Wallet updated');
       },
       error: error => {
-        this.toastr.error(error.error.message);
+        let errors = '';
+        error.error.errors.forEach((message: string) => {
+          errors += `${message}</br>`;
+        });
+        this.toastr.error(errors, error.error.message, {
+          enableHtml: true,
+        });
       },
     });
   }

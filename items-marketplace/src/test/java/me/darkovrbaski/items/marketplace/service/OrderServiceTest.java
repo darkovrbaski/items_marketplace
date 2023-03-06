@@ -30,9 +30,9 @@ import me.darkovrbaski.items.marketplace.service.intefaces.WalletService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 
@@ -59,7 +59,8 @@ class OrderServiceTest {
   @Mock
   UserRepository userRepository;
 
-  final OrderMapper orderMapper = Mappers.getMapper(OrderMapper.class);
+  @Autowired
+  OrderMapper orderMapper;
 
   OrderServiceImpl orderService;
 

@@ -1,14 +1,25 @@
 package me.darkovrbaski.items.marketplace.mapper;
 
+import me.darkovrbaski.items.marketplace.config.CentralMapperConfig;
 import me.darkovrbaski.items.marketplace.dto.ArticleDto;
 import me.darkovrbaski.items.marketplace.model.Article;
+import me.darkovrbaski.items.marketplace.service.intefaces.ImageService;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Mapper
-public interface ArticleMapper {
+@Mapper(config = CentralMapperConfig.class)
+public abstract class ArticleMapper {
 
-  ArticleDto toDto(Article article);
+  @Autowired
+  ImageService imageService;
 
-  Article toEntity(ArticleDto articleDto);
+  @Mapping(
+      target = "image",
+      expression = "java(imageService.getPublicImageUrl(article.getImage()))"
+  )
+  public abstract ArticleDto toDto(Article article);
+
+  public abstract Article toEntity(ArticleDto articleDto);
 
 }

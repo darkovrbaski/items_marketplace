@@ -1,1 +1,221 @@
-<p>profile works!</p>
+<div class="row">
+  <div class="col-xl-4">
+    <div class="card mb-4 mb-xl-0">
+      <div class="card-header">
+        <h5>Profile Picture</h5>
+      </div>
+      <div class="card-body text-center">
+        <img
+          class="img-account-profile rounded-circle mb-4"
+          [src]="updateUser.image"
+          [alt]="updateUser.username" />
+        <div class="mb-2">
+          <label class="btn btn-secondary">
+            <span>Select image</span>
+            <input
+              #imageInput
+              type="file"
+              accept="image/*"
+              class="d-none"
+              (change)="onImageUpload($event)" />
+          </label>
+        </div>
+        <div>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="imageUploadAction()"
+            [disabled]="uploadedImage === null">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"></span>
+            Upload new image
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-8">
+    <div class="row">
+      <div class="card mb-4 px-0">
+        <div class="card-header d-flex align-items-center">
+          <h5>Account Details</h5>
+          <div class="ms-auto">
+            <button
+              class="btn btn-primary"
+              (click)="enableEdit()"
+              *ngIf="!edit">
+              Edit profile
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label class="small mb-1" for="inputUsername">Username</label>
+              <input
+                class="form-control"
+                id="inputUsername"
+                [value]="updateUser.username"
+                type="text"
+                disabled="true" />
+            </div>
+            <div class="row gx-3 mb-3">
+              <div class="col-md-6">
+                <label class="small mb-1" for="inputFirstName"
+                  >First name</label
+                >
+                <input
+                  class="form-control"
+                  id="inputFirstName"
+                  name="inputFirstName"
+                  type="text"
+                  placeholder="Enter your first name"
+                  [disabled]="!edit"
+                  [(ngModel)]="updateUser.firstName" />
+              </div>
+              <div class="col-md-6">
+                <label class="small mb-1" for="inputLastName">Last name</label>
+                <input
+                  class="form-control"
+                  id="inputLastName"
+                  name="inputLastName"
+                  type="text"
+                  placeholder="Enter your last name"
+                  [disabled]="!edit"
+                  [(ngModel)]="updateUser.lastName" />
+              </div>
+            </div>
+            <div class="row gx-3 mb-3">
+              <div class="col-md-3">
+                <label class="small mb-1" for="inputCountry">Country</label>
+                <input
+                  class="form-control"
+                  id="inputCountry"
+                  name="inputCountry"
+                  type="text"
+                  placeholder="Enter your country"
+                  [disabled]="!edit"
+                  [(ngModel)]="updateUser.address.country" />
+              </div>
+              <div class="col-md-3">
+                <label class="small mb-1" for="inputCity">City</label>
+                <input
+                  class="form-control"
+                  id="inputCity"
+                  name="inputCity"
+                  type="text"
+                  placeholder="Enter your city"
+                  [disabled]="!edit"
+                  [(ngModel)]="updateUser.address.city" />
+              </div>
+              <div class="col-md-5">
+                <label class="small mb-1" for="inputStreet">Street</label>
+                <input
+                  class="form-control"
+                  id="inputStreet"
+                  name="inputStreet"
+                  type="text"
+                  placeholder="Enter your street"
+                  [disabled]="!edit"
+                  [(ngModel)]="updateUser.address.street" />
+              </div>
+              <div class="col-md-1">
+                <label class="small mb-1" for="inputNumber">Number</label>
+                <input
+                  class="form-control"
+                  id="inputNumber"
+                  name="inputNumber"
+                  type="text"
+                  placeholder="0"
+                  [disabled]="!edit"
+                  [(ngModel)]="updateUser.address.number" />
+              </div>
+            </div>
+            <div class="row gx-3 mb-3">
+              <div class="col-md-6">
+                <label class="small mb-1" for="inputEmailAddress">
+                  Email address
+                </label>
+                <input
+                  class="form-control"
+                  id="inputEmailAddress"
+                  name="inputEmailAddress"
+                  type="email"
+                  placeholder="Enter your email address"
+                  [disabled]="!edit"
+                  [(ngModel)]="updateUser.email" />
+              </div>
+              <div class="col-md-6">
+                <label class="small mb-1" for="inputPhone">Phone number</label>
+                <input
+                  class="form-control"
+                  id="inputPhone"
+                  name="inputPhone"
+                  type="tel"
+                  placeholder="Enter your phone number"
+                  [disabled]="!edit"
+                  [(ngModel)]="updateUser.phone" />
+              </div>
+            </div>
+            <div *ngIf="edit">
+              <button
+                class="btn btn-primary"
+                type="button"
+                (click)="updateProfile()">
+                Save changes
+              </button>
+              <button
+                class="btn btn-danger ms-2"
+                type="button"
+                (click)="cancelEdit()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card mb-4 px-0">
+        <div class="card-header">
+          <h5>Change password</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row gx-3 mb-3">
+              <div class="col-md-6">
+                <label class="small mb-1" for="inputPassword"> Password </label>
+                <input
+                  class="form-control"
+                  id="inputPassword"
+                  name="inputPassword"
+                  type="password"
+                  placeholder="Enter your new password"
+                  [(ngModel)]="updateUser.password" />
+              </div>
+              <div class="col-md-6">
+                <label class="small mb-1" for="inputRepeatPassword">
+                  Repeat password
+                </label>
+                <input
+                  class="form-control"
+                  id="inputRepeatPassword"
+                  name="inputRepeatPassword"
+                  type="password"
+                  placeholder="Repeat your new password"
+                  [(ngModel)]="repeatPassword" />
+              </div>
+            </div>
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="updatePassword()">
+              Change password
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

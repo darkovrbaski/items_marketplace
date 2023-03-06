@@ -12,9 +12,6 @@ public record UserDto(
     @Size(min = 3, message = "Username must be at least 3 characters long")
     String username,
 
-    @Size(min = 3, message = "Password must be at least 3 characters long")
-    String password,
-
     String firstName,
 
     String lastName,

@@ -25,6 +25,7 @@ describe('ProfileComponent', () => {
         ToastrModule.forRoot(),
         MaterialModule,
       ],
+      declarations: [ProfileComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProfileComponent);
