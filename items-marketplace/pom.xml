@@ -23,7 +23,7 @@
     <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     <springdoc-openapi-starter.version>2.0.2</springdoc-openapi-starter.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
-    <checkstyle.version>10.8.0</checkstyle.version>
+    <checkstyle.version>10.8.1</checkstyle.version>
     <jacoco-maven-plugin>0.8.8</jacoco-maven-plugin>
     <jjwt.version>0.11.5</jjwt.version>
     <aws-sdk.version>2.20.17</aws-sdk.version>
