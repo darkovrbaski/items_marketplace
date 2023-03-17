@@ -1,4 +1,9 @@
 <br>
+<div align="center">
+  <img src="./images/brand_dark_mode.svg#gh-dark-mode-only" width="120px">
+  <img src="./images/brand_light_mode.svg#gh-light-mode-only" width="120px">
+</div>
+<br>
 <h1 align="center">Items marketplace</h1>
 <h4 align="center">Marketplace with orderbooks, buy/sell items platform.</h4>
 <br>
@@ -105,7 +110,7 @@
 
 ![Tech Stack](./images/tech-stack.svg?raw=true)
 
-<!-- https://github-readme-tech-stack.vercel.app/api/cards?title=&showBorder=false&lineCount=6&hideBg=true&hideTitle=true&theme=github&line1=SpringBoot,Spring%20Boot,6DB33F;SpringSecurity,Spring%20Security,6DB33F;JUnit5,JUnit5,25A162&line2=Angular,Angular,DD0031;html5,html5,2831a9;sass,SCSS,CC6699;Bootstrap,Bootstrap,7952B3&line3=ESLint,ESLint,4B32C3;google,Checkstyle,34A7C1;Prettier,Prettier,7B93E;&line4=AmazonAWS,AWS,232F3E;AmazonS3,S3,569A31;AmazonCloudWatch,Cloudfront,66459B;,Secrets%20Manager,EE0000&line5=GitHubActions,GitHub%20Actions,2088FF;SonarCloud,SonarCloud,F3702A;Dependabot,Dependabot,025E8C&line6=Docker,Docker,2496ED -->
+<!-- https://github-readme-tech-stack.vercel.app/api/cards?title=&showBorder=false&lineCount=6&hideBg=true&hideTitle=true&theme=github&line1=SpringBoot,Spring%20Boot,6DB33F;SpringSecurity,Spring%20Security,6DB33F;JUnit5,JUnit5,25A162&line2=Angular,Angular,DD0031;html5,html5,2831a9;sass,SCSS,CC6699;Bootstrap,Bootstrap,7952B3&line3=ESLint,ESLint,4B32C3;google,Checkstyle,34A7C1;Prettier,Prettier,7B93E;&line4=AmazonAWS,AWS,232F3E;AmazonS3,S3,569A31;AmazonCloudWatch,Cloudfront,66459B;,Secrets%20Manager,EE0000&line5=GitHubActions,GitHub%20Actions,2088FF;SonarCloud,SonarCloud,F3702A;Dependabot,Dependabot,025E8C&line6=Docker,Docker,2496ED;PostgreSQL,PostgreSQL,4169E1 -->
 
 ## 📷 Screenshots
 
