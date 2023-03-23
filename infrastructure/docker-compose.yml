@@ -3,7 +3,7 @@ services:
     image: items-marketplace-service
     container_name: items-marketplace-service
     build:
-      context: ./items-marketplace
+      context: ../items-marketplace
       dockerfile: Dockerfile
     depends_on:
       postgres-db:

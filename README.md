@@ -86,15 +86,50 @@
 
 ### Backend
 
-1. Make sure you have docker installed and running. You will also need docker-compose.
+1. Clone the repository.
 
-2. Clone the repository.
+2. Make sure you have Terraform installed and provided IAM credentials to authenticate the Terraform AWS provider.
 
-3. Fill out the values in the `.env` file. You will need AWS accont with S3 and two CloudFront distributions.
+3. Change directory to `infrastructure/`.
 
-4. Run `docker-compose up`. This should build the docker image and start the container and Postgres DB running.
+4. Run next two commands to generate required Cloudfront key group keys.
+``` bash
+  openssl genrsa -out private_key.pem 2048
 
-5. Head over to http://localhost:8080/docs (or a different port if you changed it) to make sure that backend Spring Boot application is running.
+  openssl rsa -pubout -in private_key.pem -out public_key.pem
+``` 
+
+5. Run `terraform init` then `terraform apply --auto-aprove` to provision S3 and Cloudfronts on AWS.
+
+#### Docker
+
+6. Make sure you have docker installed and running. You will also need docker-compose.
+
+7. Fill out the values in the `.env` file with outputs from terraform provisioned resorces.
+
+8. Run `docker-compose up`. This should build the docker image and start the container and Postgres DB running.
+
+9. Head over to http://localhost:8080/docs (or a different port if you changed it) to make sure that backend Spring Boot application is running.
+
+#### IDE
+
+6. Open Spring Boot application in your IDE located in `items-marketplace/`
+
+7. Set environment variables:
+    - POSTGRES_DB_URL
+    - POSTGRES_DB_USERNAME
+    - POSTGRES_DB_PASSWORD
+    - FRONTEND_URL
+    - JWT_SECRET (generate encryption key)
+    - S3_BUCKET_NAME (terraform output)
+    - CLOUDFRONT_DOMAIN_PUBLIC (terraform output)
+    - CLOUDFRONT_DOMAIN_PRIVATE (terraform output)
+    - KEY_PAIR_ID (terraform output)
+    - PRIVATE_KEY_NAME (terraform output)
+
+8. Execute the main method in the `me.darkovrbaski.items.marketplace.ItemsMarketplaceApplication` class.
+
+9. Head over to http://localhost:8080/docs (or a different port if you changed it) to make sure that backend Spring Boot application is running.
 
 ### Frontend
 
@@ -110,7 +145,9 @@
 
 ![Tech Stack](./images/tech-stack.svg?raw=true)
 
-<!-- https://github-readme-tech-stack.vercel.app/api/cards?title=&showBorder=false&lineCount=6&hideBg=true&hideTitle=true&theme=github&line1=SpringBoot,Spring%20Boot,6DB33F;SpringSecurity,Spring%20Security,6DB33F;JUnit5,JUnit5,25A162&line2=Angular,Angular,DD0031;html5,html5,2831a9;sass,SCSS,CC6699;Bootstrap,Bootstrap,7952B3&line3=ESLint,ESLint,4B32C3;google,Checkstyle,34A7C1;Prettier,Prettier,7B93E;&line4=AmazonAWS,AWS,232F3E;AmazonS3,S3,569A31;AmazonCloudWatch,Cloudfront,66459B;,Secrets%20Manager,EE0000&line5=GitHubActions,GitHub%20Actions,2088FF;SonarCloud,SonarCloud,F3702A;Dependabot,Dependabot,025E8C&line6=Docker,Docker,2496ED;PostgreSQL,PostgreSQL,4169E1 -->
+<!-- https://github-readme-tech-stack.vercel.app/api/cards?title=&showBorder=false&lineCount=6&hideBg=true&hideTitle=true&theme=github&line1=SpringBoot,Spring%20Boot,6DB33F;SpringSecurity,Spring%20Security,6DB33F;JUnit5,JUnit5,25A162&line2=Angular,Angular,DD0031;html5,html5,2831a9;sass,SCSS,CC6699;Bootstrap,Bootstrap,7952B3&line3=ESLint,ESLint,4B32C3;google,Checkstyle,34A7C1;Prettier,Prettier,7B93E;&line4=AmazonAWS,AWS,232F3E;AmazonS3,S3,569A31;,Cloudfront,66459B;,SSM,&line5=GitHubActions,GitHub%20Actions,2088FF;SonarCloud,SonarCloud,F3702A;Dependabot,Dependabot,025E8C&line6=Docker,Docker,2496ED;PostgreSQL,PostgreSQL,4169E1;Terraform,Terraform,7B42BC -->
+
+<!-- https://simpleicons.org/ -->
 
 ## 📷 Screenshots
 

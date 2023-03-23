@@ -12,6 +12,7 @@ import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import me.darkovrbaski.items.marketplace.model.S3ImageDir;
 import me.darkovrbaski.items.marketplace.service.intefaces.ImageService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -20,35 +21,45 @@ import software.amazon.awssdk.services.cloudfront.internal.auth.Pem;
 import software.amazon.awssdk.services.cloudfront.model.CannedSignerRequest;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
+import software.amazon.awssdk.services.ssm.SsmClient;
 
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ImageServiceImpl implements ImageService {
 
-  CloudFrontUtilities cloudFrontUtilities;
-  SecretsManagerClient secretsManagerClient;
-  S3Client s3Client;
+  final CloudFrontUtilities cloudFrontUtilities;
+  final SsmClient ssmClient;
+  final S3Client s3Client;
 
-  Instant expirationDate = Instant.now(Clock.systemUTC()).plus(Duration.ofHours(3));
-  static String KEY_SECRET_NAME = "items-marketplace-images-private-key";
-  static String CLOUDFRONT_DOMAIN = "https://ddeo915oi6sfe.cloudfront.net/";
-  static String PUBLIC_CLOUDFRONT_DOMAIN = "https://dy4fqujjkm2dt.cloudfront.net/";
-  static String KEY_PAIR_ID = "KHKCBDW0AB4E9";
-  static String S3_BUCKET = "items-marketplace-images";
+  final Instant expirationDate = Instant.now(Clock.systemUTC()).plus(Duration.ofHours(3));
+
+  @Value("${private.key.name}")
+  private String privateKeyName;
+
+  @Value("${cloudfront.domain.private}")
+  private String cloudfrontDomainPrivate;
+
+  @Value("${cloudfront.domain.public}")
+  private String cloudfrontDomainPublic;
+
+  @Value("${cloudfront.key_pair_id}")
+  private String keyPairId;
+
+  @Value("${s3.bucket.name}")
+  private String s3Bucket;
 
   @Override
   public String getPublicImageUrl(final String imageUrl) {
-    return PUBLIC_CLOUDFRONT_DOMAIN + imageUrl;
+    return "https://" + cloudfrontDomainPublic + "/" + imageUrl;
   }
 
   @Override
   public String getSignedImageUrl(final String imageUrl) {
     final CannedSignerRequest cannedRequest = CannedSignerRequest.builder()
-        .resourceUrl(CLOUDFRONT_DOMAIN + imageUrl)
+        .resourceUrl("https://" + cloudfrontDomainPrivate + "/" + imageUrl)
         .privateKey(generatePrivateKey())
-        .keyPairId(KEY_PAIR_ID)
+        .keyPairId(keyPairId)
         .expirationDate(expirationDate)
         .build();
 
@@ -62,9 +73,9 @@ public class ImageServiceImpl implements ImageService {
     if (file.getSize() > 5_000_000) {
       throw new IllegalArgumentException("File size is bigger than 5MB");
     }
-    
+
     final PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-        .bucket(S3_BUCKET)
+        .bucket(s3Bucket)
         .key(imageDir + imageName)
         .contentType(file.getContentType())
         .contentLength(file.getSize())
@@ -81,7 +92,8 @@ public class ImageServiceImpl implements ImageService {
   }
 
   private String requestSecretKey() {
-    return secretsManagerClient.getSecretValue(r -> r.secretId(KEY_SECRET_NAME)).secretString();
+    return ssmClient.getParameter(
+        r -> r.name(privateKeyName).withDecryption(true)).parameter().value();
   }
 
 }
