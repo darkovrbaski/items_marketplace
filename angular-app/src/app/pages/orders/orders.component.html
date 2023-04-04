@@ -53,25 +53,21 @@
     tabindex="1">
     <div>
       <app-orders-list-view [orders]="historyOrders"></app-orders-list-view>
-      <ul class="list-group">
-        <li class="d-flex align-items-center my-md-2">
-          <div class="card w-100">
-            <div class="card-body-sm-p d-flex align-items-center">
-              <mat-paginator
-                (page)="handlePageEvent($event)"
-                [length]="paginator.length"
-                [pageSize]="paginator.pageSize"
-                [disabled]="false"
-                [showFirstLastButtons]="true"
-                [pageSizeOptions]="paginator.pageSizeOptions"
-                [hidePageSize]="false"
-                [pageIndex]="paginator.pageIndex"
-                aria-label="Select page">
-              </mat-paginator>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <div class="card align-items-center my-md-2">
+        <div class="card-body-sm-p d-flex align-items-center">
+          <mat-paginator
+            (page)="handlePageEvent($event)"
+            [length]="paginator.length"
+            [pageSize]="paginator.pageSize"
+            [disabled]="false"
+            [showFirstLastButtons]="true"
+            [pageSizeOptions]="paginator.pageSizeOptions"
+            [hidePageSize]="false"
+            [pageIndex]="paginator.pageIndex"
+            aria-label="Select page">
+          </mat-paginator>
+        </div>
+      </div>
     </div>
   </div>
 </div>

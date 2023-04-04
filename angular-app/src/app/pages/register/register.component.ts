@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControlOptions } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs';
 import { RegistrationRequest } from 'src/app/model/registrationRequest';
 import { AuthService } from 'src/app/service/auth.service';
+import {
+  EmailValidation,
+  PasswordValidation,
+  RepeatPasswordValidator,
+  UsernameValidation,
+} from 'src/app/validator/validator';
 
 @Component({
   selector: 'app-register',
@@ -30,13 +36,17 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      email: ['', Validators.email],
-      firstName: [''],
-      lastName: [''],
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        username: ['', UsernameValidation],
+        password: ['', PasswordValidation],
+        email: ['', EmailValidation],
+        firstName: [''],
+        lastName: [''],
+        repeatPassword: [''],
+      },
+      { validator: RepeatPasswordValidator } as AbstractControlOptions
+    );
   }
 
   get f() {
