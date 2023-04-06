@@ -43,6 +43,8 @@ public class SecurityConfig {
         .requestMatchers(HttpMethod.GET, "/article/find/{name}").permitAll()
         .requestMatchers(HttpMethod.GET, "/article/{id}").permitAll()
 
+        .requestMatchers(HttpMethod.POST, "/wallet/success").permitAll()
+
         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
 

@@ -32,6 +32,7 @@ public class GlobalExceptionHandler extends BaseExceptionHandler {
     registerMapping(AccessDeniedException.class, HttpStatus.FORBIDDEN);
     registerMapping(UsernameNotFoundException.class, HttpStatus.NOT_FOUND);
     registerMapping(MaxUploadSizeExceededException.class, HttpStatus.BAD_REQUEST);
+    registerMapping(StripeGeneralException.class, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)

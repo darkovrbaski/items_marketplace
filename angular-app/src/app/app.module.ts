@@ -29,6 +29,8 @@ import { UserListViewComponent } from './components/user-list-view/user-list-vie
 import { UsersComponent } from './pages/users/users.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserComponent } from './pages/user/user.component';
+import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
+import { PaymentFailedComponent } from './pages/payment-failed/payment-failed.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { UserComponent } from './pages/user/user.component';
     UsersComponent,
     RegisterComponent,
     UserComponent,
+    PaymentSuccessComponent,
+    PaymentFailedComponent,
   ],
   imports: [
     BrowserModule,

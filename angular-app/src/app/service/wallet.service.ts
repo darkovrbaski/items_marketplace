@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Wallet } from '../model/wallet';
 import { Money } from '../model/money';
+import { StripeResponse } from '../model/stripeResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class WalletService {
     return this.http.get<Wallet>(`${this.walletUrl}`);
   }
 
-  addFunds(amount: Money): Observable<Wallet> {
-    return this.http.put<Wallet>(`${this.walletUrl}/add`, amount);
+  addFunds(amount: Money): Observable<StripeResponse> {
+    return this.http.post<StripeResponse>(`${this.walletUrl}/add`, amount);
   }
 }

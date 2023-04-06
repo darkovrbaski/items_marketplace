@@ -53,3 +53,7 @@ cloudfront:
 private:
   key:
     name: ${PRIVATE_KEY_NAME:items-marketplace-cloudfront-private-key}
+
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY}
+  endpoint-secret: ${STRIPE_ENDPOINT_SECRET}

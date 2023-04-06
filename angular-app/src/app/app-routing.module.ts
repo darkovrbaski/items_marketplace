@@ -6,6 +6,8 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { InventoryComponent } from './pages/inventory/inventory.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { PaymentFailedComponent } from './pages/payment-failed/payment-failed.component';
+import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserComponent } from './pages/user/user.component';
@@ -56,6 +58,14 @@ const routes: Routes = [
   {
     path: 'user/:username',
     component: UserComponent,
+  },
+  {
+    path: 'payment/success',
+    component: PaymentSuccessComponent,
+  },
+  {
+    path: 'payment/failed',
+    component: PaymentFailedComponent,
   },
   { path: '**', redirectTo: '' },
 ];
