@@ -15,7 +15,6 @@ import me.darkovrbaski.items.marketplace.mapper.OrderMapper;
 import me.darkovrbaski.items.marketplace.model.ArticleTrade;
 import me.darkovrbaski.items.marketplace.model.Order;
 import me.darkovrbaski.items.marketplace.model.OrderStatus;
-import me.darkovrbaski.items.marketplace.model.OrderType;
 import me.darkovrbaski.items.marketplace.model.Trade;
 import me.darkovrbaski.items.marketplace.repository.ArticleRepository;
 import me.darkovrbaski.items.marketplace.repository.OrderRepository;
@@ -67,51 +66,47 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public OrderDto createOrder(final OrderDto orderDto) {
-    checkInventory(orderDto);
-    checkWallet(orderDto);
-    final var order = saveOrder(orderDto);
-    matchOrders(order);
-    return orderMapper.toDto(order);
-  }
-
-  private void checkInventory(final OrderDto orderDto) {
-    if (orderDto.type() == OrderType.BUY) {
-      return;
-    }
-    final var item = inventoryService.searchInventory(
-        orderDto.user().id(),
-        orderDto.article().name(),
-        0, 1);
-    final Optional<ArticleItemDto> firstItem = item.stream().findFirst();
-    if (firstItem.isPresent()) {
-      if (firstItem.get().quantity().compareTo(orderDto.quantity()) < 0) {
-        throw new IllegalArgumentException("No enough item in inventory");
-      }
-    } else {
+    final var order = orderMapper.toEntity(orderDto);
+    if (notEnoughItems(order)) {
       throw new IllegalArgumentException("No enough item in inventory");
     }
-  }
-
-  private void checkWallet(final OrderDto orderDto) {
-    if (orderDto.type() == OrderType.SELL) {
-      return;
-    }
-    final var wallet = walletService.getWallet(orderDto.user().id());
-    final var total = orderDto.price().amount().multiply(orderDto.quantity());
-    if (wallet.balance().amount().compareTo(total) < 0) {
+    if (notEnoughBalance(order)) {
       throw new IllegalArgumentException("Not enough money in wallet");
     }
+    final var newOrder = saveOrder(order);
+    matchOrders(newOrder);
+    return orderMapper.toDto(newOrder);
   }
 
-  private Order saveOrder(final OrderDto orderDto) {
-    final var order = orderMapper.toEntity(orderDto);
+  private boolean notEnoughItems(final Order order) {
+    if (order.isBuyOrder()) {
+      return false;
+    }
+    final var item = inventoryService.searchInventory(
+        order.getUser().getId(),
+        order.getArticle().getName(),
+        0, 1);
+    final Optional<ArticleItemDto> firstItem = item.stream().findFirst();
+    return firstItem.filter(ai -> ai.quantity().compareTo(order.getQuantity()) >= 0).isEmpty();
+  }
+
+  private boolean notEnoughBalance(final Order order) {
+    if (order.isSellOrder()) {
+      return false;
+    }
+    final var wallet = walletService.getWallet(order.getUser().getId());
+    final var total = order.getPrice().getAmount().multiply(order.getQuantity());
+    return wallet.balance().amount().compareTo(total) < 0;
+  }
+
+  private Order saveOrder(final Order order) {
     order.setId(0L);
     order.setCreatedDateTime(LocalDateTime.now());
     order.setFilledQuantity(BigDecimal.ZERO);
     order.setStatus(OrderStatus.OPEN);
     order.setTrades(new ArrayList<>());
-    order.setArticle(articleRepository.findByIdOrThrow(orderDto.article().id()));
-    order.setUser(userRepository.findByIdOrThrow(orderDto.user().id()));
+    order.setArticle(articleRepository.findByIdOrThrow(order.getArticle().getId()));
+    order.setUser(userRepository.findByIdOrThrow(order.getUser().getId()));
     return orderRepository.save(order);
   }
 
@@ -126,6 +121,10 @@ public class OrderServiceImpl implements OrderService {
     for (final var matchedOrder : matchedOrders) {
       if (newOrder.isClosed()) {
         return;
+      }
+      if (notEnoughItems(matchedOrder) || notEnoughBalance(matchedOrder)) {
+        deleteOrder(matchedOrder.getId());
+        continue;
       }
       if (hasSufficientQuantity(newOrder, matchedOrder)) {
         tradeWithSurplus(newOrder, matchedOrder);

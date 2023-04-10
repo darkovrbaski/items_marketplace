@@ -92,6 +92,10 @@ public class Order extends EntityDb {
     return type == OrderType.BUY;
   }
 
+  public boolean isSellOrder() {
+    return type == OrderType.SELL;
+  }
+
   public boolean isClosed() {
     return status == OrderStatus.CLOSED;
   }

@@ -80,7 +80,7 @@ public class WalletController {
       @ApiResponse(responseCode = "400", description = "Invalid signature")
   })
   @PostMapping("/add/success")
-  public ResponseEntity<?> successWebhook(@RequestBody final String payload,
+  public ResponseEntity<Void> successWebhook(@RequestBody final String payload,
       @RequestHeader("Stripe-Signature") final String sigHeader) {
     final Event event;
 

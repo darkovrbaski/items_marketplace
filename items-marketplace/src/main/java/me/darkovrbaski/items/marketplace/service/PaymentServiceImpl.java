@@ -10,6 +10,7 @@ import com.stripe.param.checkout.SessionCreateParams.Mode;
 import com.stripe.param.checkout.SessionCreateParams.PaymentMethodType;
 import com.stripe.param.checkout.SessionListLineItemsParams;
 import com.stripe.param.checkout.SessionRetrieveParams;
+import jakarta.annotation.PostConstruct;
 import java.math.BigDecimal;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -44,9 +45,13 @@ public class PaymentServiceImpl implements PaymentService {
   static final String EXPAND_LINE_ITEMS = "line_items";
   static final String PAYMENT_STATUS_PAID = "paid";
 
+  @PostConstruct
+  public void init() {
+    Stripe.apiKey = apiKey;
+  }
+
   @Override
   public Session createSession(final MoneyDto amount, final String username) {
-    Stripe.apiKey = apiKey;
     final SessionCreateParams params = SessionCreateParams.builder()
         .addPaymentMethodType(PaymentMethodType.CARD)
         .setMode(Mode.PAYMENT)

@@ -2,6 +2,8 @@ package me.darkovrbaski.items.marketplace.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
@@ -77,7 +79,7 @@ class OrderServiceTest {
 
   @Test
   void givenBuyOrderWithEqualQuantity_whenCreateOrder_thenClosedOrderIsCreated() {
-    final Order buyOrder = Order.builder()
+    final Order order = Order.builder()
         .status(OrderStatus.OPEN)
         .type(OrderType.BUY)
         .price(Money.dollars(BigDecimal.valueOf(10)))
@@ -86,7 +88,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .build();
-    final OrderDto buyOrderDto = orderMapper.toDto(buyOrder);
+    final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
       {
         add(Order.builder()
@@ -151,9 +153,9 @@ class OrderServiceTest {
       }
     };
     final Order expectedBuyOrder = Order.builder()
-        .type(buyOrder.getType())
-        .price(buyOrder.getPrice())
-        .quantity(buyOrder.getQuantity())
+        .type(order.getType())
+        .price(order.getPrice())
+        .quantity(order.getQuantity())
         .filledQuantity(BigDecimal.valueOf(30))
         .trades(trades)
         .status(OrderStatus.CLOSED)
@@ -163,14 +165,12 @@ class OrderServiceTest {
     final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
 
     when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(buyOrder);
+    when(orderRepository.save(any(Order.class))).thenReturn(order);
     when(tradeService.createTrade(any(), any(), any()))
         .thenReturn(trades.get(0), trades.get(1), trades.get(2));
-    when(walletService.getWallet(any())).thenReturn(
-        new WalletDto(new MoneyDto(BigDecimal.valueOf(1000), "USD"), null));
     redundantStubs();
 
-    final var resultOrder = orderService.createOrder(buyOrderDto);
+    final var resultOrder = orderService.createOrder(orderDto);
 
     assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
   }
@@ -179,11 +179,20 @@ class OrderServiceTest {
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(walletService.spendFunds(any(), any())).thenReturn(null);
     when(walletService.addFunds(any(), any())).thenReturn(null);
+    when(walletService.getWallet(any())).thenReturn(
+        new WalletDto(new MoneyDto(BigDecimal.valueOf(1000), "USD"), null));
+    when(inventoryService.searchInventory(any(), anyString(), anyInt(), anyInt())).thenReturn(
+        new PageImpl<>(new ArrayList<>() {
+          {
+            add(new ArticleItemDto(BigDecimal.valueOf(1000), null));
+          }
+        })
+    );
   }
 
   @Test
   void givenBuyOrderWithSurplusQuantity_whenCreateOrder_thenOpenOrderIsCreated() {
-    final Order buyOrder = Order.builder()
+    final Order order = Order.builder()
         .status(OrderStatus.OPEN)
         .type(OrderType.BUY)
         .price(Money.dollars(BigDecimal.valueOf(10)))
@@ -192,7 +201,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .build();
-    final OrderDto buyOrderDto = orderMapper.toDto(buyOrder);
+    final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
       {
         add(Order.builder()
@@ -232,9 +241,9 @@ class OrderServiceTest {
       }
     };
     final Order expectedBuyOrder = Order.builder()
-        .type(buyOrder.getType())
-        .price(buyOrder.getPrice())
-        .quantity(buyOrder.getQuantity())
+        .type(order.getType())
+        .price(order.getPrice())
+        .quantity(order.getQuantity())
         .filledQuantity(BigDecimal.valueOf(10))
         .trades(trades)
         .status(OrderStatus.OPEN)
@@ -244,21 +253,19 @@ class OrderServiceTest {
     final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
 
     when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(buyOrder);
+    when(orderRepository.save(any(Order.class))).thenReturn(order);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0), trades.get(1));
-    when(walletService.getWallet(any())).thenReturn(
-        new WalletDto(new MoneyDto(BigDecimal.valueOf(1000), "USD"), null));
     redundantStubs();
 
-    final var resultOrder = orderService.createOrder(buyOrderDto);
+    final var resultOrder = orderService.createOrder(orderDto);
 
     assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
   }
 
   @Test
   void givenBuyOrderWithDeficitQuantity_whenCreateOrder_thenClosedOrderIsCreated() {
-    final Order buyOrder = Order.builder()
+    final Order order = Order.builder()
         .status(OrderStatus.OPEN)
         .type(OrderType.BUY)
         .price(Money.dollars(BigDecimal.valueOf(10)))
@@ -267,7 +274,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .build();
-    final OrderDto buyOrderDto = orderMapper.toDto(buyOrder);
+    final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
       {
         add(Order.builder()
@@ -292,10 +299,10 @@ class OrderServiceTest {
       }
     };
     final Order expectedBuyOrder = Order.builder()
-        .type(buyOrder.getType())
-        .price(buyOrder.getPrice())
-        .quantity(buyOrder.getQuantity())
-        .filledQuantity(buyOrder.getQuantity())
+        .type(order.getType())
+        .price(order.getPrice())
+        .quantity(order.getQuantity())
+        .filledQuantity(order.getQuantity())
         .trades(trades)
         .status(OrderStatus.CLOSED)
         .user(user)
@@ -304,21 +311,19 @@ class OrderServiceTest {
     final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
 
     when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(buyOrder);
+    when(orderRepository.save(any(Order.class))).thenReturn(order);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0));
-    when(walletService.getWallet(any())).thenReturn(
-        new WalletDto(new MoneyDto(BigDecimal.valueOf(1000), "USD"), null));
     redundantStubs();
 
-    final var resultOrder = orderService.createOrder(buyOrderDto);
+    final var resultOrder = orderService.createOrder(orderDto);
 
     assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
   }
 
   @Test
   void givenSellOrderWithEqualQuantity_whenCreateOrder_thenClosedOrderIsCreated() {
-    final Order buyOrder = Order.builder()
+    final Order order = Order.builder()
         .status(OrderStatus.OPEN)
         .type(OrderType.SELL)
         .price(Money.dollars(BigDecimal.valueOf(10)))
@@ -327,7 +332,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .build();
-    final OrderDto buyOrderDto = orderMapper.toDto(buyOrder);
+    final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
       {
         add(Order.builder()
@@ -392,9 +397,9 @@ class OrderServiceTest {
       }
     };
     final Order expectedBuyOrder = Order.builder()
-        .type(buyOrder.getType())
-        .price(buyOrder.getPrice())
-        .quantity(buyOrder.getQuantity())
+        .type(order.getType())
+        .price(order.getPrice())
+        .quantity(order.getQuantity())
         .filledQuantity(BigDecimal.valueOf(30))
         .trades(trades)
         .status(OrderStatus.CLOSED)
@@ -404,28 +409,20 @@ class OrderServiceTest {
     final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
 
     when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(buyOrder);
+    when(orderRepository.save(any(Order.class))).thenReturn(order);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any()))
         .thenReturn(trades.get(0), trades.get(1), trades.get(2));
-    when(inventoryService.searchInventory(any(Long.class), any(String.class), any(int.class),
-        any(int.class))).thenReturn(
-        new PageImpl<>(new ArrayList<>() {
-          {
-            add(new ArticleItemDto(buyOrder.getQuantity(), buyOrderDto.article()));
-          }
-        })
-    );
     redundantStubs();
 
-    final var resultOrder = orderService.createOrder(buyOrderDto);
+    final var resultOrder = orderService.createOrder(orderDto);
 
     assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
   }
 
   @Test
   void givenSellOrderWithSurplusQuantity_whenCreateOrder_thenOpenOrderIsCreated() {
-    final Order buyOrder = Order.builder()
+    final Order order = Order.builder()
         .status(OrderStatus.OPEN)
         .type(OrderType.SELL)
         .price(Money.dollars(BigDecimal.valueOf(10)))
@@ -434,7 +431,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .build();
-    final OrderDto buyOrderDto = orderMapper.toDto(buyOrder);
+    final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
       {
         add(Order.builder()
@@ -474,9 +471,9 @@ class OrderServiceTest {
       }
     };
     final Order expectedBuyOrder = Order.builder()
-        .type(buyOrder.getType())
-        .price(buyOrder.getPrice())
-        .quantity(buyOrder.getQuantity())
+        .type(order.getType())
+        .price(order.getPrice())
+        .quantity(order.getQuantity())
         .filledQuantity(BigDecimal.valueOf(10))
         .trades(trades)
         .status(OrderStatus.OPEN)
@@ -486,27 +483,19 @@ class OrderServiceTest {
     final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
 
     when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(buyOrder);
+    when(orderRepository.save(any(Order.class))).thenReturn(order);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0), trades.get(1));
-    when(inventoryService.searchInventory(any(Long.class), any(String.class), any(int.class),
-        any(int.class))).thenReturn(
-        new PageImpl<>(new ArrayList<>() {
-          {
-            add(new ArticleItemDto(buyOrder.getQuantity(), buyOrderDto.article()));
-          }
-        })
-    );
     redundantStubs();
 
-    final var resultOrder = orderService.createOrder(buyOrderDto);
+    final var resultOrder = orderService.createOrder(orderDto);
 
     assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
   }
 
   @Test
   void givenSellOrderWithDeficitQuantity_whenCreateOrder_thenClosedOrderIsCreated() {
-    final Order buyOrder = Order.builder()
+    final Order order = Order.builder()
         .status(OrderStatus.OPEN)
         .type(OrderType.SELL)
         .price(Money.dollars(BigDecimal.valueOf(10)))
@@ -515,7 +504,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .build();
-    final OrderDto buyOrderDto = orderMapper.toDto(buyOrder);
+    final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
       {
         add(Order.builder()
@@ -540,10 +529,10 @@ class OrderServiceTest {
       }
     };
     final Order expectedBuyOrder = Order.builder()
-        .type(buyOrder.getType())
-        .price(buyOrder.getPrice())
-        .quantity(buyOrder.getQuantity())
-        .filledQuantity(buyOrder.getQuantity())
+        .type(order.getType())
+        .price(order.getPrice())
+        .quantity(order.getQuantity())
+        .filledQuantity(order.getQuantity())
         .trades(trades)
         .status(OrderStatus.CLOSED)
         .user(user)
@@ -552,20 +541,12 @@ class OrderServiceTest {
     final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
 
     when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(buyOrder);
+    when(orderRepository.save(any(Order.class))).thenReturn(order);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0));
-    when(inventoryService.searchInventory(any(Long.class), any(String.class), any(int.class),
-        any(int.class))).thenReturn(
-        new PageImpl<>(new ArrayList<>() {
-          {
-            add(new ArticleItemDto(buyOrder.getQuantity(), buyOrderDto.article()));
-          }
-        })
-    );
     redundantStubs();
 
-    final var resultOrder = orderService.createOrder(buyOrderDto);
+    final var resultOrder = orderService.createOrder(orderDto);
 
     assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
   }

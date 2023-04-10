@@ -37,8 +37,8 @@ s3:
 
 cloudfront:
   domain:
-    public: ${CLOUDFRONT_DOMAIN_PUBLIC:https://d3q7q7q7q7q7q7.cloudfront.net}
-    private: ${CLOUDFRONT_DOMAIN_PRIVATE:https://d3q7q7q7q7q7q7.cloudfront.net}
+    public: ${CLOUDFRONT_DOMAIN_PUBLIC:d3q7q7q7q7q7q7.cloudfront.net}
+    private: ${CLOUDFRONT_DOMAIN_PRIVATE:d3q7q7q7q7q7q7.cloudfront.net}
   key_pair_id: ${KEY_PAIR_ID:APKAJQYQYQYQYQYQYQYQ}
 
 private:
