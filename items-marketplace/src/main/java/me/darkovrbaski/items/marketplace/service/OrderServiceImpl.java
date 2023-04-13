@@ -1,8 +1,10 @@
 package me.darkovrbaski.items.marketplace.service;
 
 import java.math.BigDecimal;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import lombok.AccessLevel;
@@ -39,10 +41,20 @@ public class OrderServiceImpl implements OrderService {
   WalletService walletService;
   ArticleRepository articleRepository;
   UserRepository userRepository;
+  Clock clock;
 
   @Override
   public OrderDto getOrder(final Long id) {
     return orderMapper.toDto(orderRepository.findByIdOrThrow(id));
+  }
+
+  @Override
+  public OrderDto getUserOrder(final Long id, final String username) {
+    final var order = orderRepository.findByIdOrThrow(id);
+    if (!order.getUser().getUsername().equals(username)) {
+      throw new IllegalArgumentException("Order does not belong to user");
+    }
+    return orderMapper.toDto(order);
   }
 
   @Override
@@ -58,10 +70,28 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public void deleteOrder(final Long id) {
+  public void closeOrder(final Long id) {
     final var order = orderRepository.findByIdOrThrow(id);
     order.setStatus(OrderStatus.CLOSED);
     orderRepository.save(order);
+  }
+
+  @Override
+  public Page<OrderDto> getMatchedSellOrders(final OrderDto orderDto, final int page,
+      final int size) {
+    return orderRepository.getOpenSellLowerPricedByDiscountedPriceOlderOrders(
+        orderDto.price().amount(), PageRequest.of(page, size)).map(orderMapper::toDto);
+  }
+
+  @Override
+  public OrderDto trade(final OrderDto orderDto, final Long matchedOrderId) {
+    final var order = orderRepository.findByIdOrThrow(orderDto.id());
+    final var matchedOrder = orderRepository
+        .getOpenSellLowerPricedByDiscountedPriceOlderOrders(orderDto.price().amount())
+        .stream().filter(o -> o.getId().equals(matchedOrderId) && o.isOpen()).findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("Order not found"));
+    makeTrades(order, Collections.singletonList(matchedOrder));
+    return orderMapper.toDto(order);
   }
 
   @Override
@@ -74,7 +104,9 @@ public class OrderServiceImpl implements OrderService {
       throw new IllegalArgumentException("Not enough money in wallet");
     }
     final var newOrder = saveOrder(order);
-    matchOrders(newOrder);
+    if (newOrder.isEnabledAutoTrade()) {
+      automaticMatchOrders(newOrder);
+    }
     return orderMapper.toDto(newOrder);
   }
 
@@ -101,19 +133,21 @@ public class OrderServiceImpl implements OrderService {
 
   private Order saveOrder(final Order order) {
     order.setId(0L);
-    order.setCreatedDateTime(LocalDateTime.now());
+    order.setCreatedDateTime(LocalDateTime.now(clock));
     order.setFilledQuantity(BigDecimal.ZERO);
     order.setStatus(OrderStatus.OPEN);
     order.setTrades(new ArrayList<>());
     order.setArticle(articleRepository.findByIdOrThrow(order.getArticle().getId()));
     order.setUser(userRepository.findByIdOrThrow(order.getUser().getId()));
+    order.setEnabledAutoTrade(order.isEnabledAutoTrade() || order.isSellOrder());
     return orderRepository.save(order);
   }
 
-  private void matchOrders(final Order newOrder) {
+  private void automaticMatchOrders(final Order newOrder) {
     final var matchedOrders = newOrder.isBuyOrder()
         ? orderRepository.getOpenSellLowerPricedOlderOrders(newOrder.getPrice().getAmount())
-        : orderRepository.getOpenBuyHigherPricedOlderOrders(newOrder.getPrice().getAmount());
+        : orderRepository.getOpenBuyHigherPricedOlderOrders(newOrder.getPrice().getAmount())
+            .stream().filter(Order::isEnabledAutoTrade).toList();
     makeTrades(newOrder, matchedOrders);
   }
 
@@ -122,8 +156,12 @@ public class OrderServiceImpl implements OrderService {
       if (newOrder.isClosed()) {
         return;
       }
+      if (notEnoughItems(newOrder) || notEnoughBalance(newOrder)) {
+        closeOrder(newOrder.getId());
+        return;
+      }
       if (notEnoughItems(matchedOrder) || notEnoughBalance(matchedOrder)) {
-        deleteOrder(matchedOrder.getId());
+        closeOrder(matchedOrder.getId());
         continue;
       }
       if (hasSufficientQuantity(newOrder, matchedOrder)) {

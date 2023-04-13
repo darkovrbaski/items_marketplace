@@ -20,7 +20,7 @@ export class OrdersListViewComponent {
     this.orderService.deleteOrder(orderId).subscribe({
       complete: () => {
         this.orders = this.orders.filter(order => order.id !== orderId);
-        this.toastr.success('Order deleted');
+        this.toastr.success('Order canceled');
       },
       error: error => {
         let errors = '';
@@ -32,5 +32,13 @@ export class OrdersListViewComponent {
         });
       },
     });
+  }
+
+  calculateTotalPrice(order: Order) {
+    let totalPrice = 0;
+    order.trades.forEach(trade => {
+      totalPrice += trade.price.amount * trade.quantity;
+    });
+    return totalPrice;
   }
 }

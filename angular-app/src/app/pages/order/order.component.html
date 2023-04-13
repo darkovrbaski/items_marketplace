@@ -1,0 +1,204 @@
+<div class="row header pb-4">
+  <div class="text-center">
+    <h1 class="display-6">Order #{{ order.id }}</h1>
+    <p class="lead">
+      <span class="text-muted">
+        Order placed on {{ order.createdDateTime | date : 'medium' }}
+      </span>
+    </p>
+  </div>
+</div>
+<div class="pb-4">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <h3>Order info</h3>
+      </div>
+    </div>
+    <div class="card-body d-flex">
+      <img
+        [src]="order.article.image"
+        [alt]="order.article.name"
+        class="article-image mw-100 me-3" />
+      <table class="table align-middle" aria-label="order">
+        <tbody class="">
+          <tr>
+            <th scope="row"><h5>Article name</h5></th>
+            <td>
+              <h5>{{ order.article.name }}</h5>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><h5>Auto trade</h5></th>
+            <td>
+              <h5 *ngIf="order.enabledAutoTrade">✔️</h5>
+              <h5 *ngIf="!order.enabledAutoTrade">❌</h5>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><h5>Type</h5></th>
+            <td>
+              <h5>{{ order.type }}</h5>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><h5>Status</h5></th>
+            <td>
+              <h5>{{ order.status }}</h5>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><h5>Quantity ordered</h5></th>
+            <td>
+              <h5>{{ order.quantity }}</h5>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><h5>Quantity filled</h5></th>
+            <td>
+              <h5>{{ order.filledQuantity }}</h5>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><h5>Base price</h5></th>
+            <td>
+              <h5>{{ order.price.amount | currency }}</h5>
+            </td>
+          </tr>
+          <tr *ngIf="order.type === 'SELL'">
+            <th scope="row"><h5>Lower sell price</h5></th>
+            <td>
+              <h5>
+                {{ order.lowerSellPrice.amount | currency }}
+              </h5>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><h5>Total</h5></th>
+            <td>
+              <h5>{{ calculateTotalPrice(order) | currency }}</h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-header d-flex">
+      <div class="ms-auto p-3">
+        <button
+          class="btn btn-danger"
+          *ngIf="order.status === 'OPEN'"
+          (click)="deleteOrder()">
+          Cancel order
+        </button>
+        <button class="btn invisible" *ngIf="order.status === 'CLOSED'">
+          Cancel order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pb-4" *ngIf="order.status === 'OPEN' && !order.enabledAutoTrade">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <h3>Trade</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table align-middle" aria-label="trades">
+        <thead>
+          <tr>
+            <th scope="col"><h5>User</h5></th>
+            <th scope="col"><h5>Date</h5></th>
+            <th scope="col"><h5>Full price</h5></th>
+            <th scope="col"><h5>Discounted price</h5></th>
+            <th scope="col"><h5>Quantity</h5></th>
+            <th scope="col"><h5>Total</h5></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of matchedOrders">
+            <td>
+              <h5>{{ order.user?.username }}</h5>
+            </td>
+            <td>
+              <h5>{{ order.createdDateTime | date }}</h5>
+            </td>
+            <td>
+              <h5>{{ order.price.amount | currency }}</h5>
+            </td>
+            <td>
+              <h5>{{ order.lowerSellPrice.amount | currency }}</h5>
+            </td>
+            <td>
+              <h5>{{ order.quantity }}</h5>
+            </td>
+            <td>
+              <h5>
+                {{ order.lowerSellPrice.amount * order.quantity | currency }}
+              </h5>
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="trade(order)">
+                Trade
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card align-items-center my-md-2">
+    <div class="card-body-sm-p d-flex align-items-center">
+      <mat-paginator
+        (page)="handlePageEvent($event)"
+        [length]="paginator.length"
+        [pageSize]="paginator.pageSize"
+        [disabled]="false"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="paginator.pageSizeOptions"
+        [hidePageSize]="false"
+        [pageIndex]="paginator.pageIndex"
+        aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+<div class="pb-4">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <h3>Trade history</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table align-middle" aria-label="trade history">
+        <thead>
+          <tr>
+            <th scope="col"><h5>Date</h5></th>
+            <th scope="col"><h5>Price</h5></th>
+            <th scope="col"><h5>Quantity</h5></th>
+            <th scope="col"><h5>Total</h5></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trade of order.trades">
+            <td>
+              <h5>{{ trade.createdDateTime | date : 'medium' }}</h5>
+            </td>
+            <td>
+              <h5>{{ trade.price.amount | currency }}</h5>
+            </td>
+            <td>
+              <h5>{{ trade.quantity }}</h5>
+            </td>
+            <td>
+              <h5>{{ trade.price.amount * trade.quantity | currency }}</h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

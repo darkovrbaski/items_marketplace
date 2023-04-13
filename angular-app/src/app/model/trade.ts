@@ -6,7 +6,7 @@ export interface Trade {
   price: Money;
   quantity: number;
   sellOrderId: number;
-  buyOrderId: 0;
+  buyOrderId: number;
 }
 
 export const emptyTrade: Trade = {

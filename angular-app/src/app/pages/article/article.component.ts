@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Article, emptyArticle } from 'src/app/model/article';
-import { Order, emptyOrder } from 'src/app/model/order';
+import { Order, OrderType, emptyOrder } from 'src/app/model/order';
 import { OrderBook, emptyOrderBook } from 'src/app/model/orderBook';
 import { ArticleService } from 'src/app/service/article.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -50,6 +50,7 @@ export class ArticleComponent implements OnInit {
   placeOrder() {
     this.newOrder.article = this.article;
     this.newOrder.user = this.authService.userValue;
+    this.newOrder.type = OrderType.BUY;
     this.orderService.createOrder(this.newOrder).subscribe({
       complete: () => {
         this.getOrderBook();

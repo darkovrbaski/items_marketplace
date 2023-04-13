@@ -5,25 +5,15 @@ import me.darkovrbaski.items.marketplace.dto.MoneyDto;
 import me.darkovrbaski.items.marketplace.dto.WalletDto;
 import me.darkovrbaski.items.marketplace.model.Money;
 import me.darkovrbaski.items.marketplace.model.Wallet;
-import me.darkovrbaski.items.marketplace.service.intefaces.ImageService;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.springframework.beans.factory.annotation.Autowired;
 
-@Mapper(config = CentralMapperConfig.class)
-public abstract class WalletMapper {
+@Mapper(config = CentralMapperConfig.class, uses = {UserMapper.class})
+public interface WalletMapper {
 
-  @Autowired
-  ImageService imageService;
+  Money toEntity(MoneyDto money);
 
-  public abstract Money toEntity(MoneyDto money);
+  MoneyDto toDto(Money money);
 
-  public abstract MoneyDto toDto(Money money);
-
-  @Mapping(
-      target = "user.image",
-      expression = "java(imageService.getSignedImageUrl(user.getImage()))"
-  )
-  public abstract WalletDto toDto(Wallet wallet);
+  WalletDto toDto(Wallet wallet);
 
 }

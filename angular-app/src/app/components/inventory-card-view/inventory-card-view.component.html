@@ -19,12 +19,24 @@
                 <p class="card-text mt-3">
                   {{ selectedItem.article.description }}
                 </p>
+              </div>
+            </div>
+            <div class="card-footer d-flex">
+              <div>
                 <p class="card-text mt-3">
-                  Owned quantity: {{ selectedItem.quantity }}
+                  Quantity owned: {{ selectedItem.quantity }}
                 </p>
                 <a class="link" (click)="routeToArticlePage()">
                   View item in Market
                 </a>
+              </div>
+              <div class="ms-auto d-flex align-items-center">
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#sellModal">
+                  Sell
+                </button>
               </div>
             </div>
           </div>
@@ -94,6 +106,117 @@
           </div>
         </li>
       </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="sellModal"
+  tabindex="-1"
+  aria-labelledby="SellModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="sellModalTitle">
+          Sell - {{ selectedItem.article.name }}
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="priceInput" class="mb-2">
+          How much do you want to sell for:
+        </label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Price</span>
+          <span class="input-group-text">0.00</span>
+          <input
+            id="priceInput"
+            type="number"
+            class="form-control"
+            min="0"
+            [(ngModel)]="newOrder.price.amount"
+            (ngModelChange)="calculateLowerSellPrice()" />
+          <span class="input-group-text">$</span>
+        </div>
+        <label for="lowerPriceProcentageInput" class="mb-2">
+          Lower sell price:
+        </label>
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <input
+              id="enabledDiscount"
+              type="checkbox"
+              class="form-check-input m-0 form-check h-auto"
+              [(ngModel)]="enabledDiscount"
+              (ngModelChange)="changeEnabledDiscount()" />
+          </div>
+          <span class="input-group-text">Discount</span>
+          <input
+            id="lowerPriceProcentageInput"
+            type="number"
+            class="form-control"
+            min="0"
+            max="100"
+            [(ngModel)]="discount"
+            (ngModelChange)="calculateLowerSellPrice()"
+            [disabled]="!enabledDiscount" />
+          <span class="input-group-text">%</span>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Price</span>
+          <span class="input-group-text">0.00</span>
+          <input
+            id="lowerPriceInput"
+            type="number"
+            class="form-control"
+            min="0"
+            [max]="newOrder.price.amount"
+            [(ngModel)]="newOrder.lowerSellPrice.amount"
+            (ngModelChange)="calculateProcentalDiscount()"
+            [disabled]="!enabledDiscount" />
+          <span class="input-group-text">$</span>
+        </div>
+        <label for="quantityInput" class="mb-2">
+          How many do you want to sell:
+        </label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Quantity</span>
+          <span class="input-group-text">0.00</span>
+          <input
+            id="quantityInput"
+            type="number"
+            class="form-control"
+            [max]="selectedItem.quantity"
+            min="0"
+            [(ngModel)]="newOrder.quantity" />
+        </div>
+        <div class="mb-1 text-end">
+          Minimum receive:
+          <h5>
+            {{ calculateMinimumReceive() | currency }}
+          </h5>
+          Maximum receive:
+          <h5>
+            {{ newOrder.price.amount * newOrder.quantity | currency }}
+          </h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="placeOrder()"
+          data-bs-dismiss="modal">
+          Place order
+        </button>
+      </div>
     </div>
   </div>
 </div>

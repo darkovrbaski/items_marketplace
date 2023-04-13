@@ -19,7 +19,7 @@
             [alt]="article.name"
             class="article-image-details mw-100 me-3" />
         </div>
-        <div class="col-5">
+        <div class="col-8">
           <h5 class="card-text display-5 mt-3">
             {{ article.name }}
           </h5>
@@ -27,43 +27,23 @@
             {{ article.description }}
           </p>
         </div>
-        <div class="card col-3 px-0" *ngIf="isLoggedIn()">
-          <div class="card-header text-center">
-            <h5>Order</h5>
-          </div>
-          <div class="card-body">
-            <div class="input-group mb-3">
-              <select class="form-select" [(ngModel)]="newOrder.type">
-                <option value="BUY">BUY</option>
-                <option value="SELL">SELL</option>
-              </select>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text">Price</span>
-              <input
-                type="number"
-                class="form-control"
-                min="0"
-                [(ngModel)]="newOrder.price.amount" />
-            </div>
-            <div class="input-group mb-1">
-              <span class="input-group-text">Quantity</span>
-              <input
-                type="number"
-                class="form-control"
-                min="1"
-                [(ngModel)]="newOrder.quantity" />
-            </div>
-          </div>
-          <div class="mb-3 d-flex justify-content-center">
-            <button
-              type="button"
-              class="btn btn-primary w-50"
-              (click)="placeOrder()">
-              Place order
-            </button>
-          </div>
-        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row pb-4" *appHasRole="['ROLE_USER']">
+  <div class="card w-100">
+    <div class="card-body">
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btn-primary px-5 me-5"
+          data-bs-toggle="modal"
+          data-bs-target="#buyModal">
+          <span class="display-6">Buy</span>
+        </button>
+        <button class="btn btn-primary px-5 ms-5" routerLink="/inventory">
+          <span class="display-6">Sell</span>
+        </button>
       </div>
     </div>
   </div>
@@ -108,6 +88,82 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="buyModal"
+  tabindex="-1"
+  aria-labelledby="BuyModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="buyModalTitle">Buy - {{ article.name }}</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="priceInput" class="mb-2">
+          What price do you want to pay:
+        </label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Price</span>
+          <span class="input-group-text">0.00</span>
+          <input
+            id="priceInput"
+            type="number"
+            class="form-control"
+            min="0"
+            [(ngModel)]="newOrder.price.amount" />
+          <span class="input-group-text">$</span>
+        </div>
+        <label for="quantityInput" class="mb-2">
+          How many do you want to buy:
+        </label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Quantity</span>
+          <span class="input-group-text">0.00</span>
+          <input
+            id="quantityInput"
+            type="number"
+            class="form-control"
+            min="0.01"
+            [(ngModel)]="newOrder.quantity" />
+        </div>
+        <label for="autoTradeInput" class="mb-2">
+          Do you want to automatically trade:
+        </label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Automatic trade</span>
+          <input
+            id="autoTradeInput"
+            type="checkbox"
+            class="form-check-input m-0 form-check h-auto"
+            [(ngModel)]="newOrder.enabledAutoTrade" />
+        </div>
+        <div class="mb-1 text-end">
+          Maximum price:
+          <h5>
+            {{ newOrder.price.amount * newOrder.quantity | currency }}
+          </h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="placeOrder()"
+          data-bs-dismiss="modal">
+          Place order
+        </button>
       </div>
     </div>
   </div>

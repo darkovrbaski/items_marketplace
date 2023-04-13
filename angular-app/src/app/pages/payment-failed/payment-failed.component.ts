@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PaymentFailedComponent {
   constructor(private router: Router, private toastr: ToastrService) {
-    this.toastr.success('Payment failed');
+    this.toastr.error('Payment failed');
     router.navigate(['/wallet']);
   }
 }

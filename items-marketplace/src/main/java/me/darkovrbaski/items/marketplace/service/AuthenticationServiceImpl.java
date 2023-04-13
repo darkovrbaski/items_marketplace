@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import me.darkovrbaski.items.marketplace.dto.UserDto;
 import me.darkovrbaski.items.marketplace.mapper.UserMapper;
+import me.darkovrbaski.items.marketplace.model.Address;
 import me.darkovrbaski.items.marketplace.model.Role;
 import me.darkovrbaski.items.marketplace.model.User;
 import me.darkovrbaski.items.marketplace.repository.UserRepository;
@@ -62,6 +63,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     final var user = userMapper.toEntity(registerRequest);
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     user.setRole(Role.ROLE_USER);
+    user.setAddress(new Address("", "", "", ""));
+    user.setPhone("");
     return userRepository.save(user);
   }
 

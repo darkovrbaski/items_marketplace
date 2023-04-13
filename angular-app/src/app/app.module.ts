@@ -31,6 +31,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { UserComponent } from './pages/user/user.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { PaymentFailedComponent } from './pages/payment-failed/payment-failed.component';
+import { OrderComponent } from './pages/order/order.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { PaymentFailedComponent } from './pages/payment-failed/payment-failed.co
     UserComponent,
     PaymentSuccessComponent,
     PaymentFailedComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import me.darkovrbaski.items.marketplace.model.Money;
 import me.darkovrbaski.items.marketplace.model.Order;
 import me.darkovrbaski.items.marketplace.model.Trade;
 import me.darkovrbaski.items.marketplace.repository.TradeRepository;
@@ -22,13 +23,20 @@ public class TradeServiceImpl implements TradeService {
   public Trade createTrade(final Order newOrder, final Order matchedOrder,
       final BigDecimal quantity) {
     final var trade = Trade.builder()
-        .price(matchedOrder.getPrice())
+        .price(calculatePrice(newOrder, matchedOrder))
         .quantity(quantity)
         .createdDateTime(LocalDateTime.now())
         .buyOrderId(newOrder.isBuyOrder() ? newOrder.getId() : matchedOrder.getId())
         .sellOrderId(newOrder.isBuyOrder() ? matchedOrder.getId() : newOrder.getId())
         .build();
     return tradeRepository.save(trade);
+  }
+
+  private Money calculatePrice(final Order order, final Order matchedOrder) {
+    if (order.isBuyOrder() && !order.isEnabledAutoTrade()) {
+      return matchedOrder.getLowerSellPrice();
+    }
+    return matchedOrder.getPrice();
   }
 
 }

@@ -18,6 +18,10 @@ export class OrderService {
     return this.http.get<Order>(`${this.orderUrl}/${orderId}`);
   }
 
+  getUserOrder(orderId: number): Observable<Order> {
+    return this.http.get<Order>(`${this.orderUrl}/user/${orderId}`);
+  }
+
   getActiveOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.orderUrl}/active`);
   }
@@ -34,5 +38,19 @@ export class OrderService {
 
   deleteOrder(orderId: number): Observable<Order> {
     return this.http.delete<Order>(`${this.orderUrl}/${orderId}`);
+  }
+
+  getMatchedSellOrders(order: Order, page: Page): Observable<Pagable<Order>> {
+    return this.http.post<Pagable<Order>>(
+      `${this.orderUrl}/matched?page=${page.number}&size=${page.size}`,
+      order
+    );
+  }
+
+  trade(order: Order, matchedOrderId: number): Observable<Order> {
+    return this.http.post<Order>(
+      `${this.orderUrl}/trade/${matchedOrderId}`,
+      order
+    );
   }
 }

@@ -1,5 +1,7 @@
 package me.darkovrbaski.items.marketplace.model;
 
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -21,12 +23,12 @@ import java.util.List;
 import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
 
 @Getter
@@ -34,7 +36,7 @@ import org.hibernate.Hibernate;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "`order`")
@@ -50,6 +52,14 @@ public class Order extends EntityDb {
   @Embedded
   @Column(nullable = false)
   Money price;
+
+  @Embedded
+  @AttributeOverrides({
+      @AttributeOverride(name = "amount", column = @Column(name = "lower_sell_price_amount")),
+      @AttributeOverride(name = "currency", column = @Column(name = "lower_sell_price_currency"))
+  })
+  @Column
+  Money lowerSellPrice;
 
   @Positive
   @Column(nullable = false)
@@ -79,6 +89,9 @@ public class Order extends EntityDb {
   @JoinColumn(name = "article_id")
   Article article;
 
+  @Column
+  boolean enabledAutoTrade;
+
   public BigDecimal getRemainingQuantity() {
     return quantity.subtract(filledQuantity);
   }
@@ -98,6 +111,10 @@ public class Order extends EntityDb {
 
   public boolean isClosed() {
     return status == OrderStatus.CLOSED;
+  }
+
+  public boolean isOpen() {
+    return status == OrderStatus.OPEN;
   }
 
   public void addFilledQuantity(final BigDecimal newFilledQuantity) {

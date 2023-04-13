@@ -193,20 +193,20 @@
           *ngFor="let article of articles">
           <div class="card w-100 hover-item">
             <div class="card-body d-flex align-items-center">
-              <img
-                [src]="article.image"
-                [alt]="article.name"
-                class="article-image mw-100 me-3" />
-              <div>
-                <h5 class="card-text">{{ article.name }}</h5>
-                <p class="card-text">{{ article.description }}</p>
-              </div>
+              <span
+                class="d-flex align-items-center w-75"
+                routerLink="/article/{{ article.name }}"
+                role="button">
+                <img
+                  [src]="article.image"
+                  [alt]="article.name"
+                  class="article-image mw-100 me-3" />
+                <div>
+                  <h5 class="card-text">{{ article.name }}</h5>
+                  <p class="card-text">{{ article.description }}</p>
+                </div>
+              </span>
               <div class="ms-auto">
-                <button
-                  class="btn btn-primary"
-                  (click)="routeToArticlePage(article)">
-                  View
-                </button>
                 <button
                   class="btn btn-primary ms-2"
                   (click)="editToogle(article)"

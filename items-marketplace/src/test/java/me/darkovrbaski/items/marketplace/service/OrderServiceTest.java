@@ -3,13 +3,18 @@ package me.darkovrbaski.items.marketplace.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
+import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import me.darkovrbaski.items.marketplace.dto.ArticleItemDto;
 import me.darkovrbaski.items.marketplace.dto.MoneyDto;
@@ -61,20 +66,31 @@ class OrderServiceTest {
   @Mock
   UserRepository userRepository;
 
+  @Mock
+  Clock clock;
+
   @Autowired
   OrderMapper orderMapper;
 
   OrderServiceImpl orderService;
 
-  final User user = new User();
+  User user;
 
-  final Article article = new Article("Article", null, null);
+  Article article;
 
+  static final ZonedDateTime NOW = ZonedDateTime.now();
+
+  @SneakyThrows
   @BeforeEach
   void setUp() {
+    user = new User();
     user.setId(1L);
+    article = new Article("Article", null, null);
+    article.setId(1L);
+    when(clock.getZone()).thenReturn(NOW.getZone());
+    when(clock.instant()).thenReturn(NOW.toInstant());
     orderService = new OrderServiceImpl(orderRepository, orderMapper, tradeService,
-        inventoryService, walletService, articleRepository, userRepository);
+        inventoryService, walletService, articleRepository, userRepository, clock);
   }
 
   @Test
@@ -87,6 +103,7 @@ class OrderServiceTest {
         .filledQuantity(BigDecimal.ZERO)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
@@ -152,7 +169,9 @@ class OrderServiceTest {
         );
       }
     };
-    final Order expectedBuyOrder = Order.builder()
+    final Order expectedOrder = Order.builder()
+        .id(0L)
+        .createdDateTime(LocalDateTime.now(clock))
         .type(order.getType())
         .price(order.getPrice())
         .quantity(order.getQuantity())
@@ -161,22 +180,25 @@ class OrderServiceTest {
         .status(OrderStatus.CLOSED)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
-    final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
+    final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
     when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(order);
+    when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(tradeService.createTrade(any(), any(), any()))
         .thenReturn(trades.get(0), trades.get(1), trades.get(2));
     redundantStubs();
 
     final var resultOrder = orderService.createOrder(orderDto);
 
-    assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
+    assertThat(resultOrder).isEqualTo(expectedOrderDto);
   }
 
   private void redundantStubs() {
     when(orderRepository.saveAll(any())).thenReturn(null);
+    when(articleRepository.findByIdOrThrow(anyLong())).thenReturn(article);
+    when(userRepository.findByIdOrThrow(anyLong())).thenReturn(user);
     when(walletService.spendFunds(any(), any())).thenReturn(null);
     when(walletService.addFunds(any(), any())).thenReturn(null);
     when(walletService.getWallet(any())).thenReturn(
@@ -200,6 +222,7 @@ class OrderServiceTest {
         .filledQuantity(BigDecimal.ZERO)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
@@ -240,7 +263,9 @@ class OrderServiceTest {
         );
       }
     };
-    final Order expectedBuyOrder = Order.builder()
+    final Order expectedOrder = Order.builder()
+        .id(0L)
+        .createdDateTime(LocalDateTime.now(clock))
         .type(order.getType())
         .price(order.getPrice())
         .quantity(order.getQuantity())
@@ -249,18 +274,19 @@ class OrderServiceTest {
         .status(OrderStatus.OPEN)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
-    final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
+    final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
     when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(order);
+    when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0), trades.get(1));
     redundantStubs();
 
     final var resultOrder = orderService.createOrder(orderDto);
 
-    assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
+    assertThat(resultOrder).isEqualTo(expectedOrderDto);
   }
 
   @Test
@@ -273,6 +299,7 @@ class OrderServiceTest {
         .filledQuantity(BigDecimal.ZERO)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
@@ -298,7 +325,9 @@ class OrderServiceTest {
         );
       }
     };
-    final Order expectedBuyOrder = Order.builder()
+    final Order expectedOrder = Order.builder()
+        .id(0L)
+        .createdDateTime(LocalDateTime.now(clock))
         .type(order.getType())
         .price(order.getPrice())
         .quantity(order.getQuantity())
@@ -307,18 +336,19 @@ class OrderServiceTest {
         .status(OrderStatus.CLOSED)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
-    final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
+    final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
     when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(order);
+    when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0));
     redundantStubs();
 
     final var resultOrder = orderService.createOrder(orderDto);
 
-    assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
+    assertThat(resultOrder).isEqualTo(expectedOrderDto);
   }
 
   @Test
@@ -343,6 +373,7 @@ class OrderServiceTest {
             .filledQuantity(BigDecimal.ZERO)
             .user(user)
             .article(article)
+            .enabledAutoTrade(true)
             .build()
         );
         add(Order.builder()
@@ -353,6 +384,7 @@ class OrderServiceTest {
             .filledQuantity(BigDecimal.ZERO)
             .user(user)
             .article(article)
+            .enabledAutoTrade(true)
             .build()
         );
         add(Order.builder()
@@ -363,6 +395,7 @@ class OrderServiceTest {
             .filledQuantity(BigDecimal.ZERO)
             .user(user)
             .article(article)
+            .enabledAutoTrade(true)
             .build()
         );
         add(Order.builder()
@@ -373,6 +406,7 @@ class OrderServiceTest {
             .filledQuantity(BigDecimal.ZERO)
             .user(user)
             .article(article)
+            .enabledAutoTrade(true)
             .build()
         );
       }
@@ -396,7 +430,9 @@ class OrderServiceTest {
         );
       }
     };
-    final Order expectedBuyOrder = Order.builder()
+    final Order expectedOrder = Order.builder()
+        .id(0L)
+        .createdDateTime(LocalDateTime.now(clock))
         .type(order.getType())
         .price(order.getPrice())
         .quantity(order.getQuantity())
@@ -405,11 +441,12 @@ class OrderServiceTest {
         .status(OrderStatus.CLOSED)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
-    final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
+    final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
     when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(order);
+    when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any()))
         .thenReturn(trades.get(0), trades.get(1), trades.get(2));
@@ -417,7 +454,7 @@ class OrderServiceTest {
 
     final var resultOrder = orderService.createOrder(orderDto);
 
-    assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
+    assertThat(resultOrder).isEqualTo(expectedOrderDto);
   }
 
   @Test
@@ -442,6 +479,7 @@ class OrderServiceTest {
             .filledQuantity(BigDecimal.ZERO)
             .user(user)
             .article(article)
+            .enabledAutoTrade(true)
             .build()
         );
         add(Order.builder()
@@ -452,6 +490,7 @@ class OrderServiceTest {
             .filledQuantity(BigDecimal.ZERO)
             .user(user)
             .article(article)
+            .enabledAutoTrade(true)
             .build()
         );
       }
@@ -470,7 +509,9 @@ class OrderServiceTest {
         );
       }
     };
-    final Order expectedBuyOrder = Order.builder()
+    final Order expectedOrder = Order.builder()
+        .id(0L)
+        .createdDateTime(LocalDateTime.now(clock))
         .type(order.getType())
         .price(order.getPrice())
         .quantity(order.getQuantity())
@@ -479,18 +520,19 @@ class OrderServiceTest {
         .status(OrderStatus.OPEN)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
-    final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
+    final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
     when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(order);
+    when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0), trades.get(1));
     redundantStubs();
 
     final var resultOrder = orderService.createOrder(orderDto);
 
-    assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
+    assertThat(resultOrder).isEqualTo(expectedOrderDto);
   }
 
   @Test
@@ -515,6 +557,7 @@ class OrderServiceTest {
             .filledQuantity(BigDecimal.ZERO)
             .user(user)
             .article(article)
+            .enabledAutoTrade(true)
             .build()
         );
       }
@@ -528,7 +571,9 @@ class OrderServiceTest {
         );
       }
     };
-    final Order expectedBuyOrder = Order.builder()
+    final Order expectedOrder = Order.builder()
+        .id(0L)
+        .createdDateTime(LocalDateTime.now(clock))
         .type(order.getType())
         .price(order.getPrice())
         .quantity(order.getQuantity())
@@ -537,18 +582,19 @@ class OrderServiceTest {
         .status(OrderStatus.CLOSED)
         .user(user)
         .article(article)
+        .enabledAutoTrade(true)
         .build();
-    final OrderDto expectedBuyOrderDto = orderMapper.toDto(expectedBuyOrder);
+    final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
     when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
-    when(orderRepository.save(any(Order.class))).thenReturn(order);
+    when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0));
     redundantStubs();
 
     final var resultOrder = orderService.createOrder(orderDto);
 
-    assertThat(resultOrder).isEqualTo(expectedBuyOrderDto);
+    assertThat(resultOrder).isEqualTo(expectedOrderDto);
   }
 }
 

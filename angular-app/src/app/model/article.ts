@@ -9,5 +9,5 @@ export const emptyArticle: Article = {
   id: 0,
   name: 'Article 1',
   description: 'Description 1',
-  image: 'https://dy4fqujjkm2dt.cloudfront.net/34x34icons.png',
+  image: '../../../assets/images/34x34icons.png',
 };

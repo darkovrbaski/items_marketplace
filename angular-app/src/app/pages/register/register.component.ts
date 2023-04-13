@@ -62,6 +62,9 @@ export class RegisterComponent implements OnInit {
 
     this.registrationRequest.username = this.f['username'].value;
     this.registrationRequest.password = this.f['password'].value;
+    this.registrationRequest.email = this.f['email'].value;
+    this.registrationRequest.firstName = this.f['firstName'].value;
+    this.registrationRequest.lastName = this.f['lastName'].value;
 
     this.loading = true;
     this.authService

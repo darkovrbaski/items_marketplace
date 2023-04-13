@@ -3,7 +3,7 @@ import { Wallet, emptyWallet } from 'src/app/model/wallet';
 import { Money, emptyMoney } from 'src/app/model/money';
 import { WalletService } from 'src/app/service/wallet.service';
 import { ToastrService } from 'ngx-toastr';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js/pure';
 import { environment } from 'src/environments/environment.development';
 
 @Component({

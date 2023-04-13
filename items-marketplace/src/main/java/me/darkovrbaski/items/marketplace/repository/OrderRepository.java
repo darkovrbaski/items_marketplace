@@ -30,6 +30,23 @@ public interface OrderRepository extends EntityRepository<Order> {
 
   @Query(
       "SELECT o FROM Order o "
+          + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'SELL' "
+          + "AND o.lowerSellPrice.amount <= :price "
+          + "ORDER BY o.lowerSellPrice.amount ASC, o.createdDateTime ASC"
+  )
+  Page<Order> getOpenSellLowerPricedByDiscountedPriceOlderOrders(@Param("price") BigDecimal price,
+      Pageable pageable);
+
+  @Query(
+      "SELECT o FROM Order o "
+          + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'SELL' "
+          + "AND o.lowerSellPrice.amount <= :price "
+          + "ORDER BY o.lowerSellPrice.amount ASC, o.createdDateTime ASC"
+  )
+  List<Order> getOpenSellLowerPricedByDiscountedPriceOlderOrders(@Param("price") BigDecimal price);
+
+  @Query(
+      "SELECT o FROM Order o "
           + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'BUY' AND o.price.amount >= :price "
           + "ORDER BY o.price.amount DESC, o.createdDateTime ASC"
   )

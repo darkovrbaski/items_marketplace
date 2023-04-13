@@ -21,9 +21,9 @@ import me.darkovrbaski.items.marketplace.service.intefaces.WalletService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,7 +34,8 @@ class WalletServiceTest {
   @Mock
   WalletRepository walletRepository;
 
-  final WalletMapper walletMapper = Mappers.getMapper(WalletMapper.class);
+  @Autowired
+  WalletMapper walletMapper;
 
   WalletService walletService;
 
@@ -80,8 +81,6 @@ class WalletServiceTest {
     final Money amount = Money.dollars(BigDecimal.valueOf(100));
     final MoneyDto amountDto = walletMapper.toDto(amount);
     final Wallet wallet = new Wallet(Money.dollars(BigDecimal.valueOf(10)), null);
-    final Wallet expectedWallet = new Wallet(Money.dollars(BigDecimal.valueOf(10)), null);
-    final WalletDto expectedWalletDto = walletMapper.toDto(expectedWallet);
 
     when(walletRepository.findByIdOrThrow(1L)).thenReturn(wallet);
 

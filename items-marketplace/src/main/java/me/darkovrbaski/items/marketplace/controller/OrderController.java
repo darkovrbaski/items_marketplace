@@ -3,6 +3,7 @@ package me.darkovrbaski.items.marketplace.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 import lombok.AccessLevel;
@@ -45,6 +46,22 @@ public class OrderController {
   @GetMapping("/{id}")
   public ResponseEntity<OrderDto> getOrder(@PathVariable final Long id) {
     return ResponseEntity.ok(orderService.getOrder(id));
+  }
+
+  @Operation(
+      summary = "Get an user order by id.",
+      description = "Returns details of the order "
+          + "including the filled quantity and the list of trades."
+  )
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Order found"),
+      @ApiResponse(responseCode = "404", description = "Order not found")
+  })
+  @GetMapping("/user/{id}")
+  public ResponseEntity<OrderDto> getUserOrder(@PathVariable final Long id,
+      final Principal principal) {
+    final var user = userService.findByUsername(principal.getName());
+    return ResponseEntity.ok(orderService.getUserOrder(id, user.getUsername()));
   }
 
   @Operation(
@@ -103,12 +120,7 @@ public class OrderController {
       @RequestBody final OrderDto orderDto,
       final Principal principal
   ) {
-    final var user = userService.findByUsername(principal.getName());
-
-    if (!orderDto.user().id().equals(user.getId())) {
-      throw new IllegalArgumentException("User id does not match");
-    }
-
+    isOrderOwnedByUser(orderDto, principal);
     return ResponseEntity.ok(orderService.createOrder(orderDto));
   }
 
@@ -123,8 +135,55 @@ public class OrderController {
   @PreAuthorize("hasRole('USER')")
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteOrder(@PathVariable final Long id) {
-    orderService.deleteOrder(id);
+    orderService.closeOrder(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @Operation(
+      summary = "Get all matched sell orders for a buy order.",
+      description = "Returns a list of all matched sell orders for a buy order."
+  )
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Orders found"),
+      @ApiResponse(responseCode = "404", description = "User not found")
+  })
+  @PreAuthorize("hasRole('USER')")
+  @PostMapping("/matched")
+  public ResponseEntity<Page<OrderDto>> getMatchedSellOrders(
+      @RequestBody @Valid final OrderDto orderDto,
+      @RequestParam(name = "page", defaultValue = "0") final int page,
+      @RequestParam(name = "size", defaultValue = "10") final int size,
+      final Principal principal
+  ) {
+    isOrderOwnedByUser(orderDto, principal);
+    return ResponseEntity.ok(orderService.getMatchedSellOrders(orderDto, page, size));
+  }
+
+  @Operation(
+      summary = "Trade an order.",
+      description = "Trades an order with the given order id."
+  )
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Order traded"),
+      @ApiResponse(responseCode = "404", description = "Order not found")
+  })
+  @PreAuthorize("hasRole('USER')")
+  @PostMapping("/trade/{matchedOrderId}")
+  public ResponseEntity<OrderDto> tradeOrder(
+      @RequestBody final OrderDto orderDto,
+      @PathVariable(name = "matchedOrderId") final Long matchedOrderId,
+      final Principal principal
+  ) {
+    isOrderOwnedByUser(orderDto, principal);
+    return ResponseEntity.ok(orderService.trade(orderDto, matchedOrderId));
+  }
+
+  private void isOrderOwnedByUser(final OrderDto orderDto, final Principal principal) {
+    final var user = userService.findByUsername(principal.getName());
+
+    if (!orderDto.user().id().equals(user.getId())) {
+      throw new IllegalArgumentException("Order does not belong to user");
+    }
   }
 
 }

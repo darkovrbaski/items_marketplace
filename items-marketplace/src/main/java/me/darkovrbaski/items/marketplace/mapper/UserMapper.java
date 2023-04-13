@@ -24,4 +24,6 @@ public abstract class UserMapper {
   @Mapping(target = "role", ignore = true)
   public abstract User toEntity(RegisterRequest registerRequest);
 
+  public abstract User toEntity(UserDto userDto);
+
 }

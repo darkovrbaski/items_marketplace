@@ -13,6 +13,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { UserComponent } from './pages/user/user.component';
 import { UsersComponent } from './pages/users/users.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
+import { OrderComponent } from './pages/order/order.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'payment/failed',
     component: PaymentFailedComponent,
+  },
+  {
+    path: 'order/:id',
+    component: OrderComponent,
   },
   { path: '**', redirectTo: '' },
 ];

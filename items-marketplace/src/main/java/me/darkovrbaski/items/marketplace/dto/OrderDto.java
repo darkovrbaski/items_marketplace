@@ -18,6 +18,8 @@ public record OrderDto(
 
     MoneyDto price,
 
+    MoneyDto lowerSellPrice,
+
     @Positive
     BigDecimal quantity,
 
@@ -30,7 +32,9 @@ public record OrderDto(
 
     UserDto user,
 
-    ArticleDto article
+    ArticleDto article,
+
+    boolean enabledAutoTrade
 
 ) {
 
