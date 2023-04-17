@@ -20,4 +20,4 @@ jobs:
       - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@6b9a739128622e4780b06c2c86550512ee7c9e1e # v5.4.0
+      - uses: wagoid/commitlint-github-action@456526eec71276a59e74aafdfe06a9632ac2eee1 # v5.4.1
