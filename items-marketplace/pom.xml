@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.5</version>
+    <version>3.0.6</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>me.darkovrbaski</groupId>
@@ -18,15 +18,15 @@
     <java.version>17</java.version>
     <sonar.organization>darkovrbaski</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     <springdoc-openapi-starter.version>2.1.0</springdoc-openapi-starter.version>
-    <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
+    <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
     <checkstyle.version>10.9.3</checkstyle.version>
     <jacoco-maven-plugin>0.8.9</jacoco-maven-plugin>
     <jjwt.version>0.11.5</jjwt.version>
-    <aws-sdk.version>2.20.42</aws-sdk.version>
+    <aws-sdk.version>2.20.51</aws-sdk.version>
     <stripe-java.version>22.16.0</stripe-java.version>
   </properties>
   <dependencies>
