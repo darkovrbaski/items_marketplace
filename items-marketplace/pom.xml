@@ -22,7 +22,7 @@
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     <springdoc-openapi-starter.version>2.1.0</springdoc-openapi-starter.version>
-    <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
+    <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
     <checkstyle.version>10.9.3</checkstyle.version>
     <jacoco-maven-plugin>0.8.9</jacoco-maven-plugin>
     <jjwt.version>0.11.5</jjwt.version>
