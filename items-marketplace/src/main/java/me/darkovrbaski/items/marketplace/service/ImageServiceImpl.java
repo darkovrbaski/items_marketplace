@@ -32,7 +32,7 @@ public class ImageServiceImpl implements ImageService {
   final SsmClient ssmClient;
   final S3Client s3Client;
 
-  final Instant expirationDate = Instant.now(Clock.systemUTC()).plus(Duration.ofHours(3));
+  final Instant expirationDate = Clock.systemUTC().instant().plus(Duration.ofHours(3));
 
   @Value("${private.key.name}")
   private String privateKeyName;

@@ -15,6 +15,7 @@ import me.darkovrbaski.items.marketplace.dto.MoneyDto;
 import me.darkovrbaski.items.marketplace.dto.OrderDto;
 import me.darkovrbaski.items.marketplace.mapper.OrderMapper;
 import me.darkovrbaski.items.marketplace.model.ArticleTrade;
+import me.darkovrbaski.items.marketplace.model.Money;
 import me.darkovrbaski.items.marketplace.model.Order;
 import me.darkovrbaski.items.marketplace.model.OrderStatus;
 import me.darkovrbaski.items.marketplace.model.Trade;
@@ -140,7 +141,17 @@ public class OrderServiceImpl implements OrderService {
     order.setArticle(articleRepository.findByIdOrThrow(order.getArticle().getId()));
     order.setUser(userRepository.findByIdOrThrow(order.getUser().getId()));
     order.setEnabledAutoTrade(order.isEnabledAutoTrade() || order.isSellOrder());
+    order.setLowerSellPrice(initLowerSellPrice(order));
     return orderRepository.save(order);
+  }
+
+  private Money initLowerSellPrice(final Order order) {
+    if (order.isBuyOrder()) {
+      return Money.dollars(BigDecimal.ZERO);
+    }
+    return order.getLowerSellPrice().getAmount().compareTo(BigDecimal.ZERO) == 0
+        ? order.getPrice()
+        : order.getLowerSellPrice();
   }
 
   private void automaticMatchOrders(final Order newOrder) {

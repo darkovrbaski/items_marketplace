@@ -18,13 +18,13 @@ import { OrderService } from 'src/app/service/order.service';
 export class InventoryCardViewComponent implements OnInit {
   @Input() articleItems: ArticleItem[] = [];
   @Input() userId = 1;
-  page: Page = { number: 0, size: 12 };
+  page: Page = { number: 0, size: 5 };
 
   paginator: Paginator = {
     length: 0,
-    pageSize: 12,
+    pageSize: 5,
     pageIndex: 0,
-    pageSizeOptions: [],
+    pageSizeOptions: [5, 10, 25],
   };
 
   searchInput = '';
@@ -99,7 +99,7 @@ export class InventoryCardViewComponent implements OnInit {
     this.newOrder.type = OrderType.SELL;
     this.newOrder.enabledAutoTrade = true;
     if (!this.enabledDiscount) {
-      this.newOrder.lowerSellPrice.amount = 0;
+      this.newOrder.lowerSellPrice.amount = this.newOrder.price.amount;
       this.discount = 0;
     }
     this.orderService.createOrder(this.newOrder).subscribe({
@@ -131,7 +131,7 @@ export class InventoryCardViewComponent implements OnInit {
       this.newOrder.price.amount -
       this.newOrder.price.amount * (this.discount / 100);
     if (!this.enabledDiscount) {
-      this.newOrder.lowerSellPrice.amount = 0;
+      this.newOrder.lowerSellPrice.amount = this.newOrder.price.amount;
     }
   }
 

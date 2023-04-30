@@ -1,7 +1,6 @@
 package me.darkovrbaski.items.marketplace.model;
 
 import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -54,10 +53,8 @@ public class Order extends EntityDb {
   Money price;
 
   @Embedded
-  @AttributeOverrides({
-      @AttributeOverride(name = "amount", column = @Column(name = "lower_sell_price_amount")),
-      @AttributeOverride(name = "currency", column = @Column(name = "lower_sell_price_currency"))
-  })
+  @AttributeOverride(name = "amount", column = @Column(name = "lower_sell_price_amount"))
+  @AttributeOverride(name = "currency", column = @Column(name = "lower_sell_price_currency"))
   @Column
   Money lowerSellPrice;
 

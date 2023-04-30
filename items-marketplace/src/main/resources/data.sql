@@ -1,7 +1,7 @@
 insert into "user" (id, username, password, first_name, last_name, email, phone, image, city,
                     country, number, street, role)
 values (1, 'admin', '$2a$10$sQmerVLYB7V0OsgmnY6OLuPRNujaCLWvihgy2NHjUMIlRGjKkLlFC', 'admin',
-        'admin', 'admin@localhost', '123456789', 'user_205e460b479e2e5b48aec07710c08d50.png',
+        'admin', 'admin@localhost', '123456789', 'admin_205e460b479e2e5b48aec07710c08d50.png',
         'admin', 'admin', 'admin', 'admin', 'ROLE_ADMIN'),
        (2, 'user', '$2a$10$S5YmghHbNLRVbit6hfbmzOpqkNkX2rrKmyuoIxwJ5EyBlrDFVlqiW', 'user', 'user',
         'user@localhost', '123456789', 'user_65-250x250.jpg', 'user', 'user', 'user', 'user',

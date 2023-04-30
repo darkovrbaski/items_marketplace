@@ -181,6 +181,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .enabledAutoTrade(true)
+        .lowerSellPrice(Money.dollars(BigDecimal.ZERO))
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
@@ -275,6 +276,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .enabledAutoTrade(true)
+        .lowerSellPrice(Money.dollars(BigDecimal.ZERO))
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
@@ -337,6 +339,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .enabledAutoTrade(true)
+        .lowerSellPrice(Money.dollars(BigDecimal.ZERO))
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
@@ -361,6 +364,7 @@ class OrderServiceTest {
         .filledQuantity(BigDecimal.ZERO)
         .user(user)
         .article(article)
+        .lowerSellPrice(Money.dollars(BigDecimal.ZERO))
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
@@ -442,6 +446,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .enabledAutoTrade(true)
+        .lowerSellPrice(order.getPrice())
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
@@ -467,6 +472,7 @@ class OrderServiceTest {
         .filledQuantity(BigDecimal.ZERO)
         .user(user)
         .article(article)
+        .lowerSellPrice(Money.dollars(BigDecimal.ZERO))
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
@@ -521,6 +527,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .enabledAutoTrade(true)
+        .lowerSellPrice(order.getPrice())
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
@@ -545,6 +552,7 @@ class OrderServiceTest {
         .filledQuantity(BigDecimal.ZERO)
         .user(user)
         .article(article)
+        .lowerSellPrice(Money.dollars(BigDecimal.ZERO))
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
@@ -583,6 +591,7 @@ class OrderServiceTest {
         .user(user)
         .article(article)
         .enabledAutoTrade(true)
+        .lowerSellPrice(order.getPrice())
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
