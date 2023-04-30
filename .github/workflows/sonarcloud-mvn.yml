@@ -6,62 +6,69 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+    
+permissions:
+  id-token: write
+  contents: read
+    
+
 jobs:
   sonar:
-      name: SonarCloud Scan
-      runs-on: ubuntu-latest
+    name: SonarCloud Scan
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Harden Runner
-          uses: step-security/harden-runner@6b3083af2869dc3314a0257a42f4af696cc79ba3 # v2.3.1
-          with:
-            disable-sudo: true
-            egress-policy: block
-            allowed-endpoints: >
-              ea6ne4j2sb.execute-api.eu-central-1.amazonaws.com:443
-              github.com:443
-              repo.maven.apache.org:443
-              sc-cleancode-sensorcache-eu-central-1-prod.s3.amazonaws.com:443
-              scanner.sonarcloud.io:443
-              sonarcloud.io:443
-              domain sts.eu-west-3.amazonaws.com
-              actions-results-receiver-production.githubapp.com
-                
-        - name: Checkout repository
-          uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
-          with:
-            fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@6b3083af2869dc3314a0257a42f4af696cc79ba3 # v2.3.1
+        with:
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            ea6ne4j2sb.execute-api.eu-central-1.amazonaws.com:443
+            github.com:443
+            repo.maven.apache.org:443
+            sc-cleancode-sensorcache-eu-central-1-prod.s3.amazonaws.com:443
+            scanner.sonarcloud.io:443
+            sonarcloud.io:443
+            domain sts.$AWS_REGION.amazonaws.com
+            actions-results-receiver-production.githubapp.com
+              
+      - name: Checkout repository
+        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-        - name: Set up JDK 17
-          uses: actions/setup-java@5ffc13f4174014e2d4d4572b3d74c3fa61aeb2c2 # v3.11.0
-          with:
-            java-version: '17'
-            distribution: 'temurin'
-            cache: maven
+      - name: Set up JDK 17
+        uses: actions/setup-java@5ffc13f4174014e2d4d4572b3d74c3fa61aeb2c2 # v3.11.0
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
 
-        - name: Configure AWS Credentials
-          uses: aws-actions/configure-aws-credentials@e1e17a757e536f70e52b5a12b2e8d1d1c60e04ef # v2.0.0
-          with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: eu-west-3
-        
-        - name: Cache SonarCloud packages
-          uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
-          with:
-            path: ~/.sonar/cache
-            key: ${{ runner.os }}-sonar
-            restore-keys: ${{ runner.os }}-sonar
-        
-        - name: Cache Maven packages
-          uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
-          with:
-            path: ~/.m2
-            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-            restore-keys: ${{ runner.os }}-m2
-        
-        - name: Build and analyze
-          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=darkovrbaski_items_marketplace_backend -Dsonar.qualitygate.wait=true -f items-marketplace/pom.xml
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@e1e17a757e536f70e52b5a12b2e8d1d1c60e04ef # v2.0.0
+        with:
+          role-to-assume: arn:aws:iam::654895252752:role/GitHubActionsRoleForItemsMarketplace
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Cache SonarCloud packages
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      
+      - name: Cache Maven packages
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      
+      - name: Build and analyze
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=darkovrbaski_items_marketplace_backend -Dsonar.qualitygate.wait=true -f items-marketplace/pom.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}

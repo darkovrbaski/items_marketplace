@@ -94,12 +94,13 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onImageUpload(event: any) {
-    const file = event.target.files[0];
+  onImageUpload(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file = target?.files?.[0] as File;
     const reader = new FileReader();
 
-    reader.addEventListener('load', (event: any) => {
-      this.updateUser.image = event.target.result;
+    reader.addEventListener('load', (event: ProgressEvent<FileReader>) => {
+      this.updateUser.image = event.target?.result as string;
       this.uploadedImage = file;
     });
 

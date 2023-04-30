@@ -7,7 +7,11 @@ on:
     branches: [ "main" ]
   workflow_call:
 
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+
 permissions:
+  id-token: write
   contents: read
 
 jobs:
@@ -24,7 +28,7 @@ jobs:
           allowed-endpoints: >
             github.com:443
             repo.maven.apache.org:443
-            domain sts.eu-west-3.amazonaws.com
+            domain sts.$AWS_REGION.amazonaws.com
             
       - name: Checkout repository
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
@@ -39,9 +43,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@e1e17a757e536f70e52b5a12b2e8d1d1c60e04ef # v2.0.0
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-3
+          role-to-assume: arn:aws:iam::654895252752:role/GitHubActionsRoleForItemsMarketplace
+          aws-region: ${{ env.AWS_REGION }}
       
       - name: Build with Maven
         run: mvn -B -DskipTests package -f items-marketplace/pom.xml
