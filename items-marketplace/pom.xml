@@ -27,7 +27,7 @@
     <jacoco-maven-plugin>0.8.9</jacoco-maven-plugin>
     <jjwt.version>0.11.5</jjwt.version>
     <aws-sdk.version>2.20.51</aws-sdk.version>
-    <stripe-java.version>22.16.0</stripe-java.version>
+    <stripe-java.version>22.17.0</stripe-java.version>
   </properties>
   <dependencies>
     <dependency>
