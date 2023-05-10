@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Article, Pagable, Page } from '@app/model';
+import { environment } from '@environments/environment.development';
 import { Observable } from 'rxjs';
-import { Article } from '../model/article';
-import { Page } from '../model/page';
-import { Pagable } from '../model/pagable';
 
 @Injectable({
   providedIn: 'root',

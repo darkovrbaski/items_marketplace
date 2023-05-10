@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthRequest } from '@app/model';
+import { AuthService } from '@app/service';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs';
-import { AuthRequest } from 'src/app/model/authRequest';
-import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -56,7 +56,10 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         complete: () => {
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          let returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          if (Array.isArray(returnUrl)) {
+            returnUrl = returnUrl[0];
+          }
           this.router.navigate([returnUrl]);
         },
         error: error => {

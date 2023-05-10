@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/model/user';
-import { AuthService } from 'src/app/service/auth.service';
+import { User } from '@app/model';
+import { AuthService } from '@app/service';
 
 @Component({
   selector: 'app-header',
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
   showLogin() {
-    return !this.isLoggedIn() && this.router.url !== '/login';
+    return !this.isLoggedIn() && !this.router.url.startsWith('/login');
   }
 
   showRegister() {

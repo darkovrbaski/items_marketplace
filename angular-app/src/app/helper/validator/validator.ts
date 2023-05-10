@@ -1,4 +1,4 @@
-import { FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 export const EmailValidation = [Validators.required, Validators.email];

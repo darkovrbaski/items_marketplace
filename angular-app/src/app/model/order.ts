@@ -1,5 +1,5 @@
 import { Article, emptyArticle } from './article';
-import { Money, emptyMoney } from './money';
+import { emptyMoney, Money } from './money';
 import { Trade } from './trade';
 import { emptyUser, User } from './user';
 

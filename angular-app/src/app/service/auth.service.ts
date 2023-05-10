@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  AuthRequest,
+  AuthResponse,
+  RegistrationRequest,
+  User,
+} from '@app/model';
+import { environment } from '@environments/environment.development';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
-import { AuthRequest } from '../model/authRequest';
-import { AuthResponse } from '../model/authResponse';
-import { RegistrationRequest } from '../model/registrationRequest';
-import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root',

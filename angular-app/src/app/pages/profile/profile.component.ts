@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { emptyUser, User } from '@app/model';
+import { AuthService, ImageService, UserService } from '@app/service';
 import { ToastrService } from 'ngx-toastr';
-import { emptyUser, User } from 'src/app/model/user';
-import { AuthService } from 'src/app/service/auth.service';
-import { ImageService } from 'src/app/service/image.service';
-import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile',

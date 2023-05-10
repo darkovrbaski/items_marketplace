@@ -1,11 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Article, emptyArticle, Page, Paginator } from '@app/model';
+import { ArticleService, ImageService } from '@app/service';
 import { ToastrService } from 'ngx-toastr';
-import { Article, emptyArticle } from 'src/app/model/article';
-import { Page } from 'src/app/model/page';
-import { Paginator } from 'src/app/model/paginator';
-import { ArticleService } from 'src/app/service/article.service';
-import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-articles-list-view',

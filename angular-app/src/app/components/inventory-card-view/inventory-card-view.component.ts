@@ -1,14 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import {
+  ArticleItem,
+  emptyArticleItem,
+  emptyOrder,
+  Order,
+  OrderType,
+  Page,
+  Paginator,
+} from '@app/model';
+import { AuthService, InventoryService, OrderService } from '@app/service';
 import { ToastrService } from 'ngx-toastr';
-import { ArticleItem, emptyArticleItem } from 'src/app/model/articleItem';
-import { Order, OrderType, emptyOrder } from 'src/app/model/order';
-import { Page } from 'src/app/model/page';
-import { Paginator } from 'src/app/model/paginator';
-import { AuthService } from 'src/app/service/auth.service';
-import { InventoryService } from 'src/app/service/inventory.service';
-import { OrderService } from 'src/app/service/order.service';
 
 @Component({
   selector: 'app-inventory-card-view',

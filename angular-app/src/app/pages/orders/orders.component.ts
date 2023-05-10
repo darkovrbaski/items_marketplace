@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Order } from 'src/app/model/order';
-import { Page } from 'src/app/model/page';
-import { Paginator } from 'src/app/model/paginator';
-import { OrderService } from 'src/app/service/order.service';
+import { Order, Page, Paginator } from '@app/model';
+import { OrderService } from '@app/service';
 
 @Component({
   selector: 'app-orders',

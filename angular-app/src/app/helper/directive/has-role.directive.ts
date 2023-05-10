@@ -5,8 +5,8 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { User } from '../model/user';
-import { AuthService } from '../service/auth.service';
+import { User } from '@app/model';
+import { AuthService } from '@app/service';
 
 @Directive({
   selector: '[appHasRole]',
@@ -48,7 +48,7 @@ export class HasRoleDirective implements OnInit {
   }
 
   private hasRole(): boolean {
-    if (this.currentUser && this.currentUser.role && this.requiredRoles) {
+    if (this.currentUser?.role && this.requiredRoles) {
       return this.requiredRoles.includes(this.currentUser.role);
     }
     return false;

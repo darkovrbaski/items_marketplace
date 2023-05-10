@@ -1,5 +1,6 @@
 import { TemplateRef, ViewContainerRef } from '@angular/core';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '@app/service';
+
 import { HasRoleDirective } from './has-role.directive';
 
 describe('HasRoleDirective', () => {

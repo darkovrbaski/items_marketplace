@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { emptyUser, Page, Paginator, User } from '@app/model';
+import { AuthService, UserService } from '@app/service';
 import { ToastrService } from 'ngx-toastr';
-import { Page } from 'src/app/model/page';
-import { Paginator } from 'src/app/model/paginator';
-import { User, emptyUser } from 'src/app/model/user';
-import { AuthService } from 'src/app/service/auth.service';
-import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-user-list-view',

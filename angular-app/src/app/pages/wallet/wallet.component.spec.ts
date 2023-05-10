@@ -3,10 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { UserWalletInfoComponent } from '@app/components/user-wallet-info';
+import { MaterialModule } from '@app/material';
 import { ToastrModule } from 'ngx-toastr';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { UserWalletInfoComponent } from 'src/app/components/user-wallet-info/user-wallet-info.component';
-import { MaterialModule } from 'src/app/material/material.module';
 
 import { WalletComponent } from './wallet.component';
 

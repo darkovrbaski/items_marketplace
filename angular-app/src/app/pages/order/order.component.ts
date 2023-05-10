@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
+import { emptyOrder, Order, Page, Paginator } from '@app/model';
+import { OrderService } from '@app/service';
 import { ToastrService } from 'ngx-toastr';
-import { Order, emptyOrder } from 'src/app/model/order';
-import { Page } from 'src/app/model/page';
-import { Paginator } from 'src/app/model/paginator';
-import { OrderService } from 'src/app/service/order.service';
 
 @Component({
   selector: 'app-order',

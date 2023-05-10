@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Order } from '@app/model';
+import { OrderService } from '@app/service';
 import { ToastrService } from 'ngx-toastr';
-import { Order } from 'src/app/model/order';
-import { OrderService } from 'src/app/service/order.service';
 
 @Component({
   selector: 'app-orders-list-view',

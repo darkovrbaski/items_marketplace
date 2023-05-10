@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pagable, Page, RegistrationRequest, User } from '@app/model';
+import { environment } from '@environments/environment.development';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
-import { Pagable } from '../model/pagable';
-import { Page } from '../model/page';
-import { RegistrationRequest } from '../model/registrationRequest';
-import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { emptyWallet, Wallet } from 'src/app/model/wallet';
-import { WalletService } from 'src/app/service/wallet.service';
+import { emptyWallet, Wallet } from '@app/model';
+import { WalletService } from '@app/service';
 
 @Component({
   selector: 'app-user-wallet-info',

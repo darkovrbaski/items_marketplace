@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Money, StripeResponse, Wallet } from '@app/model';
+import { environment } from '@environments/environment.development';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
-import { Wallet } from '../model/wallet';
-import { Money } from '../model/money';
-import { StripeResponse } from '../model/stripeResponse';
 
 @Injectable({
   providedIn: 'root',

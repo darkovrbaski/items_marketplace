@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Wallet, emptyWallet } from 'src/app/model/wallet';
-import { Money, emptyMoney } from 'src/app/model/money';
-import { WalletService } from 'src/app/service/wallet.service';
-import { ToastrService } from 'ngx-toastr';
+import { emptyMoney, emptyWallet, Money, Wallet } from '@app/model';
+import { WalletService } from '@app/service';
+import { environment } from '@environments/environment.development';
 import { loadStripe } from '@stripe/stripe-js/pure';
-import { environment } from 'src/environments/environment.development';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-wallet',

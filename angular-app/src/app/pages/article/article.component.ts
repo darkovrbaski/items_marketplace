@@ -1,13 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Article,
+  emptyArticle,
+  emptyOrder,
+  emptyOrderBook,
+  Order,
+  OrderBook,
+  OrderType,
+} from '@app/model';
+import {
+  ArticleService,
+  AuthService,
+  OrderBookService,
+  OrderService,
+} from '@app/service';
 import { ToastrService } from 'ngx-toastr';
-import { Article, emptyArticle } from 'src/app/model/article';
-import { Order, OrderType, emptyOrder } from 'src/app/model/order';
-import { OrderBook, emptyOrderBook } from 'src/app/model/orderBook';
-import { ArticleService } from 'src/app/service/article.service';
-import { AuthService } from 'src/app/service/auth.service';
-import { OrderBookService } from 'src/app/service/order-book.service';
-import { OrderService } from 'src/app/service/order.service';
 
 @Component({
   selector: 'app-article',

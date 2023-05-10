@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControlOptions } from '@angular/forms';
+import { AbstractControlOptions, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { first } from 'rxjs';
-import { RegistrationRequest } from 'src/app/model/registrationRequest';
-import { AuthService } from 'src/app/service/auth.service';
 import {
   EmailValidation,
   PasswordValidation,
   RepeatPasswordValidator,
   UsernameValidation,
-} from 'src/app/validator/validator';
+} from '@app/helper/validator';
+import { RegistrationRequest } from '@app/model';
+import { AuthService } from '@app/service';
+import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-register',
