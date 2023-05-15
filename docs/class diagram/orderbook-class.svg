@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 205 206" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <polyline fill="none" points="169,78 169,136" stroke="#0080ff" stroke-width="1"/>
+   <polygon fill="#0080ff" points="169,78 174,87 169,96 164,87" stroke="#0080ff" stroke-width="1" stroke-linejoin="miter"/>
+   <polyline fill="none" points="165,123 169,136 173,123" stroke="#0080ff" stroke-width="1"/>
+   <text x="187" y="101" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <text x="132" y="116" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="132" y="131" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">sellOrders</text>
+   <polyline fill="none" points="72,78 72,136" stroke="#0080ff" stroke-width="1"/>
+   <polygon fill="#0080ff" points="72,78 77,87 72,96 68,87" stroke="#0080ff" stroke-width="1" stroke-linejoin="miter"/>
+   <polyline fill="none" points="68,123 72,136 76,123" stroke="#0080ff" stroke-width="1"/>
+   <text x="91" y="101" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <text x="31" y="116" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="31" y="131" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">buyOrders</text>
+   <defs>
+      <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="60" y="2" fill="url(#Gradient1)" width="120" height="76" stroke="#0080ff" stroke-width="1"/>
+   <text x="120" y="15" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Orderbook</text>
+   <line x1="60" x2="180" y1="21" y2="21" stroke="#0080ff" stroke-width="1"/>
+   <line x1="60" x2="180" y1="40" y2="40" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient2" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="47" y="136" fill="url(#Gradient2)" width="148" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="121" y="149" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Accumulated orders</text>
+   <line x1="47" x2="195" y1="155" y2="155" stroke="#0080ff" stroke-width="1"/>
+   <text x="52" y="168" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="52" y="183" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="64" y="168" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Price</text>
+   <text x="64" y="183" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Quantity</text>
+   <text x="116" y="168" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Money</text>
+   <text x="116" y="183" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: BigDecimal</text>
+   <line x1="47" x2="195" y1="189" y2="189" stroke="#0080ff" stroke-width="1"/>
+</svg>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="231mm" xmlns="http://www.w3.org/2000/svg" height="198mm" version="1.1" viewBox="0 0 875 751" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <rect x="2" y="2" fill="none" width="871" height="742" stroke="#d0d0e8" stroke-width="1"/>
+   <polygon fill="#ffffff" points="2,2 2,22 170,22 177,15 177,2 2,2" stroke="#d0d0e8" stroke-width="1" stroke-linejoin="miter"/>
+   <text x="6" y="15" fill="#000000" font-size="12" font-family="'Arial Nova'">Sequence diagram save order</text>
+   <polyline fill="none" points="245,688 61,688" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="75,684 61,688 75,692" stroke="#8080c0" stroke-width="2"/>
+   <text x="152" y="681" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">orderDto</text>
+   <polyline fill="none" points="433,671 262,671" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="275,667 262,671 275,675" stroke="#8080c0" stroke-width="2"/>
+   <text x="345" y="663" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">toDto(order)</text>
+   <polyline fill="none" points="579,174 450,174" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="463,170 450,174 463,178" stroke="#8080c0" stroke-width="2"/>
+   <text x="513" y="166" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">order</text>
+   <polyline fill="none" points="447,132 550,132" stroke="#8080c0" stroke-width="2"/>
+   <polygon fill="#8080c0" points="553,132 540,135 540,129" stroke="#8080c0" stroke-width="2" stroke-linejoin="miter"/>
+   <text x="500" y="123" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">toEntity(order)</text>
+   <polyline fill="none" points="691,551 454,551" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="467,547 454,551 467,555" stroke="#8080c0" stroke-width="2"/>
+   <text x="571" y="544" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">order</text>
+   <polyline fill="none" points="451,586 492,586 492,608 450,608" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="463,604 450,608 463,612" stroke="#8080c0" stroke-width="2"/>
+   <text x="511" y="576" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">newOrder:= order</text>
+   <polyline fill="none" points="451,521 688,521" stroke="#8080c0" stroke-width="2"/>
+   <polygon fill="#8080c0" points="691,521 677,524 677,518" stroke="#8080c0" stroke-width="2" stroke-linejoin="miter"/>
+   <text x="571" y="514" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">save(order)</text>
+   <polyline fill="none" points="447,485 488,485 488,506 454,506" stroke="#8080c0" stroke-width="2"/>
+   <polygon fill="#8080c0" points="451,506 464,503 464,509" stroke="#8080c0" stroke-width="2" stroke-linejoin="miter"/>
+   <text x="514" y="476" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">saveOrder(order)</text>
+   <polyline fill="none" points="245,446 61,446" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="75,442 61,446 75,450" stroke="#8080c0" stroke-width="2"/>
+   <text x="151" y="441" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">Not enough money in wallet</text>
+   <polyline fill="none" points="433,435 262,435" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="275,431 262,435 275,439" stroke="#8080c0" stroke-width="2"/>
+   <text x="346" y="428" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">Not enough money in wallet</text>
+   <polyline fill="none" points="451,364 493,364 493,385 450,385" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="463,381 450,385 463,389" stroke="#8080c0" stroke-width="2"/>
+   <text x="536" y="377" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">true || false</text>
+   <polyline fill="none" points="809,350 454,350" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="467,346 454,350 467,354" stroke="#8080c0" stroke-width="2"/>
+   <text x="627" y="348" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">WalletDto</text>
+   <polyline fill="none" points="451,328 806,328" stroke="#8080c0" stroke-width="2"/>
+   <polygon fill="#8080c0" points="809,328 796,331 796,325" stroke="#8080c0" stroke-width="2" stroke-linejoin="miter"/>
+   <text x="635" y="324" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">getWallet(userId)</text>
+   <polyline fill="none" points="447,296 490,296 490,318 454,318" stroke="#8080c0" stroke-width="2"/>
+   <polygon fill="#8080c0" points="451,318 464,315 464,321" stroke="#8080c0" stroke-width="2" stroke-linejoin="miter"/>
+   <text x="533" y="292" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">notEnoughtBalance(order)</text>
+   <polyline fill="none" points="451,247 492,247 492,269 450,269" stroke="#8080c0" stroke-width="2" stroke-dasharray="16,8"/>
+   <polyline fill="none" points="463,265 450,269 463,273" stroke="#8080c0" stroke-width="2"/>
+   <text x="511" y="252" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">false</text>
+   <polyline fill="none" points="447,210 488,210 488,231 454,231" stroke="#8080c0" stroke-width="2"/>
+   <polygon fill="#8080c0" points="451,231 464,228 464,234" stroke="#8080c0" stroke-width="2" stroke-linejoin="miter"/>
+   <text x="521" y="203" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">notEnoughItems(order)</text>
+   <polyline fill="none" points="259,121 430,121" stroke="#8080c0" stroke-width="2"/>
+   <polygon fill="#8080c0" points="433,121 420,124 420,118" stroke="#8080c0" stroke-width="2" stroke-linejoin="miter"/>
+   <text x="345" y="113" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">createOrder(OrderDto)</text>
+   <polyline fill="none" points="58,110 242,110" stroke="#8080c0" stroke-width="2"/>
+   <polygon fill="#8080c0" points="245,110 231,113 231,107" stroke="#8080c0" stroke-width="2" stroke-linejoin="miter"/>
+   <text x="151" y="103" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">createOrder(OrderDto)</text>
+   <defs>
+      <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ecf9ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="19" y="32" fill="url(#Gradient1)" width="64" height="48" stroke="#0080ff" stroke-width="2"/>
+   <text x="51" y="58" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle" text-decoration="underline">Client</text>
+   <polyline fill="none" points="51,80 51,744" stroke="#0080ff" stroke-width="2" stroke-dasharray="3,3"/>
+   <defs>
+      <linearGradient id="Gradient2" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="45" y="86" fill="url(#Gradient2)" width="12" height="602" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient3" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0e8"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="51" cy="397" rx="3" ry="3" fill="url(#Gradient3)" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient4" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0e8"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="51" cy="633" rx="3" ry="3" fill="url(#Gradient4)" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient5" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ecf9ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="398" y="32" fill="url(#Gradient5)" width="84" height="48" stroke="#0080ff" stroke-width="2"/>
+   <text x="440" y="58" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle" text-decoration="underline">OrderService</text>
+   <polyline fill="none" points="440,80 440,744" stroke="#0080ff" stroke-width="2" stroke-dasharray="3,3"/>
+   <defs>
+      <linearGradient id="Gradient6" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="434" y="121" fill="url(#Gradient6)" width="12" height="550" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient7" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="438" y="231" fill="url(#Gradient7)" width="12" height="16" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient8" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="438" y="318" fill="url(#Gradient8)" width="12" height="46" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient9" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="438" y="506" fill="url(#Gradient9)" width="12" height="80" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient10" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0e8"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="440" cy="397" rx="3" ry="3" fill="url(#Gradient10)" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient11" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0e8"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="440" cy="633" rx="3" ry="3" fill="url(#Gradient11)" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient12" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ecf9ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="203" y="32" fill="url(#Gradient12)" width="98" height="48" stroke="#0080ff" stroke-width="2"/>
+   <text x="252" y="58" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle" text-decoration="underline">OrderController</text>
+   <polyline fill="none" points="252,80 252,744" stroke="#0080ff" stroke-width="2" stroke-dasharray="3,3"/>
+   <defs>
+      <linearGradient id="Gradient13" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="246" y="110" fill="url(#Gradient13)" width="12" height="578" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient14" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0e8"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="252" cy="397" rx="3" ry="3" fill="url(#Gradient14)" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient15" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0e8"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="252" cy="633" rx="3" ry="3" fill="url(#Gradient15)" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient16" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ecf9ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="554" y="108" fill="url(#Gradient16)" width="64" height="48" stroke="#0080ff" stroke-width="2"/>
+   <text x="586" y="134" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle" text-decoration="underline">Order</text>
+   <polyline fill="none" points="586,156 586,744" stroke="#0080ff" stroke-width="2" stroke-dasharray="3,3"/>
+   <defs>
+      <linearGradient id="Gradient17" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="580" y="156" fill="url(#Gradient17)" width="12" height="18" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient18" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ecf9ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="772" y="32" fill="url(#Gradient18)" width="88" height="48" stroke="#0080ff" stroke-width="2"/>
+   <text x="816" y="58" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle" text-decoration="underline">WalletService</text>
+   <polyline fill="none" points="816,80 816,744" stroke="#0080ff" stroke-width="2" stroke-dasharray="3,3"/>
+   <defs>
+      <linearGradient id="Gradient19" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="810" y="328" fill="url(#Gradient19)" width="12" height="22" stroke="#000080" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient20" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ecf9ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="646" y="32" fill="url(#Gradient20)" width="103" height="48" stroke="#0080ff" stroke-width="2"/>
+   <text x="697" y="58" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle" text-decoration="underline">OrderRepository</text>
+   <polyline fill="none" points="698,80 698,744" stroke="#0080ff" stroke-width="2" stroke-dasharray="3,3"/>
+   <defs>
+      <linearGradient id="Gradient21" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#d0d0ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="692" y="521" fill="url(#Gradient21)" width="12" height="30" stroke="#000080" stroke-width="2"/>
+   <text x="67" y="410" fill="#000000" font-size="11" font-family="'Arial Nova'">[true]</text>
+   <polyline fill="none" points="21,397 531,397 531,460 21,460 21,397" stroke="#d0d0e8" stroke-width="4"/>
+   <polygon fill="#ffffff" points="21,397 21,416 44,416 51,409 51,397 21,397" stroke="#d0d0e8" stroke-width="4" stroke-linejoin="miter"/>
+   <text x="25" y="409" fill="#000000" font-size="12" font-family="'Arial Nova'">opt</text>
+   <text x="61" y="646" fill="#000000" font-size="11" font-family="'Arial Nova'">[Disabled Auto Trade]</text>
+   <polyline fill="none" points="26,633 531,633 531,701 26,701 26,633" stroke="#d0d0e8" stroke-width="4"/>
+   <polygon fill="#ffffff" points="26,633 26,651 50,651 56,645 56,633 26,633" stroke="#d0d0e8" stroke-width="4" stroke-linejoin="miter"/>
+   <text x="30" y="645" fill="#000000" font-size="12" font-family="'Arial Nova'">opt</text>
+</svg>

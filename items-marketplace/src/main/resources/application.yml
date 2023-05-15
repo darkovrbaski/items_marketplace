@@ -1,5 +1,13 @@
 server:
-  port: ${APP_PORT:8080}
+  port: ${APP_PORT:8443}
+  http:
+    port: ${HTTP_PORT:8080}
+  ssl:
+    key-store: classpath:springboot.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: springboot
+    key-password: password
 
 spring:
   application:
@@ -36,6 +44,8 @@ springdoc:
 
 frontend:
   url: ${FRONTEND_URL:http://localhost:4200}
+  cdn:
+    url: ${FRONTEND_CDN_URL:https://itemsmarketplacecdnep.azureedge.net}
 
 jwt:
   secret: ${JWT_SECRET:2D4B614E645267556B58703273357638792F423F4528482B4D6251655368566D}

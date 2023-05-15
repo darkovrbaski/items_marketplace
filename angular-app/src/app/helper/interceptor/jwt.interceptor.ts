@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '@app/service';
-import { environment } from '@environments/environment.development';
+import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable()

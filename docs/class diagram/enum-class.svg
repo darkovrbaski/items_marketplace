@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 493 86" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <defs>
+      <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffff00"/>
+      </linearGradient>
+   </defs>
+   <rect x="346" y="1" fill="url(#Gradient1)" width="146" height="84" stroke="#ff8040" stroke-width="1"/>
+   <text x="419" y="14" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="419" y="30" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Order type</text>
+   <line x1="346" x2="492" y1="37" y2="37" stroke="#ff8040" stroke-width="1"/>
+   <text x="350" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="350" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="365" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Buy</text>
+   <text x="365" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Sell</text>
+   <text x="394" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <text x="394" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <line x1="346" x2="492" y1="71" y2="71" stroke="#ff8040" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient2" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffff00"/>
+      </linearGradient>
+   </defs>
+   <rect x="172" y="1" fill="url(#Gradient2)" width="163" height="84" stroke="#ff8040" stroke-width="1"/>
+   <text x="253" y="14" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="253" y="30" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Order status</text>
+   <line x1="172" x2="335" y1="37" y2="37" stroke="#ff8040" stroke-width="1"/>
+   <text x="177" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="177" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="192" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Open</text>
+   <text x="192" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Closed</text>
+   <text x="240" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <text x="240" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <line x1="172" x2="335" y1="71" y2="71" stroke="#ff8040" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient3" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffff00"/>
+      </linearGradient>
+   </defs>
+   <rect x="1" y="1" fill="url(#Gradient3)" width="160" height="84" stroke="#ff8040" stroke-width="1"/>
+   <text x="81" y="14" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="81" y="30" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Role</text>
+   <line x1="1" x2="161" y1="37" y2="37" stroke="#ff8040" stroke-width="1"/>
+   <text x="6" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="6" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="21" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">User</text>
+   <text x="21" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Admin</text>
+   <text x="64" y="50" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <text x="64" y="65" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <line x1="1" x2="161" y1="71" y2="71" stroke="#ff8040" stroke-width="1"/>
+</svg>

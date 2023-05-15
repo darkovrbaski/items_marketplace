@@ -65,6 +65,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     user.setRole(Role.ROLE_USER);
     user.setAddress(new Address("", "", "", ""));
     user.setPhone("");
+    user.setImage("default_avatar.svg");
     return userRepository.save(user);
   }
 

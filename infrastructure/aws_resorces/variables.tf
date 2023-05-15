@@ -24,3 +24,17 @@ variable "default_s3_content" {
     public_images = "public_images"
   }
 }
+
+
+variable "stripe_secret_key" {
+  type = string
+  description = "The stripe secret key"
+  sensitive = true
+}
+  
+variable "stripe_endpoint_secret" {
+  type = string
+  description = "The stripe endpoint secret"
+  sensitive = true
+}
+  

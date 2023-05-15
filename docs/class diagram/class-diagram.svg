@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 942 542" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <rect x="2" y="2" fill="#ffffff" width="938" height="538" stroke="#ffffff" stroke-width="1"/>
+   <polyline fill="none" points="659,232 720,232" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="707,236 720,232 707,228" stroke="#0080ff" stroke-width="1"/>
+   <text x="677" y="228" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="692" y="245" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <polyline fill="none" points="871,394 871,452" stroke="#0080ff" stroke-width="1"/>
+   <polygon fill="#0080ff" points="871,394 875,403 871,412 866,403" stroke="#0080ff" stroke-width="1" stroke-linejoin="miter"/>
+   <polyline fill="none" points="867,439 871,452 875,439" stroke="#0080ff" stroke-width="1"/>
+   <text x="889" y="410" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <text x="834" y="428" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="834" y="444" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">sellOrders</text>
+   <polyline fill="none" points="774,394 774,452" stroke="#0080ff" stroke-width="1"/>
+   <polygon fill="#0080ff" points="774,394 779,403 774,412 770,403" stroke="#0080ff" stroke-width="1" stroke-linejoin="miter"/>
+   <polyline fill="none" points="770,439 774,452 778,439" stroke="#0080ff" stroke-width="1"/>
+   <text x="793" y="411" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <text x="733" y="428" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="733" y="444" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">buyOrders</text>
+   <polyline fill="none" points="446,241 362,241" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="375,237 362,241 375,245" stroke="#0080ff" stroke-width="1"/>
+   <text x="422" y="256" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="392" y="233" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <polyline fill="none" points="560,326 560,424" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="556,411 560,424 564,411" stroke="#0080ff" stroke-width="1"/>
+   <text x="573" y="352" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="546" y="406" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <polyline fill="none" points="295,355 295,324" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="299,337 295,324 291,337" stroke="#0080ff" stroke-width="1"/>
+   <text x="272" y="340" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <text x="316" y="349" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <polyline fill="none" points="369,481 493,481" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="480,485 493,481 480,477" stroke="#0080ff" stroke-width="1"/>
+   <text x="389" y="472" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="464" y="496" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <polyline fill="none" points="295,409 295,458" stroke="#0080ff" stroke-width="1"/>
+   <polygon fill="#0080ff" points="295,409 299,419 295,428 290,419" stroke="#0080ff" stroke-width="1" stroke-linejoin="miter"/>
+   <polyline fill="none" points="291,444 295,458 299,444" stroke="#0080ff" stroke-width="1"/>
+   <text x="315" y="430" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <text x="278" y="445" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <polyline fill="none" points="294,158 294,108" stroke="#0080ff" stroke-width="1"/>
+   <polygon fill="#0080ff" points="294,158 289,148 294,139 299,148" stroke="#0080ff" stroke-width="1" stroke-linejoin="miter"/>
+   <polyline fill="none" points="298,122 294,108 290,122" stroke="#0080ff" stroke-width="1"/>
+   <text x="277" y="144" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..*</text>
+   <text x="312" y="127" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <polyline fill="none" points="152,241 232,241" stroke="#0080ff" stroke-width="1"/>
+   <polyline fill="none" points="218,245 232,241 218,237" stroke="#0080ff" stroke-width="1"/>
+   <text x="171" y="233" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <text x="201" y="256" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">0..1</text>
+   <defs>
+      <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#9fc4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="232" y="158" fill="url(#Gradient1)" width="130" height="166" stroke="#0080ff" stroke-width="1"/>
+   <text x="297" y="171" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">User</text>
+   <line x1="232" x2="362" y1="177" y2="177" stroke="#0080ff" stroke-width="1"/>
+   <text x="236" y="191" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="236" y="206" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="236" y="221" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="236" y="236" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="236" y="251" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="236" y="266" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="236" y="281" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="236" y="296" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="236" y="311" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="248" y="191" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Id</text>
+   <text x="248" y="206" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Username</text>
+   <text x="248" y="221" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Password</text>
+   <text x="248" y="236" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">First name</text>
+   <text x="248" y="251" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Last name</text>
+   <text x="248" y="266" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Email</text>
+   <text x="248" y="281" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Phone</text>
+   <text x="248" y="296" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Image</text>
+   <text x="248" y="311" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Role</text>
+   <text x="315" y="191" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: long</text>
+   <text x="315" y="206" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="315" y="221" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="315" y="236" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="315" y="251" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="315" y="266" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="315" y="281" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="315" y="296" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="315" y="311" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Role</text>
+   <line x1="232" x2="362" y1="316" y2="316" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient2" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#9fc4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="446" y="160" fill="url(#Gradient2)" width="213" height="166" stroke="#0080ff" stroke-width="1"/>
+   <text x="552" y="173" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Order</text>
+   <line x1="446" x2="659" y1="179" y2="179" stroke="#0080ff" stroke-width="1"/>
+   <text x="451" y="193" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="451" y="208" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="451" y="223" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="451" y="238" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="451" y="253" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="451" y="268" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="451" y="283" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="451" y="298" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="451" y="313" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="463" y="193" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Id</text>
+   <text x="463" y="208" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Created date time</text>
+   <text x="463" y="223" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Type</text>
+   <text x="463" y="238" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Price</text>
+   <text x="463" y="253" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Lower sell price</text>
+   <text x="463" y="268" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Quantity</text>
+   <text x="463" y="283" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Filled quantity</text>
+   <text x="463" y="298" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Status</text>
+   <text x="463" y="313" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Enabled auto trade</text>
+   <text x="575" y="193" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: long</text>
+   <text x="575" y="208" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Date</text>
+   <text x="575" y="223" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: OrderType</text>
+   <text x="575" y="238" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Money</text>
+   <text x="575" y="253" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Money</text>
+   <text x="575" y="268" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: BigDecimal</text>
+   <text x="575" y="283" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: BigDecimal</text>
+   <text x="575" y="298" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: OrderStatus</text>
+   <text x="575" y="313" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: boolean</text>
+   <line x1="446" x2="659" y1="318" y2="318" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient3" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffff00"/>
+      </linearGradient>
+   </defs>
+   <rect x="659" y="32" fill="url(#Gradient3)" width="147" height="84" stroke="#ff8040" stroke-width="1"/>
+   <text x="732" y="45" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="732" y="62" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Order type</text>
+   <line x1="659" x2="806" y1="68" y2="68" stroke="#ff8040" stroke-width="1"/>
+   <text x="664" y="82" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="664" y="97" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="679" y="82" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Buy</text>
+   <text x="679" y="97" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Sell</text>
+   <text x="708" y="82" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <text x="708" y="97" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <line x1="659" x2="806" y1="102" y2="102" stroke="#ff8040" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient4" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#9fc4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="720" y="170" fill="url(#Gradient4)" width="199" height="124" stroke="#0080ff" stroke-width="1"/>
+   <text x="819" y="183" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Trade</text>
+   <line x1="720" x2="919" y1="189" y2="189" stroke="#0080ff" stroke-width="1"/>
+   <text x="725" y="203" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="725" y="218" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="725" y="233" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="725" y="248" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="725" y="263" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="725" y="278" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="737" y="203" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Id</text>
+   <text x="737" y="218" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Created date time</text>
+   <text x="737" y="233" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Price</text>
+   <text x="737" y="248" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Quantity</text>
+   <text x="737" y="263" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Sell order id</text>
+   <text x="737" y="278" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Buy order id</text>
+   <text x="843" y="203" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: long</text>
+   <text x="843" y="218" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Date</text>
+   <text x="843" y="233" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Money</text>
+   <text x="843" y="248" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: BigDecimal</text>
+   <text x="843" y="263" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: long</text>
+   <text x="843" y="278" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: long</text>
+   <line x1="720" x2="919" y1="283" y2="283" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient5" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="762" y="317" fill="url(#Gradient5)" width="119" height="77" stroke="#0080ff" stroke-width="1"/>
+   <text x="821" y="330" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Orderbook</text>
+   <line x1="762" x2="881" y1="336" y2="336" stroke="#0080ff" stroke-width="1"/>
+   <line x1="762" x2="881" y1="355" y2="355" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient6" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffff00"/>
+      </linearGradient>
+   </defs>
+   <rect x="429" y="26" fill="url(#Gradient6)" width="163" height="84" stroke="#ff8040" stroke-width="1"/>
+   <text x="510" y="39" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="510" y="56" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Order status</text>
+   <line x1="429" x2="592" y1="62" y2="62" stroke="#ff8040" stroke-width="1"/>
+   <text x="433" y="76" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="433" y="91" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="448" y="76" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Open</text>
+   <text x="448" y="91" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Closed</text>
+   <text x="496" y="76" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <text x="496" y="91" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <line x1="429" x2="592" y1="96" y2="96" stroke="#ff8040" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient7" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#9fc4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="493" y="424" fill="url(#Gradient7)" width="134" height="96" stroke="#0080ff" stroke-width="1"/>
+   <text x="560" y="437" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Article</text>
+   <line x1="493" x2="627" y1="443" y2="443" stroke="#0080ff" stroke-width="1"/>
+   <text x="498" y="457" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="498" y="472" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="498" y="487" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="498" y="502" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="510" y="457" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Id</text>
+   <text x="510" y="472" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Name</text>
+   <text x="510" y="487" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Description</text>
+   <text x="510" y="502" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Image</text>
+   <text x="581" y="457" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: long</text>
+   <text x="581" y="472" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="581" y="487" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="581" y="502" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <line x1="493" x2="627" y1="507" y2="507" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient8" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="749" y="452" fill="url(#Gradient8)" width="148" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="823" y="465" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Accumulated orders</text>
+   <line x1="749" x2="897" y1="471" y2="471" stroke="#0080ff" stroke-width="1"/>
+   <text x="753" y="485" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="753" y="500" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="765" y="485" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Price</text>
+   <text x="765" y="500" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Quantity</text>
+   <text x="817" y="485" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Money</text>
+   <text x="817" y="500" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: BigDecimal</text>
+   <line x1="749" x2="897" y1="505" y2="505" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient9" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#9fc4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="255" y="355" fill="url(#Gradient9)" width="74" height="54" stroke="#0080ff" stroke-width="1"/>
+   <text x="292" y="369" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Inventory</text>
+   <line x1="255" x2="329" y1="374" y2="374" stroke="#0080ff" stroke-width="1"/>
+   <text x="260" y="388" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="272" y="388" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Id</text>
+   <text x="290" y="388" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: long</text>
+   <line x1="255" x2="329" y1="393" y2="393" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient10" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="221" y="458" fill="url(#Gradient10)" width="148" height="53" stroke="#0080ff" stroke-width="1"/>
+   <text x="295" y="471" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Article item</text>
+   <line x1="221" x2="369" y1="476" y2="476" stroke="#0080ff" stroke-width="1"/>
+   <text x="225" y="490" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="237" y="490" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Quantity</text>
+   <text x="289" y="490" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: BigDecimal</text>
+   <line x1="221" x2="369" y1="495" y2="495" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient11" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="236" y="12" fill="url(#Gradient11)" width="116" height="96" stroke="#0080ff" stroke-width="1"/>
+   <text x="294" y="25" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Address</text>
+   <line x1="236" x2="352" y1="31" y2="31" stroke="#0080ff" stroke-width="1"/>
+   <text x="241" y="45" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="241" y="60" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="241" y="75" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="241" y="90" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="253" y="45" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Country</text>
+   <text x="253" y="60" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">City</text>
+   <text x="253" y="75" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Street</text>
+   <text x="253" y="90" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Number</text>
+   <text x="306" y="45" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="306" y="60" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="306" y="75" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <text x="306" y="90" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: String</text>
+   <line x1="236" x2="352" y1="95" y2="95" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient12" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#9fc4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="32" y="203" fill="url(#Gradient12)" width="120" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="92" y="217" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Wallet</text>
+   <line x1="32" x2="152" y1="222" y2="222" stroke="#0080ff" stroke-width="1"/>
+   <text x="37" y="236" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="37" y="251" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="49" y="236" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Id</text>
+   <text x="49" y="251" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Balance</text>
+   <text x="102" y="236" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: long</text>
+   <text x="102" y="251" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Money</text>
+   <line x1="32" x2="152" y1="256" y2="256" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient13" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="21" y="340" fill="url(#Gradient13)" width="152" height="68" stroke="#0080ff" stroke-width="1"/>
+   <text x="97" y="353" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Money</text>
+   <line x1="21" x2="173" y1="359" y2="359" stroke="#0080ff" stroke-width="1"/>
+   <text x="26" y="373" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="26" y="388" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="38" y="373" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Amount</text>
+   <text x="38" y="388" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Currency</text>
+   <text x="95" y="373" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: BigDecimal</text>
+   <text x="95" y="388" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Currency</text>
+   <line x1="21" x2="173" y1="393" y2="393" stroke="#0080ff" stroke-width="1"/>
+   <defs>
+      <linearGradient id="Gradient14" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffff00"/>
+      </linearGradient>
+   </defs>
+   <rect x="32" y="45" fill="url(#Gradient14)" width="159" height="84" stroke="#ff8040" stroke-width="1"/>
+   <text x="111" y="58" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">&lt;&lt;Enum&gt;&gt;</text>
+   <text x="111" y="75" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">Role</text>
+   <line x1="32" x2="191" y1="81" y2="81" stroke="#ff8040" stroke-width="1"/>
+   <text x="36" y="95" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="36" y="110" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">+</text>
+   <text x="51" y="95" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">User</text>
+   <text x="51" y="110" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">Admin</text>
+   <text x="94" y="95" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <text x="94" y="110" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: EnumConstant</text>
+   <line x1="32" x2="191" y1="115" y2="115" stroke="#ff8040" stroke-width="1"/>
+</svg>

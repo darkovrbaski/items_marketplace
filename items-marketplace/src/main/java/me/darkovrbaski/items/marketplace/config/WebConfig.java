@@ -20,10 +20,13 @@ public class WebConfig implements WebMvcConfigurer {
   @Value("${frontend.url}")
   String frontendUrl;
 
+  @Value("${frontend.cdn.url}")
+  String frontendCdnUrl;
+
   @Override
   public void addCorsMappings(final CorsRegistry registry) {
     registry.addMapping(ALL_PATHS)
-        .allowedOrigins(frontendUrl)
+        .allowedOrigins(frontendUrl, frontendCdnUrl)
         .allowedMethods(ALLOWED_METHODS)
         .allowCredentials(true);
   }

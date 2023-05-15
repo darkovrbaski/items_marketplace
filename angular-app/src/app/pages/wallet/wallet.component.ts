@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { emptyMoney, emptyWallet, Money, Wallet } from '@app/model';
 import { WalletService } from '@app/service';
-import { environment } from '@environments/environment.development';
+import { environment } from '@environments/environment';
 import { loadStripe } from '@stripe/stripe-js/pure';
 import { ToastrService } from 'ngx-toastr';
 

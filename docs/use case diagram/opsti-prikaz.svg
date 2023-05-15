@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="99mm" xmlns="http://www.w3.org/2000/svg" height="108mm" version="1.1" viewBox="0 0 375 410" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <path d="M150,197 L91,197 A8,8 0 0,0 83,205 L83,235" fill="none" stroke="#8080ff" stroke-width="2"/>
+   <polygon fill="#ffffff" points="83,236 76,222 90,222" stroke="#8080ff" stroke-width="2" stroke-linejoin="miter"/>
+   <path d="M150,360 L90,360 A8,8 0 0,1 82,352 L82,327" fill="none" stroke="#8080ff" stroke-width="2"/>
+   <polygon fill="#ffffff" points="82,326 89,339 76,339" stroke="#8080ff" stroke-width="2" stroke-linejoin="miter"/>
+   <defs>
+      <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffffc0"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="83" cy="248" rx="11" ry="11" fill="url(#Gradient1)" stroke="#0080ff" stroke-width="2"/>
+   <line x1="83" x2="83" y1="260" y2="284" stroke="#0080ff" stroke-width="2"/>
+   <line x1="59" x2="106" y1="272" y2="272" stroke="#0080ff" stroke-width="2"/>
+   <line x1="59" x2="83" y1="307" y2="284" stroke="#0080ff" stroke-width="2"/>
+   <line x1="106" x2="83" y1="307" y2="284" stroke="#0080ff" stroke-width="2"/>
+   <text x="82" y="319" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Пријављени корисник</text>
+   <defs>
+      <linearGradient id="Gradient2" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffffc0"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="198" cy="165" rx="11" ry="11" fill="url(#Gradient2)" stroke="#0080ff" stroke-width="2"/>
+   <line x1="198" x2="198" y1="177" y2="200" stroke="#0080ff" stroke-width="2"/>
+   <line x1="175" x2="222" y1="188" y2="188" stroke="#0080ff" stroke-width="2"/>
+   <line x1="175" x2="198" y1="224" y2="200" stroke="#0080ff" stroke-width="2"/>
+   <line x1="222" x2="198" y1="224" y2="200" stroke="#0080ff" stroke-width="2"/>
+   <text x="198" y="236" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Корисник</text>
+   <defs>
+      <linearGradient id="Gradient3" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffffc0"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="198" cy="330" rx="11" ry="11" fill="url(#Gradient3)" stroke="#0080ff" stroke-width="2"/>
+   <line x1="198" x2="198" y1="342" y2="365" stroke="#0080ff" stroke-width="2"/>
+   <line x1="175" x2="222" y1="354" y2="354" stroke="#0080ff" stroke-width="2"/>
+   <line x1="175" x2="198" y1="389" y2="365" stroke="#0080ff" stroke-width="2"/>
+   <line x1="222" x2="198" y1="389" y2="365" stroke="#0080ff" stroke-width="2"/>
+   <text x="198" y="401" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Администратор</text>
+   <defs>
+      <linearGradient id="Gradient4" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffffc0"/>
+      </linearGradient>
+   </defs>
+   <polygon fill="url(#Gradient4)" points="270,64 373,64 373,24 305,24 305,11 270,11 270,64" stroke="#b2b2b2" stroke-width="1" stroke-linejoin="miter"/>
+   <text x="321" y="39" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Непријављени</text>
+   <text x="321" y="53" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">корисник</text>
+   <defs>
+      <linearGradient id="Gradient5" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffffc0"/>
+      </linearGradient>
+   </defs>
+   <polygon fill="url(#Gradient5)" points="273,300 370,300 370,256 306,256 306,244 273,244 273,300" stroke="#b2b2b2" stroke-width="1" stroke-linejoin="miter"/>
+   <text x="321" y="273" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Пријављени</text>
+   <text x="321" y="287" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">корисник</text>
+   <defs>
+      <linearGradient id="Gradient6" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffffc0"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="145" cy="14" rx="11" ry="11" fill="url(#Gradient6)" stroke="#0080ff" stroke-width="2"/>
+   <line x1="145" x2="145" y1="26" y2="49" stroke="#0080ff" stroke-width="2"/>
+   <line x1="121" x2="168" y1="37" y2="37" stroke="#0080ff" stroke-width="2"/>
+   <line x1="121" x2="145" y1="73" y2="49" stroke="#0080ff" stroke-width="2"/>
+   <line x1="168" x2="145" y1="73" y2="49" stroke="#0080ff" stroke-width="2"/>
+   <text x="144" y="85" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Непријављени корисник</text>
+</svg>

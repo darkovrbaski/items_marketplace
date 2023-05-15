@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="173mm" xmlns="http://www.w3.org/2000/svg" height="242mm" version="1.1" viewBox="0 0 655 918" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <path d="M107,746 L380,746 A8,8 0 0,0 388,737 L388,642" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M107,746 L235,746 A8,8 0 0,0 243,737 L243,709" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,477 L60,665 A8,8 0 0,0 67,673 L115,673" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,477 L60,598 A8,8 0 0,0 68,606 L311,606" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,796 L60,817 A8,8 0 0,0 68,825 L162,825" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,796 L60,873 A8,8 0 0,0 67,881 L351,881" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,387 L60,299 A8,8 0 0,1 68,291 L155,291" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M384,355 L263,355 A8,8 0 0,1 255,347 L255,331" fill="none" stroke="#8080ff" stroke-width="2"/>
+   <polyline fill="none" points="259,345 255,331 251,345" stroke="#8080ff" stroke-width="2"/>
+   <text x="283" y="371" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">&lt;&lt;extend&gt;&gt;</text>
+   <path d="M378,228 L262,228 A8,8 0 0,0 254,236 L254,251" fill="none" stroke="#8080ff" stroke-width="2"/>
+   <polyline fill="none" points="250,238 254,251 258,238" stroke="#8080ff" stroke-width="2"/>
+   <text x="278" y="219" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">&lt;&lt;extend&gt;&gt;</text>
+   <path d="M60,387 L60,174 A8,8 0 0,1 67,166 L161,166" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,387 L60,110 A8,8 0 0,1 67,102 L359,102" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,477 L60,526 A8,8 0 0,0 68,534 L430,534" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M107,746 L506,746 A8,8 0 0,0 514,738 L514,567" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <polyline fill="none" points="107,431 143,431" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,387 L60,48 A8,8 0 0,1 67,40 L132,40" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M60,477 L60,482 A5,5 0 0,0 65,487 L550,487" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <path d="M604,517 L604,738 A8,8 0 0,1 596,746 L107,746" fill="none" stroke="#0080ff" stroke-width="2"/>
+   <defs>
+      <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffffc0"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="59" cy="400" rx="11" ry="11" fill="url(#Gradient1)" stroke="#0080ff" stroke-width="2"/>
+   <line x1="59" x2="59" y1="412" y2="435" stroke="#0080ff" stroke-width="2"/>
+   <line x1="36" x2="83" y1="423" y2="423" stroke="#0080ff" stroke-width="2"/>
+   <line x1="36" x2="59" y1="458" y2="435" stroke="#0080ff" stroke-width="2"/>
+   <line x1="83" x2="59" y1="458" y2="435" stroke="#0080ff" stroke-width="2"/>
+   <text x="59" y="470" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Корисник</text>
+   <defs>
+      <linearGradient id="Gradient2" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#ffffc0"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="59" cy="718" rx="11" ry="11" fill="url(#Gradient2)" stroke="#0080ff" stroke-width="2"/>
+   <line x1="59" x2="59" y1="730" y2="754" stroke="#0080ff" stroke-width="2"/>
+   <line x1="36" x2="83" y1="742" y2="742" stroke="#0080ff" stroke-width="2"/>
+   <line x1="36" x2="59" y1="777" y2="754" stroke="#0080ff" stroke-width="2"/>
+   <line x1="83" x2="59" y1="777" y2="754" stroke="#0080ff" stroke-width="2"/>
+   <text x="59" y="789" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Администратор</text>
+   <defs>
+      <linearGradient id="Gradient3" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="392" cy="605" rx="80" ry="36" fill="url(#Gradient3)" stroke="#0080ff" stroke-width="2"/>
+   <text x="392" y="607" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Преглед артикла</text>
+   <defs>
+      <linearGradient id="Gradient4" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="243" cy="672" rx="127" ry="36" fill="url(#Gradient4)" stroke="#0080ff" stroke-width="2"/>
+   <text x="243" y="667" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Преглед књиге</text>
+   <text x="243" y="681" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">поруџбеница за артикл</text>
+   <defs>
+      <linearGradient id="Gradient5" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="253" cy="822" rx="90" ry="36" fill="url(#Gradient5)" stroke="#0080ff" stroke-width="2"/>
+   <text x="253" y="824" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Преглед корисника</text>
+   <defs>
+      <linearGradient id="Gradient6" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="413" cy="879" rx="61" ry="36" fill="url(#Gradient6)" stroke="#0080ff" stroke-width="2"/>
+   <text x="413" y="864" fill="#000000" font-size="12" font-family="'Arial Nova'" text-anchor="middle">&lt;&lt;CRUD&gt;&gt;</text>
+   <text x="413" y="880" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Управљање</text>
+   <text x="413" y="894" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">артиклима</text>
+   <defs>
+      <linearGradient id="Gradient7" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="253" cy="429" rx="109" ry="36" fill="url(#Gradient7)" stroke="#0080ff" stroke-width="2"/>
+   <text x="253" y="428" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Постављање куповне/продајне</text>
+   <text x="253" y="442" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">поруџбине</text>
+   <defs>
+      <linearGradient id="Gradient8" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="253" cy="291" rx="97" ry="36" fill="url(#Gradient8)" stroke="#0080ff" stroke-width="2"/>
+   <text x="253" y="293" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Преглед порудџбина</text>
+   <defs>
+      <linearGradient id="Gradient9" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="465" cy="228" rx="86" ry="36" fill="url(#Gradient9)" stroke="#0080ff" stroke-width="2"/>
+   <text x="465" y="223" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Преглед активних</text>
+   <text x="465" y="237" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">порудџбина</text>
+   <defs>
+      <linearGradient id="Gradient10" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="465" cy="355" rx="80" ry="36" fill="url(#Gradient10)" stroke="#0080ff" stroke-width="2"/>
+   <text x="465" y="350" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Преглед историје</text>
+   <text x="465" y="364" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">порудџбина</text>
+   <defs>
+      <linearGradient id="Gradient11" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="253" cy="165" rx="91" ry="36" fill="url(#Gradient11)" stroke="#0080ff" stroke-width="2"/>
+   <text x="253" y="167" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Преглед инвентара</text>
+   <defs>
+      <linearGradient id="Gradient12" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="465" cy="101" rx="105" ry="36" fill="url(#Gradient12)" stroke="#0080ff" stroke-width="2"/>
+   <text x="465" y="103" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Преглед стања рачуна</text>
+   <defs>
+      <linearGradient id="Gradient13" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="502" cy="531" rx="72" ry="36" fill="url(#Gradient13)" stroke="#0080ff" stroke-width="2"/>
+   <text x="502" y="526" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Измена личних</text>
+   <text x="502" y="540" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">података</text>
+   <defs>
+      <linearGradient id="Gradient14" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="253" cy="38" rx="120" ry="36" fill="url(#Gradient14)" stroke="#0080ff" stroke-width="2"/>
+   <text x="253" y="40" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Уплата средства на рачун</text>
+   <defs>
+      <linearGradient id="Gradient15" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#c0ffff"/>
+      </linearGradient>
+   </defs>
+   <ellipse cx="601" cy="480" rx="51" ry="36" fill="url(#Gradient15)" stroke="#0080ff" stroke-width="2"/>
+   <text x="601" y="475" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">Одјава са</text>
+   <text x="601" y="489" fill="#000000" font-size="14" font-family="'Arial Nova'" text-anchor="middle">система</text>
+</svg>

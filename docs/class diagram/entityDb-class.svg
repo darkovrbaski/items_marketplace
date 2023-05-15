@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 78 56" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <defs>
+      <linearGradient id="Gradient1" x1="0%" x2="100%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+         <stop offset="5%" stop-color="#ffffff"/>
+         <stop offset="95%" stop-color="#aee4ff"/>
+      </linearGradient>
+   </defs>
+   <rect x="1" y="1" fill="url(#Gradient1)" width="76" height="54" stroke="#0080ff" stroke-width="1"/>
+   <text x="39" y="14" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'" text-anchor="middle">EntityDb</text>
+   <line x1="1" x2="77" y1="20" y2="20" stroke="#0080ff" stroke-width="1"/>
+   <text x="6" y="34" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">-</text>
+   <text x="18" y="34" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">id</text>
+   <text x="36" y="34" fill="#000000" font-size="12" font-family="'Arial Unicode MS','Arial'">: Long</text>
+   <line x1="1" x2="77" y1="40" y2="40" stroke="#0080ff" stroke-width="1"/>
+</svg>

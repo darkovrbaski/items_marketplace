@@ -7,7 +7,7 @@ import {
   RegistrationRequest,
   User,
 } from '@app/model';
-import { environment } from '@environments/environment.development';
+import { environment } from '@environments/environment';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
