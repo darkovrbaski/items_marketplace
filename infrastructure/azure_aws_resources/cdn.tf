@@ -11,11 +11,10 @@ resource "azurerm_cdn_endpoint" "cdn-ep" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   origin_host_header  = azurerm_static_site.ss.default_host_name
-  # origin_host_header = azurerm_storage_account.sa.primary_web_host
+  is_https_allowed    = false
 
   origin {
     name      = "${var.name-az}Ss"
     host_name = azurerm_static_site.ss.default_host_name
-    # host_name = azurerm_storage_account.sa.primary_web_host
   }
 }
