@@ -35,7 +35,6 @@ public class SecurityConfig {
         .csrf().disable()
         .cors()
         .and()
-        .requiresChannel(chanel -> chanel.anyRequest().requiresSecure())
         .authorizeHttpRequests()
         .requestMatchers(HttpMethod.GET, "/orderBook/{articleId}").permitAll()
 
