@@ -1,6 +1,9 @@
 name: Deploy Frontend and Backend
 
-on: workflow_dispatch
+on:
+  push:
+    tags:
+      - '*'
 
 permissions:
   id-token: write
@@ -49,25 +52,6 @@ jobs:
           output_location: "/dist/angular-app" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
-  close_pull_request_job:
-    needs: [ci-frontend]
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@6b3083af2869dc3314a0257a42f4af696cc79ba3 # v2.3.1
-        with:
-          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
-      
-      - name: Close Pull Request
-        id: closepullrequest
-        uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1.0.0
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          action: "close"
-          
   deploy_backend:
     needs: [ci-backend]
     runs-on: ubuntu-latest
@@ -82,6 +66,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
       
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@727a6f0a561be04e09013531e73a3983a65e3479 # v1.1.0
+        with:
+          strip-v: true
+      
       - name: Log into ACR
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v2.1.0
         with:
@@ -93,5 +83,7 @@ jobs:
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671 # v4.0.0
         with:
           context: ./items-marketplace/
-          tags: ${{ secrets.AZ_REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:latest
+          build-args: |
+            version=${{ steps.tag.outputs.tag }}
+          tags: ${{ secrets.AZ_REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
           push: true
