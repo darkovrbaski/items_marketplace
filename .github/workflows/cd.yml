@@ -6,6 +6,9 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  IMAGE_NAME: items-marketplace-image
+
 jobs:
   ci-backend:
     name: CI
@@ -16,20 +19,6 @@ jobs:
     name: CI
     uses: darkovrbaski/items_marketplace/.github/workflows/ci-frontend.yml@main
     secrets: inherit
-
-  release:
-    needs: [ci-backend, ci-frontend]
-    name: Release
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@6b3083af2869dc3314a0257a42f4af696cc79ba3 # v2.3.1
-        with:
-          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
-      
-      - name: Deploy succeed
-        run: echo "Deploy succeed"
 
   deploy_frontend:
     needs: [ci-frontend]
@@ -78,3 +67,31 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           action: "close"
+          
+  deploy_backend:
+    needs: [ci-backend]
+    runs-on: ubuntu-latest
+    name: Deploy Backend
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@6b3083af2869dc3314a0257a42f4af696cc79ba3 # v2.3.1
+        with:
+         egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+    
+      - name: Checkout repository
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
+      
+      - name: Log into ACR
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v2.1.0
+        with:
+          registry: ${{ secrets.AZ_REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.AZ_REGISTRY_USERNAME }}
+          password: ${{ secrets.AZ_REGISTRY_PASSWORD }}
+      
+      - name: Build & Push
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671 # v4.0.0
+        with:
+          context: ./items-marketplace/
+          tags: ${{ secrets.AZ_REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:latest
+          push: true

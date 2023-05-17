@@ -8,6 +8,7 @@ COPY src src
 RUN apk add dos2unix=7.4.3-r1 --no-cache
 RUN dos2unix mvnw
 
+RUN chmod +x mvnw
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
