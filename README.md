@@ -10,8 +10,8 @@
 
 <p align="center">
   <a href="https://github.com/darkovrbaski/items_marketplace/releases"
-     title="GitHub release (latest SemVer)">
-    <img src="https://img.shields.io/github/v/release/darkovrbaski/items_marketplace?sort=semver">
+     title="GitHub release (latest)">
+    <img src="https://img.shields.io/github/v/release/darkovrbaski/items_marketplace">
   </a>
   <a href="#"
      title="GitHub Repo stars">
