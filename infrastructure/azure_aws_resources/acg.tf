@@ -15,8 +15,8 @@ resource "azurerm_container_group" "acg" {
   container {
     name   = "container"
     image  = "${azurerm_container_registry.acr.login_server}/${var.image_name}"
-    cpu    = "0.5"
-    memory = "1.5"
+    cpu    = "0.25"
+    memory = "0.5"
 
     ports {
       port     = var.app_port

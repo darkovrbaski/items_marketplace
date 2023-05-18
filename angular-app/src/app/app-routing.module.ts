@@ -48,7 +48,6 @@ const routes: Routes = [
   {
     path: 'article/:name',
     component: ArticleComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'login',

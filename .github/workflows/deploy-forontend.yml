@@ -1,0 +1,42 @@
+name: Deploy Frontend
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ci-frontend:
+    name: CI
+    uses: darkovrbaski/items_marketplace/.github/workflows/ci-frontend.yml@main
+    secrets: inherit
+
+  deploy_frontend:
+    needs: [ci-frontend]
+    runs-on: ubuntu-latest
+    name: Deploy Frontend
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@6b3083af2869dc3314a0257a42f4af696cc79ba3 # v2.3.1
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+      
+      - name: Checkout repository
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
+        with:
+          submodules: true
+      
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1.0.0
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "/angular-app" # App source code path
+          output_location: "/dist/angular-app" # Built app content directory - optional
+          ###### End of Repository/Build Configurations ######
