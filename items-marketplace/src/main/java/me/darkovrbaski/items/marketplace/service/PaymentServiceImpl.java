@@ -31,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService {
   final WalletService walletService;
   final UserService userService;
 
-  @Value("${frontend.url}")
+  @Value("${frontend.cdn.url}")
   private String frontendUrl;
 
   @Value("${stripe.secret-key}")

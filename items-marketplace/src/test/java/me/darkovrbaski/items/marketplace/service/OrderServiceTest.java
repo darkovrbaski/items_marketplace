@@ -7,9 +7,11 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +80,10 @@ class OrderServiceTest {
 
   Article article;
 
-  static final ZonedDateTime NOW = ZonedDateTime.now();
+  static final ZonedDateTime NOW = ZonedDateTime.of(
+      LocalDateTime.of(2023, 1, 1, 0, 0, 0),
+      ZoneId.of("UTC")
+  );
 
   @SneakyThrows
   @BeforeEach
@@ -107,6 +112,9 @@ class OrderServiceTest {
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = -6352716186275622268L;
+
       {
         add(Order.builder()
             .status(OrderStatus.OPEN)
@@ -151,6 +159,9 @@ class OrderServiceTest {
       }
     };
     final List<Trade> trades = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = 6049392333647917250L;
+
       {
         add(Trade.builder()
             .price(Money.dollars(BigDecimal.valueOf(8)))
@@ -206,6 +217,9 @@ class OrderServiceTest {
         new WalletDto(new MoneyDto(BigDecimal.valueOf(1000), "USD"), null));
     when(inventoryService.searchInventory(any(), anyString(), anyInt(), anyInt())).thenReturn(
         new PageImpl<>(new ArrayList<>() {
+          @Serial
+          private static final long serialVersionUID = -2686540700166875564L;
+
           {
             add(new ArticleItemDto(BigDecimal.valueOf(1000), null));
           }
@@ -227,6 +241,9 @@ class OrderServiceTest {
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = 5320705315099411443L;
+
       {
         add(Order.builder()
             .status(OrderStatus.OPEN)
@@ -251,6 +268,9 @@ class OrderServiceTest {
       }
     };
     final List<Trade> trades = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = -4294044600267205571L;
+
       {
         add(Trade.builder()
             .price(Money.dollars(BigDecimal.valueOf(8)))
@@ -305,6 +325,9 @@ class OrderServiceTest {
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openSellOrders = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = 8049257365807463280L;
+
       {
         add(Order.builder()
             .status(OrderStatus.OPEN)
@@ -319,6 +342,9 @@ class OrderServiceTest {
       }
     };
     final List<Trade> trades = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = 4559578227184386785L;
+
       {
         add(Trade.builder()
             .price(Money.dollars(BigDecimal.valueOf(8)))
@@ -368,6 +394,9 @@ class OrderServiceTest {
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = 8468308233928102888L;
+
       {
         add(Order.builder()
             .status(OrderStatus.OPEN)
@@ -416,6 +445,9 @@ class OrderServiceTest {
       }
     };
     final List<Trade> trades = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = -414446687789826305L;
+
       {
         add(Trade.builder()
             .price(Money.dollars(BigDecimal.valueOf(15)))
@@ -476,6 +508,9 @@ class OrderServiceTest {
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = -8561555535360685702L;
+
       {
         add(Order.builder()
             .status(OrderStatus.OPEN)
@@ -502,6 +537,9 @@ class OrderServiceTest {
       }
     };
     final List<Trade> trades = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = -3029068383132419802L;
+
       {
         add(Trade.builder()
             .price(Money.dollars(BigDecimal.valueOf(15)))
@@ -556,6 +594,9 @@ class OrderServiceTest {
         .build();
     final OrderDto orderDto = orderMapper.toDto(order);
     final List<Order> openBuyOrders = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = -854986627802858128L;
+
       {
         add(Order.builder()
             .status(OrderStatus.OPEN)
@@ -571,6 +612,9 @@ class OrderServiceTest {
       }
     };
     final List<Trade> trades = new ArrayList<>() {
+      @Serial
+      private static final long serialVersionUID = -4938134031366128700L;
+
       {
         add(Trade.builder()
             .price(Money.dollars(BigDecimal.valueOf(12)))

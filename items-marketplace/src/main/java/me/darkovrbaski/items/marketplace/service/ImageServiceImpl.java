@@ -31,8 +31,9 @@ public class ImageServiceImpl implements ImageService {
   final CloudFrontUtilities cloudFrontUtilities;
   final SsmClient ssmClient;
   final S3Client s3Client;
+  final Clock clock;
 
-  final Instant expirationDate = Clock.systemUTC().instant().plus(Duration.ofHours(3));
+  static final int expirationTime = 60 * 60 * 3;
 
   @Value("${private.key.name}")
   private String privateKeyName;
@@ -60,7 +61,7 @@ public class ImageServiceImpl implements ImageService {
         .resourceUrl("https://" + cloudfrontDomainPrivate + "/" + imageUrl)
         .privateKey(generatePrivateKey())
         .keyPairId(keyPairId)
-        .expirationDate(expirationDate)
+        .expirationDate(Instant.now(clock).plus(Duration.ofHours(expirationTime)))
         .build();
 
     return cloudFrontUtilities.getSignedUrlWithCannedPolicy(cannedRequest).url();

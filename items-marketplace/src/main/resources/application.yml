@@ -21,7 +21,7 @@ spring:
     show-sql: false
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -29,7 +29,7 @@ spring:
     open-in-view: false
   sql:
     init:
-      mode: always
+      mode: never
       platform: postgresql
 
 logging:
