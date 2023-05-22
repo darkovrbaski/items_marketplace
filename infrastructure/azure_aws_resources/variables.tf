@@ -115,4 +115,9 @@ variable "image_name" {
   description = "The name of the image"
   default     = "items-marketplace-image:latest"
 }
-  
+
+variable "ssl_password" {
+  type        = string
+  description = "The password for the ssl certificate"
+  sensitive   = true
+}

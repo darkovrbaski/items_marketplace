@@ -4,10 +4,8 @@ server:
     port: ${HTTP_PORT:8080}
   ssl:
     key-store: classpath:springboot.p12
-    key-store-password: password
+    key-store-password: ${SSL_PASSWORD:password}
     key-store-type: pkcs12
-    key-alias: springboot
-    key-password: password
 
 spring:
   application:

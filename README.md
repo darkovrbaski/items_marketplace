@@ -132,6 +132,7 @@
 7. Set environment variables:
     - `APP_PORT`
     - `HTTP_PORT`
+    - `SSL_PASSWORD`
     - `POSTGRES_DB_URL`
     - `POSTGRES_DB_USERNAME`
     - `POSTGRES_DB_PASSWORD`

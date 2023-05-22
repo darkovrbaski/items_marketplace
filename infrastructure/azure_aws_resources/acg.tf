@@ -36,6 +36,7 @@ resource "azurerm_container_group" "acg" {
       "JWT_SECRET"             = var.jwt_secret
       "STRIPE_SECRET_KEY"      = var.stripe_secret_key
       "STRIPE_ENDPOINT_SECRET" = var.stripe_endpoint_secret
+      "SSL_PASSWORD"           = var.ssl_password
     }
 
     environment_variables = {
