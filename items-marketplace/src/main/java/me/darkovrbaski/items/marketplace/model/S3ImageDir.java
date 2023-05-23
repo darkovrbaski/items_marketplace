@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 public enum S3ImageDir {
 
   IMAGES("images/"),
-  PUBLIC_IMAGES("public-images/");
+  PUBLIC_IMAGES("public_images/");
 
   String directory;
 
@@ -19,5 +19,5 @@ public enum S3ImageDir {
   public String toString() {
     return directory;
   }
-  
+
 }

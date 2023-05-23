@@ -77,7 +77,8 @@ public class UserServiceImpl implements UserService {
   public void updateImage(final MultipartFile file, final String username) {
     final var user = userRepository.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND));
-    final String imageName = user.getUsername() + "_" + file.getOriginalFilename();
+    String imageName = user.getUsername() + "_" + file.getOriginalFilename();
+    imageName = imageName.replaceAll("[^a-zA-Z0-9.]", "_");
     user.setImage(imageName);
     imageService.saveImage(file, imageName, S3ImageDir.IMAGES);
     userRepository.save(user);

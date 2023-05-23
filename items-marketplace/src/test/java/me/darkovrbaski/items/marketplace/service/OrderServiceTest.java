@@ -11,8 +11,6 @@ import java.io.Serial;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
@@ -68,7 +66,7 @@ class OrderServiceTest {
   @Mock
   UserRepository userRepository;
 
-  @Mock
+  @Autowired
   Clock clock;
 
   @Autowired
@@ -80,11 +78,6 @@ class OrderServiceTest {
 
   Article article;
 
-  static final ZonedDateTime NOW = ZonedDateTime.of(
-      LocalDateTime.of(2023, 1, 1, 0, 0, 0),
-      ZoneId.of("UTC")
-  );
-
   @SneakyThrows
   @BeforeEach
   void setUp() {
@@ -92,8 +85,6 @@ class OrderServiceTest {
     user.setId(1L);
     article = new Article("Article", null, null);
     article.setId(1L);
-    when(clock.getZone()).thenReturn(NOW.getZone());
-    when(clock.instant()).thenReturn(NOW.toInstant());
     orderService = new OrderServiceImpl(orderRepository, orderMapper, tradeService,
         inventoryService, walletService, articleRepository, userRepository, clock);
   }

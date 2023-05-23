@@ -87,7 +87,8 @@ public class ArticleServiceImpl implements ArticleService {
   @Override
   public void updateImage(final MultipartFile file, final String name) {
     final var article = articleRepository.findByName(name);
-    final String imageName = article.getName() + "_" + file.getOriginalFilename();
+    String imageName = article.getName() + "_" + file.getOriginalFilename();
+    imageName = imageName.replaceAll("[^a-zA-Z0-9.]", "_");
     article.setImage(imageName);
     imageService.saveImage(file, imageName, S3ImageDir.PUBLIC_IMAGES);
     articleRepository.save(article);

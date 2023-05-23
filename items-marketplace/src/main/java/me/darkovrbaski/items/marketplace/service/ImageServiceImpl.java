@@ -61,7 +61,7 @@ public class ImageServiceImpl implements ImageService {
         .resourceUrl("https://" + cloudfrontDomainPrivate + "/" + imageUrl)
         .privateKey(generatePrivateKey())
         .keyPairId(keyPairId)
-        .expirationDate(Instant.now(clock).plus(Duration.ofHours(expirationTime)))
+        .expirationDate(Instant.now(clock).plus(Duration.ofSeconds(expirationTime)))
         .build();
 
     return cloudFrontUtilities.getSignedUrlWithCannedPolicy(cannedRequest).url();
