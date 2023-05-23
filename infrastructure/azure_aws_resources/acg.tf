@@ -44,7 +44,7 @@ resource "azurerm_container_group" "acg" {
       "APP_PORT"                  = var.app_port
       "HTTP_PORT"                 = var.http_port
       "FRONTEND_URL"              = "https://${azurerm_static_site.ss.default_host_name}"
-      "FRONTEND_CDN_URL"          = "https://${azurerm_cdn_endpoint.cdn-ep.fqdn}"
+      "FRONTEND_CDN_URL"          = "https://im.darkovrbaski.me/"
       "S3_BUCKET_NAME"            = aws_s3_bucket.b.id
       "CLOUDFRONT_DOMAIN_PUBLIC"  = aws_cloudfront_distribution.cf_public.domain_name
       "CLOUDFRONT_DOMAIN_PRIVATE" = aws_cloudfront_distribution.cf.domain_name
