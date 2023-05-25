@@ -5,7 +5,7 @@ COPY .mvn .mvn
 COPY mvnw pom.xml checkstyle.xml ./
 COPY src src
 
-RUN apk add dos2unix=7.4.3-r1 --no-cache
+RUN apk add dos2unix=7.4.4-r1 --no-cache
 RUN dos2unix mvnw
 
 RUN chmod +x mvnw

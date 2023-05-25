@@ -24,33 +24,38 @@ public interface OrderRepository extends EntityRepository<Order> {
   @Query(
       "SELECT o FROM Order o "
           + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'SELL' AND o.price.amount <= :price "
+          + "AND o.article.id = :articleId "
           + "ORDER BY o.price.amount ASC, o.createdDateTime ASC"
   )
-  List<Order> getOpenSellLowerPricedOlderOrders(@Param("price") BigDecimal price);
+  List<Order> getOpenSellLowerPricedOlderOrders(@Param("price") BigDecimal price,
+      @Param("articleId") Long articleId);
 
   @Query(
       "SELECT o FROM Order o "
           + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'SELL' "
-          + "AND o.lowerSellPrice.amount <= :price "
+          + "AND o.lowerSellPrice.amount <= :price AND o.article.id = :articleId "
           + "ORDER BY o.lowerSellPrice.amount ASC, o.createdDateTime ASC"
   )
   Page<Order> getOpenSellLowerPricedByDiscountedPriceOlderOrders(@Param("price") BigDecimal price,
-      Pageable pageable);
+      @Param("articleId") Long articleId, Pageable pageable);
 
   @Query(
       "SELECT o FROM Order o "
           + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'SELL' "
-          + "AND o.lowerSellPrice.amount <= :price "
+          + "AND o.lowerSellPrice.amount <= :price  AND o.article.id = :articleId "
           + "ORDER BY o.lowerSellPrice.amount ASC, o.createdDateTime ASC"
   )
-  List<Order> getOpenSellLowerPricedByDiscountedPriceOlderOrders(@Param("price") BigDecimal price);
+  List<Order> getOpenSellLowerPricedByDiscountedPriceOlderOrders(@Param("price") BigDecimal price,
+      @Param("articleId") Long articleId);
 
   @Query(
       "SELECT o FROM Order o "
           + "WHERE o.status LIKE 'OPEN' AND o.type LIKE 'BUY' AND o.price.amount >= :price "
+          + "AND o.article.id = :articleId "
           + "ORDER BY o.price.amount DESC, o.createdDateTime ASC"
   )
-  List<Order> getOpenBuyHigherPricedOlderOrders(@Param("price") BigDecimal price);
+  List<Order> getOpenBuyHigherPricedOlderOrders(@Param("price") BigDecimal price,
+      @Param("articleId") Long articleId);
 
 
   @Query(

@@ -81,14 +81,16 @@ public class OrderServiceImpl implements OrderService {
   public Page<OrderDto> getMatchedSellOrders(final OrderDto orderDto, final int page,
       final int size) {
     return orderRepository.getOpenSellLowerPricedByDiscountedPriceOlderOrders(
-        orderDto.price().amount(), PageRequest.of(page, size)).map(orderMapper::toDto);
+            orderDto.price().amount(), orderDto.article().id(), PageRequest.of(page, size))
+        .map(orderMapper::toDto);
   }
 
   @Override
   public OrderDto trade(final OrderDto orderDto, final Long matchedOrderId) {
     final var order = orderRepository.findByIdOrThrow(orderDto.id());
     final var matchedOrder = orderRepository
-        .getOpenSellLowerPricedByDiscountedPriceOlderOrders(orderDto.price().amount())
+        .getOpenSellLowerPricedByDiscountedPriceOlderOrders(orderDto.price().amount(),
+            orderDto.article().id())
         .stream().filter(o -> o.getId().equals(matchedOrderId) && o.isOpen()).findFirst()
         .orElseThrow(() -> new IllegalArgumentException("Order not found"));
     makeTrades(order, Collections.singletonList(matchedOrder));
@@ -156,8 +158,10 @@ public class OrderServiceImpl implements OrderService {
 
   private void automaticMatchOrders(final Order newOrder) {
     final var matchedOrders = newOrder.isBuyOrder()
-        ? orderRepository.getOpenSellLowerPricedOlderOrders(newOrder.getPrice().getAmount())
-        : orderRepository.getOpenBuyHigherPricedOlderOrders(newOrder.getPrice().getAmount())
+        ? orderRepository.getOpenSellLowerPricedOlderOrders(newOrder.getPrice().getAmount(),
+        newOrder.getArticle().getId())
+        : orderRepository.getOpenBuyHigherPricedOlderOrders(newOrder.getPrice().getAmount(),
+                newOrder.getArticle().getId())
             .stream().filter(Order::isEnabledAutoTrade).toList();
     makeTrades(newOrder, matchedOrders);
   }

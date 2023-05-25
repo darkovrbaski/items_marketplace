@@ -187,7 +187,8 @@ class OrderServiceTest {
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
-    when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
+    when(orderRepository.getOpenSellLowerPricedOlderOrders(any(), any())).thenReturn(
+        openSellOrders);
     when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(tradeService.createTrade(any(), any(), any()))
         .thenReturn(trades.get(0), trades.get(1), trades.get(2));
@@ -291,7 +292,8 @@ class OrderServiceTest {
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
-    when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
+    when(orderRepository.getOpenSellLowerPricedOlderOrders(any(), any())).thenReturn(
+        openSellOrders);
     when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0), trades.get(1));
@@ -360,7 +362,8 @@ class OrderServiceTest {
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
-    when(orderRepository.getOpenSellLowerPricedOlderOrders(any())).thenReturn(openSellOrders);
+    when(orderRepository.getOpenSellLowerPricedOlderOrders(any(), any())).thenReturn(
+        openSellOrders);
     when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0));
@@ -473,7 +476,7 @@ class OrderServiceTest {
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
-    when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
+    when(orderRepository.getOpenBuyHigherPricedOlderOrders(any(), any())).thenReturn(openBuyOrders);
     when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any()))
@@ -560,7 +563,7 @@ class OrderServiceTest {
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
-    when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
+    when(orderRepository.getOpenBuyHigherPricedOlderOrders(any(), any())).thenReturn(openBuyOrders);
     when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0), trades.get(1));
@@ -630,7 +633,7 @@ class OrderServiceTest {
         .build();
     final OrderDto expectedOrderDto = orderMapper.toDto(expectedOrder);
 
-    when(orderRepository.getOpenBuyHigherPricedOlderOrders(any())).thenReturn(openBuyOrders);
+    when(orderRepository.getOpenBuyHigherPricedOlderOrders(any(), any())).thenReturn(openBuyOrders);
     when(orderRepository.save(any(Order.class))).thenAnswer(i -> i.getArguments()[0]);
     when(orderRepository.saveAll(any())).thenReturn(null);
     when(tradeService.createTrade(any(), any(), any())).thenReturn(trades.get(0));
