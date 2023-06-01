@@ -26,7 +26,7 @@
     <checkstyle.version>10.10.0</checkstyle.version>
     <jacoco-maven-plugin>0.8.10</jacoco-maven-plugin>
     <jjwt.version>0.11.5</jjwt.version>
-    <aws-sdk.version>2.20.56</aws-sdk.version>
+    <aws-sdk.version>2.20.76</aws-sdk.version>
     <stripe-java.version>22.17.0</stripe-java.version>
   </properties>
   <dependencies>
