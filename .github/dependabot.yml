@@ -4,16 +4,16 @@ updates:
     directory: "/items-marketplace"
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 99
+    open-pull-requests-limit: 0 # disabled, was 99
 
   - package-ecosystem: "npm"
     directory: "/angular-app"
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 99
+    open-pull-requests-limit: 0 # disabled, was 99
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 99
+    open-pull-requests-limit: 0 # disabled, was 99
